@@ -3,9 +3,9 @@
 To understand the rest of the thesis, let us talk about the aforementioned models.
 We will take the description step by step, starting with a dataset stored in a plaintext file.
 After a while, we will get familiar with RDF, Linked Data and last, but not least, with the
-Data Cube vocabulary.
+Data Cube Vocabulary.
 
-Since we are discussing statistical data, we will take a simple real-life example.
+Since we are discussing statistical data, we will take a simple real--life example.
 National statistical offices all over the world are well--known for periodic gathering of the
 statistics about the population of the country they are operating in. Moreover, 
 those statistics are being regularly published and gathered by international 
@@ -14,8 +14,8 @@ another statistics upon the national data. Also, other organizations, like
 Google~\cite{pubdata} use those data to publish them and make 
 some advanced statistics.
 
-That is, in fact, why we would like to have the data in a pre--defined structured 
-way, wrapped with metadata to perfectly understand what the data in a given 
+That is, in fact, why we would like to have the data in a pre--defined structure,
+wrapped with metadata to perfectly understand what the data in a given 
 dataset mean. Moreover, we would take advantage of such a dataset to speed up 
 and automate its processing. It would be great to be able to introduce a tool, 
 which will take the national statistics immediately after its publishing and 
@@ -70,9 +70,9 @@ Let us return to the meaningful example.
 
 If we keep the meaning of the values, we know that in the first column we have the name
 of the country and in the second one, we have the total number of citizens. Those statements
-could be called observations, as it can be said that someone made an observation 
+could be called \emph{observations}, as it can be said that someone made an observation 
 about there being over 10 million people living in the Czech Republic. We can also say that the
-dataset has got two dimensions. The first one is the place where the observation has taken
+dataset has got two \emph{dimensions}. The first one is the place where the observation has taken
 place, the second one is the value being measured.
 
 That would make a nice Excel table, simple chart or a nice map of central Europe with
@@ -139,7 +139,7 @@ it into a web page and publish it on a server.
 \end{figure}
 
 Example of such a web page source code can be seen in the 
-figure~\ref{rdf-html-01}. We published the data not only in a more structured form but also
+figure~\ref{fig:rdf-html-01}. We published the data not only in a more structured form but also
 provided an explanation of its meaning. Therefore, some additional data had to be added. In fact, we
 should speak of it as of metadata, since the meaning is rather descriptive instead of semantical.
 
@@ -176,15 +176,15 @@ http://dbpedia.org/resource/Kenya   http://www.w3.org/1999/02/22-rdf-syntax-ns#t
 
 This actually tells us that \texttt{Kenya is a country}. That statement could obviously be found on
 the~Internet in a countless of different data sources; they are not usually presented
-in a machine-readable form, though. In order to work with that sentence is a 
+in a machine--readable form, though. In order to work with that sentence we need a 
 parser, which is able to get the information based on a bunch of linguistical rules.
 Moreso, the sentence might be more complicated, e.g. \texttt{Kenya, with Nairobi as its capital city,
 is a very beautiful country}. Ignoring the fact that the sentence brings another useful
-information, we should aim our focus on the fact that it’s more of a complicated piece of language to parse. 
+information, we should aim our focus on the fact that it is more of a complicated piece of language to parse. 
 
 The RDF notation gives a semantic meaning to the relation. The RDF model is based on making certain
-kinds of triples; such can be seen in the example. If we extend the set of triples with another,
-what we get is \emph{a directed, labeled graph}, where the edges represent relation between two resources.
+kinds of triples; such can be seen in the previous example. If we extend the set of triples with another,
+what we get is \emph{a directed, labeled graph}, where an edge represents \emph{relation} between two resources.
 Those resources are represented by graph nodes. Based on the actual content of the triples,
 the~graph may consist of two or more standalone connected components as well as of
 just a~single one. Such a graph may potentially contain information about entities from all over
@@ -196,15 +196,15 @@ needing the user to specify it (as somebody has already done that while publishi
 
 \section{Linked Data}
 
-A kind of implementation of the Resource Description Framework is the Linked data model.
+A kind of implementation of the Resource Description Framework is the Linked Data model.
 It utillizes several technologies and principles to actually interconnect the data on the Internet.
 Both resources and relations are denoted with URIs. The HTTP protocol is used to make
 the~resource public on the Internet. It may be found by dereferencing (accessing) the assigned
 URI. Both machines and people are therefore capable of looking the resource up.
 
 When the URI is dereferenced, more useful information could be provided while utillizing the RDF
-and SPARQL standards. Since the method is called linked data, the most significant part
-of the concept is about knowing how the data could be connected when being published on the web.
+and SPARQL standards. Since the model is called Linked Data, the most significant part
+of the concept is about knowing how the data could be connected when being published on the Web.
 It also brings some serialization formats, such as RDFa, RDF/XML, N3, Turtle and many others.
 One of the most significant project involving Linked Data is the LOD2 project~\cite{lod2}.
 
@@ -212,17 +212,17 @@ To make the idea about datasets more clear, let us mention some well--known data
 involving Linked Data:
 
 \begin{itemize}
-\item DBPedia - dataset made by transforming Wikipedia into the RDF model.
-\item FOAF - dataset describing persons, their properties and relationships.
-\item GeoNames - geographical LD database.
-\item CKAN - community-run catalogue of useful sets of data on the Internet.
+\item DBPedia --- dataset made by transforming Wikipedia into the RDF model.
+\item FOAF --- dataset describing persons, their properties and relationships.
+\item GeoNames --- geographical LD database.
+\item CKAN --- community--run catalogue of useful sets of data on the Internet.
 \end{itemize}
 
 \subsubsection{Namespaces and prefixes}
 
 There is one rather technical note we should mention before taking further steps. The RDF
 also brings a way of expressing URI of a resource in a more compact form while utilizing
-so--called prefixes and namespaces. Let’s look at the example:
+so--called prefixes and namespaces. Let us look at the example:
 
 \scriptsize\begin{verbatim}
 http://dbpedia.org/ontology/populationTotal
@@ -231,17 +231,17 @@ http://dbpedia.org/ontology/populationAsOf
 
 Those are URIs which reference specific properties with a semantic meaning as designed
 by the DBPedia~\cite{dbpedia}. At a closer look, one can see that there are some parts of the URI,
-that are repeated in each of them. E.g. the scheme --- http. Although that’s a rather technical
+that are repeated in each of them. E.g. the scheme --- http. Although that is a rather technical
 point of view. The most long common part of both URIs is \url{http://dbpedia.org/ontology/}
 which makes a namespace. It makes a logical sense that all the resources in the virtual
 folder \texttt{ontology} have something in common, therefore, they are grouped into the namespace.
 
 Since one could remember easily the name of the specific resource in a namespace,
-e.g. “populationTotal”, it would be great if they had no need to look up the full
+e.g. \texttt{populationTotal}, it would be great if they had no need to look up the full
 URI of the namespace and express it with a short and easy--to--remember, but still 
 unique, identifier. That’s what prefixes are designed for. For instance, the
-\url{http://dbpedia.org/ontology/} was assigned the prefix \verb dbpedia-owl. Since the scheme
-is then \verb prefix:localname, one could write:
+\url{http://dbpedia.org/ontology/} was assigned the prefix \texttt{dbpedia-owl}. Since the scheme
+is then \texttt{prefix:localname}, xone could write:
 
 \scriptsize\begin{verbatim}
 dbpedia-owl:populationTotal
@@ -259,7 +259,7 @@ interested in transforming the data into a machine-readable form.
 
 It is definitely a great achievement to have such a dataset in a form of Linked Data, but
 what we need for understanding its contents is a suitable visualization of the data.
-Due to our knowledge of working with statistical multi-dimensional data we can apply our know--how
+Due to our knowledge of working with statistical multi--dimensional data we can apply our know--how
 to the aforementioned data as they are statistical datasets as well.
 
 \begin{figure}
@@ -309,7 +309,7 @@ other ontologies). Both classes and predicates are specified using their unique 
 
 Let’s start with countries. Without a restriction, one may also include, let us say, planets. With
 an~ontology, it can be specified what kind of resources could be included.
-It is needed to specify a URI describing the type “country”, for instance
+It is needed to specify a URI describing the type \texttt{country}, for instance
 a rule can be set that a resource needs to be of the type \mbox{\url{http://schema.org/Country}}.
 
 After that, another rule is added, which will define that the country may have its capital
@@ -381,7 +381,7 @@ of the Internet.
 
 \subsubsection{RDF example}
 
-When such a page is analyzed by a RDF-aware tool, it may be extracted into a more concise form:
+When such a page is analyzed by a RDF--aware tool, it may be extracted into a more concise form:
 
 \scriptsize\begin{verbatim}
 http://dbpedia.org/page/Czech_Republic	dbpedia-owl:populationTotal		10505445 ;
@@ -394,7 +394,7 @@ http://dbpedia.org/page/Slovakia       dbpedia-owl:populationTotal		5404555 ;
 The document may naturally contain much more information about the resources, but for the
 purposes of our interest in the statistical values related to the population size we do not
 need anything more. In fact, the DBPedia database contains many more data related to the entity,
-e.g. the capital city, the name of the president etc.
+e.g. the capital city, the name of the president, etc.
 
 But all we need to start with statistical data in combination with the Linked Data concept is held
 by those RDF triples. In fact, the main goal of this thesis is to implement a prototype of a 
@@ -402,9 +402,10 @@ system, which will be able to convert such triples (and more complicated statist
 slightly another, but still RDF--complaint, format.
 
 \section{Data Cube}
+\label{sec:datacube}
 Before proceeding with the example, let us stop for a while and talk about Data Cube outside
 the~RDF and Linked Data scope. Generally speaking, a data cube is a \emph{multi-dimensional}
-(means three or more--dimensional) array of values describing some kind of data. In the
+ array of values describing some kind of data. In the
 data--mining context, it is often referenced as an \emph{OLAP cube}, where OLAP stands for OnLine
 Analytical Processing.
 
@@ -466,7 +467,7 @@ by Statistical Data and Metadata eXchange standard~\cite{sdmx}, let us discuss t
 \section{Statistical Data and Metadata eXchange}
 The SDMX Initiative~\cite{sdmx} was introduced by seven organizations in order to make
 an~effective standard to interchange statistical data. All those organizations, e.g. OECD,
-UN or Eurostat, have, without any doubt, access to large amount of statistical data, even more,
+UN or Eurostat, have, without any doubt, access to a large amount of statistical data, even more,
 they produce them. Some examples of such data could be found on~\cite{pubdata}.
 In 2005, the Initiative has introduced a
 version 1.0 of a technical specification, which was approved by the International
@@ -515,11 +516,12 @@ but it were the SDMX Content--Oriented Guidelines. On top of other products, it 
 following:
 
 \begin{itemize}
-\item Cross-Domain Concepts
-\item Cross-Domain Codelists
-\item Statistical Subject-Matter Domains
-\item Metadata Common Vocabulary
-\item SDMX-ML for the Content-Oriented Guidelines (Concepts, Code Lists, Category Scheme)
+\item Cross--Domain Concepts.
+\item Cross--Domain Codelists.
+\item Statistical Subject--Matter Domains.
+\item Metadata Common Vocabulary.
+\item SDMX--ML for the Content-Oriented Guidelines (Concepts, Code Lists, Category 
+Scheme).
 \end{itemize}
 
 These are products that the Data Cube Vocabulary works with and builds upon. More important
@@ -530,7 +532,7 @@ interfaces was added to enable SDMX Registry manipulation. The registry was intr
 enable data location catalogization and metadata cross--referencing over the Internet. Also,
 structured metadata manipulation was introduced.
 
-Since the SDMX Content-Oriented Guidelines are focused on SDMX use cases, we will present
+Since the SDMX Content--Oriented Guidelines are focused on SDMX use cases, we will present
 one of them to the reader, since the same use case could be applied in the derived Data Cube
 Vocabulary in the environment of Linked Data.
 
@@ -540,12 +542,12 @@ data from the web periodically and keeping them up--to--date. It resembles a bit
 of scraping data into a Linked Data datastore, which was, perhaps, derived just from the web
 data dissemination process.
 
-The next SDMX fundamental connected to the Linked Data model is defining concepts. That’s
+The next SDMX fundamental connected to the Linked Data model is defining concepts. That is
 very similar to the LD ontologies. A concept is a source of data semantics. It:
 
 \begin{itemize}
 \item Provides a detailed definition of the component, which describes the structure of the data or
-metadata
+metadata.
 \item Can allow data and metadata for different structures to be comparable when concepts are reused.
 \end{itemize}
 
@@ -568,11 +570,14 @@ Also the list of three main components of SDMX concept goes well with the Linked
 One is also able to include all those properties into a RDF--compliant resource definition,
 furthermore, the first one is also mandatory and represented by a URI.
 
+\label{SDMX-code-lists}
 Hand in hand with concepts goes defining code lists. It is a way of determining possible
 values. In fact, those code lists are enumerations. They also have the three basic components
 (identification, name and description) as concepts do. Code lists could be organized into
 hierarchies to reflect a certain kind of relations between members of the list. The hierarchy
 is meant to represent a children--parent relationship, but no additional properties are specified.
+Let us mention \emph{Nomenclature des Unites Territoriales Statistiques (NUTS)} 
+as an example of such a hierarchy.
 
 The data definition reflects exactly what we need. It consists of a collection of 
 components, which define what is being measured, together with additional metadata.
@@ -589,10 +594,10 @@ But this is only a definition of a data structure, a set of rules of how a speci
 should be published. Based on that, a dataset is published in a way to respect such a set
 of rules. Therefore, every dataset represents a collection of data structures. Each data
 structure is consisted of a set of components. One of them needs to be a measure,
-a so--called primary measure. The primary measure is marked with a special flag to be found
+a so--called \emph{primary measure}. The primary measure is marked with a special flag to be found
 easily to enable more efficient processing.
 
-Besides of measures, there are dimensions. A data structure needs to have at least one.
+Besides of measures, there are \emph{dimensions}. A data structure needs to have at least one.
 Each dimension references its concept and has a unique identification. The combination of
 all the dimensions (except the measure) defines a key, which makes it able to point
 to the primary measure.
@@ -606,20 +611,20 @@ for a data structure:
 \end{itemize}
 
 There are some preferred formats, which tell us, how to publish the time of capturing
-the~observation --- period, duration or timestamp. More details about that could be found
+the~observation --- a period, a duration or a timestamp. More details about that could be found
 in the SDMX User Guide~\cite{sdmxuserguide}.
 
 Moreover, a data structure can hold some metadata, e.g. the unit of the measurement
 or a starting day of the week (in case of periodic time format).
 
 As stated before, the SDMX 2.0 Information Model was used to build up the
-RDF Data Cube Vocabulary, especially the Content-Oriented Guidelines (COGs). The Data Cube
+RDF Data Cube Vocabulary, especially the Content--Oriented Guidelines (COGs). The Data Cube
 vocabulary specification itself does not cover mechanics of transforming other formats
 into the Data Cube Vocabulary, including the SDMX mostly used SDMX-ML. It presents the final
 product, a model which builds upon the RDF and SDMX models.
 
 In the section dedicated to the brief description of the RDF, we have discussed that resources
-are identified by a unique identifier - a URI. We have also mentioned that it is used to express
+are identified by a unique identifier --- a URI. We have also mentioned that it is used to express
 them in a compact form while utilizing prefixes and namespaces. Before going further with
 the~description of the Data Cube Vocabulary, let us present a short list of significant prefixes
 (presented in the Table ~\ref{tab:sdmxprefixes}),
@@ -650,7 +655,7 @@ dedicated to the SDMX description. Therefore, a data cube is also consisted of a
 dimensions, attributes and measures --- components, speaking generally. As in the cases of
 OLAP cube and SDMX, dimensions are used to uniquely identify observed measures
 (remember the formal mapping marking mentioned in the section about RDBMS representation
-of OLAP cube). The outline of the vocabulary can bee seen in the 
+of OLAP cube). The outline of Data Cube Vocabulary can bee seen in the 
 figure~\ref{fig:lod-cloud}.
  
 \begin{figure}
@@ -666,15 +671,15 @@ is supplemented with additional attributes, which may make the measurement more 
 - units, multipliers but also other, not so important, notes.
 
 As we have discussed in the section dedicated to the SDMX model, each data set should be
-published according to a specific data structure. Let’s have a look on how the data structures are
-modified by including Linked Data and let’s try to create a data structure definition according
+published according to a specific data structure. Let us have a look on how the data structures are
+modified by including Linked Data and let us try to create a data structure definition according
 to our demography example.
 
 A data structure definition is represented by \texttt{qb:DataStructureDefinition} resource. It defines
 how the data set should be formed in order to comply with Data Cube Vocabulary. It defines
 dimensions, attributes and measures, which may appear in the data set. Alongside with the
 definition, optional and required attributes are defined, as well as their ordering. This kind
-of information can be extracted easily from well--formed document and need to not be explicitly
+of information can be extracted easily from a well--formed document and need to not be explicitly
 declared. But the explicit declaration enables you to:
 
 \begin{itemize}
@@ -683,6 +688,7 @@ declared. But the explicit declaration enables you to:
 \item Exchange structure definition.
 \end{itemize}
 
+\begin{sloppypar}
 Since the data structure defines attributes, measures and dimensions, other resources need
 to be involved. That is why \texttt{qb:ComponentProperty} class was introduced. It has a few derived
 classes, \texttt{qb:DimensionProperty}, \texttt{qb:AttributeProperty}
@@ -691,6 +697,7 @@ multiple pieces of information. Firstly, the concept, which is represented (e.g.
 nation, currency, chemical substance, etc.) is followed by the type of the component
 (dimension, attribute, measure). Last but not least, it carries the information about which
 code list (see section~\ref{SDMX-code-lists}) is used to represent the value.
+\end{sloppypar}
 
 Since the goal of the SDMX model and Data Cube Vocabulary is to reuse community--proposed
 taxonomies, \texttt{qb:concept} property was introduced to make it possible to link
@@ -708,13 +715,15 @@ the~existence of the qb:codeList property, an automatic validation and range che
 can be performed. Moreover, tools can easily retrieve the complete list of possible values.
 To enable range checking on non--coded values, rdfs:range can be used.
 
+\begin{sloppypar}
 Before getting back to our example, we need to point out a bridge between the SDMX
 and Data Cube Vocabulary models. A community group has introduced some RDF 
 encodings of SDMX COGs. These are \texttt{sdmx-concept}, \texttt{sdmx-code}, \texttt{sdmx-dimension},
 \texttt{sdmx-attribute} and \texttt{sdmx-measure}. That is a simple way of interlinking the Data Cube
 Vocabulary with the SDMX model.
+\end{sloppypar}
 
-Let’s get back to the demography example. We will continue with the prepared RDF
+Let us get back to the demography example. We will continue with the prepared RDF
 document and transform it into a Data Cube Vocabulary model. Since we know that each
 observation should conform to a specified data structure, we should at first define
 such a structure. To define a structure, we need to define all components first.
@@ -732,10 +741,10 @@ eg:refPeriod a rdf:Property, qb:DimensionProperty ;
     qb:concept sdmx-concept:refPeriod .
 \end{verbatim}
 
-We define the eg:refPeriod and we state, that it is a rdf:Property and Data Cube dimension.
+We define the \texttt{eg:refPeriod} and we state, that it is a \texttt{rdf:Property} and Data Cube dimension.
 The rest of the statements are metadata, which are not really necessary, textual description
 (label) and interlinking with existing concepts (relations to sdmx-dimension). To enable range
-cheking, rdfs:range is defined.
+cheking, \texttt{rdfs:range} is defined.
 
 \item Place definiton [dimension]:
 
@@ -790,19 +799,19 @@ each with a single measure property (3 dimensions overall).
 
 Regardless of whether you group those observations into a single one or not, one is able
 to select the related observations from the data cube dataset relatively easily since they
-are all determined by exactly the same dimension properties. That is called a slicing.
+are all determined by exactly the same dimension properties. That is called \emph{slicing}.
 If you take a cube and select all the related observations you make a slice. The slice is exactly
 the~same as the 5--dimensional observation mentioned before.
 
 Based on the data structure, we can publish a specific dataset. The dataset could be formalized
-as a collection of a four kinds of data:
+as a collection of four data types:
 
 \begin{itemize}
-\item Observations - values, measured numbers.
-\item Organizational structure - dimensions of the measured value (could be in the form of slices)
-Internal metadata - additional data description used to interpret observations (units, estimation,
+\item Observations --- values, measured numbers.
+\item Organizational structure --- dimensions of the measured value (could be in the form of slices)
+\item Internal metadata --- additional data description used to interpret observations (units, estimation,
 etc.).
-\item External metadata - interlink to an author, dataset categorization, etc. (linked data 
+\item External metadata --- interlink to an author, dataset categorization, etc. (linked data 
 principle).
 \end{itemize}
 
@@ -889,7 +898,7 @@ czso-ds-dem-emm: a sdmx:DataSet ;
     czso-ds-def:refPeriod "2011"^^xsd:gYear ;
     czso-ds-def:births "13968"^^xsd:nonNegativeInteger .
 \end{verbatim}\normalsize
-\caption{An exemple of a DCV dataset}
+\caption{An example of a DCV dataset}
 \label{fig:example-dcv-dataset}
 \end{figure}
 

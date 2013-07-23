@@ -1,9 +1,9 @@
 \chapter{Payola}
 \label{ch:payola}
 
-Quite some time ago, we decided to participate on a~large-scale software 
-project focused on analyzing and visualising Linked Data. As a~result of the~
-project a~completely new tool, Payola, was introduced. Since we are proposing a 
+Quite some time ago, we decided to participate on a~large--scale software 
+project focused on analyzing and visualising Linked Data. As a~result of the~project
+a~completely new tool, Payola, was introduced. Since we are proposing a 
 system, which could fit into the technological stack of Payola, in this chapter, 
 we will get the reader familiar with the tool. Even if we  decide 
 not to integrate the system we are about to propose, the Payola tool remains
@@ -14,14 +14,14 @@ The main goal was to come up with an~application that will eventually reduce the
 stack one needs to browse, analyze and visualize Linked Data. We wanted the~tool 
 to compile some existing approaches and bring a~compact way for processing LD.
 
-Upon a closer look at Section ~\cite{chap:rw}, it will become apparent that many of those tools are
+Upon a closer look at Section ~\ref{chap:rw}, it will become apparent that many of those tools are
 immensely capable. However at a more detailed look one will see that they might have to
 be chained in order to convert data into 
 RDF, perform analysis over an~RDF graph and visualize those results.
 
 Payola, on the~other hand, is a~framework developed with keeping in mind that 
 the user should have no need for another tool to process their data. However, as a~
-large-scale project actively being developed, it still lacks many 
+large--scale project actively being developed, it still lacks many 
 features and originally offers just a~basic set of operations to enable a
 \emph{generic} processing of an~arbitrary dataset.
 
@@ -33,16 +33,16 @@ the architecture of the~system it is required to familiarize oneself with its fe
 In order to fully understand the~following text, let us explain some concepts 
 implemented in Payola:
 \begin{itemize}
-  \item Data Source - data storage with a~defined interface like a~SPARQL endpoint.
+  \item \emph{Data Source} --- data storage with a~defined interface like a~SPARQL endpoint.
   If we talk about a~data source, we almost always have in mind an~RDF data source.
   
-  \item Analysis --- one can look at an~analysis as an~algorithm, which 
+  \item \emph{Analysis} --- one can look at an~analysis as an~algorithm, which 
   describes how to work with data from a data source in order to provide results. 
   It is a~way of specifiyng the data sources you want to fetch the~data from, 
   of filtering them, combining them, constraining them on properties, applying 
-  ontologies, etc.
+  ontologies, etc. Also known as an analytical pipeline or an analyser.  
   
-  \item Plugin --- as Payola is a~platform, it is reasonable to expect that 
+  \item \emph{Plugin} --- as Payola is a~platform, it is reasonable to expect that 
   some of the~features might get to be extended by plugins. In 
   Payola, we distinguish between two different types of plugins --- \emph{analytical plugins} and 
   \emph{visualisation plugins}. Whilst visualisation plugins are small components, 
@@ -54,7 +54,7 @@ implemented in Payola:
   a~completely different graph. The new graph is created by applying in--memory
   operations defined by the~source code of the~plugin.
   
-  \item Data fetcher --- a~component, which serves to fetch data from a~data 
+  \item \emph{Data fetcher} --- a~component, which serves to fetch data from a~data 
   source. For example, while communicating with DBPedia~\cite{dbpedia},
   a~data fetcher is needed to connect to a~SPARQL Endpoint, execute a~
   SPARQL query against it and return the~results.
@@ -78,15 +78,15 @@ publicly available and share an~URL of that instance, which allows any
 Internet user to browse through the~data source equally as its owner.
 
 \subsection{Exploration mode}
-On the~application dashboard is the~a presented with a~list of accessible 
+On the~application dashboard is the~user presented with a~list of accessible 
 resources, including data sources. After clicking on a~data source the~user is
-presented with a~neighbourhood of an~initial vertex. The choice of an~initial vertex
+presented with a~neighbourhood of an~\emph{initial vertex}. The choice of an~initial vertex
 depends on the~implementation of the~underlying data fetcher.
 Those bundled with Payola choose a~random entity from the~data source
 and use it as a~starting point of a~data source exploration.
 
 The user is also provided with his own data repository, which is created by 
-Payola in the~underlying installation of the~Virtuoso triplestore. Payola then eases 
+Payola in the~underlying installation of the~Virtuoso~\cite{virtuoso} triplestore. Payola then eases 
 the upload of an~arbitrary dataset in the~RDF/XML or TTL 
 format into the~private repository. The repository may be used as a~data source in analyses.
 
@@ -111,29 +111,29 @@ plugins. Generally, the~list of plugins contains as many plugins as needed
 in order to simulate basic SPARQL query behaviour.
 
 \begin{itemize}
-  \item Typed - This plugin selects vertices of an~RDF type that is filled in
+  \item \emph{Typed} --- This plugin selects vertices of an~RDF type that is filled in
   as a~parameter called RDF Type URI from its input graph.
   
-  \item Property Selection - the~plugin takes property URIs separated by the
+  \item \emph{Property Selection} --- the~plugin takes property URIs separated by the
   newline character as a~single parameter. It selects vertices connected
   to others using one of the~listed URIs.
   
-  \item Filter - the~plugin lets the~user select vertices with an~attribute of
+  \item \emph{Filter} --- the~plugin lets the~user select vertices with an~attribute of
   a~particular value or property.
  
-  \item Ontological Filter - this plugin filters the~input data so that the~
+  \item \emph{Ontological Filter} --- this plugin filters the~input data so that the~
   result contains only vertices and properties defined in an~ontology specified 
   by the~given URI.
   
-  \item SPARQL Query - a~plugin for more advanced users who are capable of 
+  \item \emph{SPARQL Query} --- a~plugin for more advanced users who are capable of 
   constructing a~custom SPARQL query. Since plugins in the~pipeline work solely with 
   graphs, the~SPARQL query should be of a CONSTRUCT type.
   
-  \item Union - a~plugin with more than one input. As the name suggests, it takes 
+  \item \emph{Union} --- a~plugin with more than one input. As the name suggests, it takes 
   the~input graphs and unifies them into a~single one that is passed onto the~
   output.
   
-  \item Join - the~behaviour of the~Join plugin could be a~bit tricky so it is advisible
+  \item \emph{Join} --- the~behaviour of the~Join plugin could be a~bit tricky so it is advisible
   to take a~closer look at it in the~application's 
   user's guide~\cite{payola:ug:join-plugin}. The most common case simulates the~
   behaviour of the~join statement as we know it from the~world of relational 
@@ -176,7 +176,7 @@ visualization, all can be shared with other users of the~Payola application
 installation.
 
 Since the~description of the~tool is not the~main goal of this thesis, we will 
-keep it brief and refer the reader to the~Payola User's guide~\cite{payola-ug} to learn more.
+keep it brief and refer the reader to the~Payola User's guide~\cite{payola:ug} to learn more.
 
 \section{Payola architecture}
 The application is divided into several parts, packages, in fact. That can be 
@@ -186,10 +186,10 @@ chapter about implementation, we will look at them more closely.
 At first, there is the~\texttt{common} package consisted of a code, which is 
 shared with all of the~other parts of the~application. Every other packages can 
 access it and use the~declared code. Moreso, the~classes and objects 
-in this package are automatically compiled into JavaScript language and available
+in this package are automatically compiled into the~JavaScript language and available
 also on the~client--side. As an~example of a~class from the~common package, we
-can name the Graph or Vertex classes, which serve as object representations
-of an RDF graph or a~Vertex (resource, entity). Moreover, there are traits for 
+can name the \texttt{Graph} or \texttt{Vertex} classes, which serve as object representations
+of an RDF graph or a~vertex (resource, entity). Moreover, there are traits for 
 entities that are consequentially independent on a~concrete DAL implementation.
 
 The domain package contains a~code related to the~business logic of the~
@@ -198,13 +198,13 @@ application. It solves mostly basic operations for entities, such as
 It also contains components related to the~analytical plugins compiler. The 
 compiler is executed when a~user submits his own analytical plugin via the~user 
 interface. It validates and compiles the~code. If successful, the~plugin is 
-loaded into the~application. Last, but not least, the~analysis evaluator is 
+loaded into the~application. Last, but not least, the~\emph{analysis evaluator} is 
 present in this package. Since this is crucial, we will talk about the~evaluator
 in more detail in this chapter.
 
 The data package then wraps the~entities from the~previous packages with a
 concrete implementation of DAL (Data Access Layer), which in our case is the~Squeryl
-ORM framework.
+ORM framework~\cite{squeryl}.
 
 The model package builds up a~wrapper, which encapsulates all the
 business and data access logic. The goal of the~code in this package is to decouple
@@ -221,7 +221,7 @@ most difficult and interesting features from this package is the~RPC mechanism.
 The RPC mechanism was implemented in order to bridge the~gap between the~client 
 side and the server side application and to hide the~XHR request from
 the~developer of the~application and/or any extension. Since the~application heavily
-uses the~Scala to JavaScript component, we invested some effort into developing the~RPC 
+uses the~\emph{Scala to JavaScript} component, we invested some effort into developing the~RPC 
 protocol. That enables a developer to transparently call a~method on the~server from 
 the client--side. 
 
@@ -240,13 +240,13 @@ When we are now familiar with the~parts of the~application, we may explain a~
 bit more about the processing and visualizing of an analytical pipeline. That is 
 crucial to know before an implementation of any extension.
 
-When an~analysis evaluation is requested, the~analysis gets validated. We need to make
+When an~analysis evaluation is requested, the~analysis gets \emph{validated}. We need to make
 sure that the application meets some requirements, e.g. it has one 
-output, all inputs and outputs of all the~plugins in the~analysis are bound, etc.
-If it does, the~application tries to optimize it. Generally, executing a~plugin 
+\emph{output}, all \emph{inputs} and outputs of all the~plugins in the~analysis are \emph{bound}, etc.
+If it does, the~application tries to \emph{optimize} it. Generally, executing a~plugin 
 means that it is provided with an~input graph, it performs some operations and 
-returns another graph. Since the~project has integrated the~Jena library, it is 
-very easy to query an~in-memory representation of a~graph and return the~
+returns another graph. Since the~project has integrated the~Jena library~\cite{jena}, it is 
+very easy to query an~in--memory representation of a~graph and return the~
 results.
 
 Let us imagine a~situation where a~user wants to select a~rather small range of 
@@ -255,9 +255,9 @@ with a~population count higher than $2000000$ people. Without an~optimization
 the evaluator would have selected all available entities from the DBPedia 
 database (which is not possible anyway due to their SPARQL endpoint 
 configuration). After transferring all of the~data to the~Payola server, it would have
-executed a~simple SPARQL typed\&filter query in the~memory.
+executed a~simple SPARQL \emph{typed\&filter} query in the~memory.
 However, this would be a~far cry from an~efficient solution. It would even
-bring many technical difficulties, e.g. the~whole DBPedia dataset woul require 
+bring many technical difficulties, e.g. the~whole DBPedia dataset would require 
 the Payola server to have a~huge amount of RAM.
 
 That is why an~optimalization would take place in such a~situation. The original 
@@ -279,11 +279,11 @@ needs to be also a~graph.
 
 As the~last plugin (with no bound successor on its output) gets evaluated, the~
 analysis is done. The results are sent via RPC (while being serialized into JSON) 
-to the~client--side and visualized by the~basic visualisation - the~triple 
+to the~client--side and visualized by the~basic visualisation -- the~triple 
 table. The user is then able to switch to another visualisation. The JSON 
 representation of the~resulting graph is stored in the~memory of the~user's web 
 browser and every visualizer, which is activated by the~user accesses the~
-in-memory representation and renders whatever it needs into a~given canvas.
+in--memory representation and renders whatever it needs into a~given canvas.
 
 That is a~brief description of the~evaluation process. It offers an insight
 to what happens of in the~background. Later, we will learn how this affects 
@@ -302,7 +302,7 @@ the LOD2 stack, it was decided that it has to run on the~JVM platform. The
 Scala programming language was chosen as a~main implementation language of the~
 whole application. Since the~team of the~project wanted to avoid a code repeating 
 while keeping in mind the~DRY programming paradigm, one of the~members 
-introduced his own version of Scala to JavaScript compiler. Therefore, even the~
+introduced his own version of Scala to JavaScript compiler~\cite{s2js}. Therefore, even the~
 client--side code of the~application is written in the~Scala programming language 
 and many parts of the~code are shared between the~client--side and the~server 
 side.
@@ -313,15 +313,16 @@ analysis evaluation problem.
 
 The application utilizes the~following libraries and technologies:
 \begin{itemize}
-  \item Play Framework 2.0 - a~web application MVC framework completely written 
-  in the~Scala programming language
-  \item SBT - build tool for Scala projects
-  \item jQuery - JavaScript library used mainly for solving crossbrowser 
-  differences
-  \item Squeryl - Scala ORM framework used in DAL
-  \item Apache Jena - well known Java RDF library
-  \item Twitter Bootstrap - library for building an~eye-catching user interface
-  \item Ace - JavaScript editor for programming languages
-  \item Flot - JavaScript chart library
+  \item \emph{Play Framework 2.0} --- a~web application MVC framework completely written 
+  in the~Scala programming language.
+  \item \emph{SBT} --- build tool for Scala projects.
+  \item \emph{jQuery} --- JavaScript library used mainly for solving crossbrowser 
+  differences.
+  \item \emph{Squeryl} --- Scala ORM framework used in DAL.
+  \item \emph{Apache Jena} --- well known Java RDF library.
+  \item \emph{Twitter Bootstrap} --- library for building an~eye-catching user 
+  interface.
+  \item \emph{Ace} --- JavaScript editor for programming languages.
+  \item \emph{Flot} --- JavaScript chart library.
 \end{itemize}
 

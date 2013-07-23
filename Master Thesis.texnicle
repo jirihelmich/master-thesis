@@ -244,7 +244,7 @@
         <attribute name="istext" type="bool">1</attribute>
         <attribute name="fileloaddate" type="date">396311712.45049399137496948242</attribute>
         <attribute name="extension" type="string">tex</attribute>
-        <attribute name="cursor" type="string">{842, 0}</attribute>
+        <attribute name="cursor" type="string">{809, 0}</attribute>
         <attribute name="sortindex" type="int32">0</attribute>
         <attribute name="name" type="string">future-work.tex</attribute>
         <attribute name="isexpanded" type="bool">0</attribute>
@@ -348,7 +348,7 @@
     <object type="UISETTINGS" id="z124">
         <attribute name="showpdfthumbnails" type="bool">0</attribute>
         <attribute name="selectedcontrolstab" type="int16">0</attribute>
-        <attribute name="pdfviewscrollrect" type="string">{{0, 7109}, {734, 1059}}</attribute>
+        <attribute name="pdfviewscrollrect" type="string">{{0, 130884}, {862, 1059}}</attribute>
         <attribute name="maxoutlinedepth" type="int16">7</attribute>
         <attribute name="editorwidth" type="float">819</attribute>
         <attribute name="controlswidth" type="float">220</attribute>

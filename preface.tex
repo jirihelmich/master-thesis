@@ -1,0 +1,75 @@
+\chapter*{Introduction and motivation}
+\addcontentsline{toc}{chapter}{Introduction and motivation}
+\label{ch:preface}
+Nowadays, there are many techniques of how to process data. Unfortunately, there are many
+different data formats one can work with. It makes the~processing a~lot more difficult.
+The task becomes even harder when one wants to connect two different datasets in order to
+benefit from the~connection. The connection makes us able to get some additional information
+about entities from each of the~standalone datasets. Therefore, a~lot of computation time is spent
+on converting, formatting and transforming data into another form. But transforming datasets
+into a~matching format is not enough. One needs to specify how the~data should be linked
+together.
+
+There are many ways of doing that. Starting with implementing the~logic into a~simple conversion
+script (according to a~specific dataset) to introducing a~more complex metadata description
+framework for purposes of generic data processing. Since one of the~most attractive
+tasks in this area is to be able to connect any of the~datasets available on the~Internet,
+we are interested in the~generic description frameworks. We would like to have 
+a~tool, 
+which makes us able to work with any data on the~Internet (formatted according to a~some
+kind of rules). We would like to link them together, analyze them, visualize 
+them.
+
+One of the~most used description frameworks is the~Resource Description Framework~\cite{rdf}.
+It is a~standard model for data interchange on the~Web. It tells us how to describe
+resources on the~Internet in order to make other people, applications and tools
+able to understand such a~description. That gives us the~potential to link any data on the~Internet.
+Based on the~framework, a~new model named Linked Data~\cite{ld} was introduced. The model
+has been brought up to make data interconnecting easier.
+
+The result of interconnecting data while utilizing the~principles of the~Linked Data model
+and Resource Description Framework is a~directed graph. Its vertices represent resources we
+have information on. The edges stand for relations between such entities. From this point on,
+it is up to us, how we look at the~data. We can either explore them in a~plain graph or apply
+some more semantics and make domain specific visualizations while using ontologies
+and other advanced techniques.
+
+One of the~specific domains are statistical data, which are one of the~most interesting kind
+of data. They are produced and processed by many stakeholders. In the~context of
+Linked Open Data, the~most interesting are, of course, governments and scientific groups.
+But we would like to work with such data in the~usual
+way --- make tables, charts or more interesting visualizations. While speaking about Open Data, a~specific
+user group --- data journalists --- would like to work with Linked Data, but they are probably
+missing some basic tools, which would make them able to interpret gathered results
+in the~way readers would understand.
+
+After applying the~rules of the~Linked Data model, the~statistical data (even tabular data)
+get transformed into a~generic graph. The only, but very important advantage, is that we have some additional
+metadata information available. Moreover, the~data are still linked with related entities from all over the Internet.
+That brings
+us to another model, the~Data Cube Vocabulary~\cite{dcv}. It is a~model, which tells us how to describe
+multi-dimensional (statistical) data in respect to Linked Data and RDF 
+principles.
+
+\section{Goals of the~thesis}
+
+The aim of this thesis is to describe these models, analyze the~possibilities of 
+working
+with multi--dimensional data in the~environment of Linked Data. We~will also propose a~system
+which will make its user able to convert Linked Data into the~Data Cube Vocabulary model.
+A prototype of such a~system will be implemented. An exemplary visualisation of the~statistical
+data will be implemented and presented. Moreover, some missing Payola user interface features 
+will be implemented.
+
+\section{Structure of the~text}
+In Chapter~\ref{ch:statistical-data}, we describe the aforementioned 
+models and standards --- RDF, Linked Data, Data Cube and Data Cube Vocabulary. 
+Some examples are presented. Chapter~\ref{chap:rw} contains description of 
+existing tools and applications. We compare those to our application, Payola~\cite{payola}.
+We also examine some related papers, especially the LDVM proposal~\cite{ldvm}. 
+The Payola application is described in Chapter~\ref{ch:payola}. Later on (Chapter~\ref{ch:proposal}),
+we propose a system
+for analyzing and visualizing data compliant with the Data Cube Vocabulary model.
+Implementation of a prototype is described in Chapter~\ref{ch:implementation}.
+In Chapter~\ref{ch:experiments}, we present capabilities of the implemented system
+and~experiment with some statistical datasets.

@@ -1,7 +1,7 @@
 \chapter{Related Work}
 \label{chap:rw}
 
-In this chapter, we would like to make the reader familiar with the variety of tools, which one can
+In this chapter, we would like to get the reader familiar with the variety of tools, which one can
 use to analyze and visualize Linked Data. We will naturally compare these tools with
 Payola, since in the past we participated on the proposal and development of this system.
 Since the goal of this thesis is to propose and implement a system based on the Data Cube Vocabulary
@@ -48,7 +48,7 @@ This feature will be also covered in the overview.
 
 While Payola is a platform for analysing and visualising data, we will also 
 focus on the latter. First of all, it interests us whether 
-an~examined tool makes the user able to \emph{prepare a visualization} . While keeping 
+an~examined tool allows the user to \emph{prepare a visualization} . While keeping 
 in mind the main principles presented in ~\cite{mantra} we will also discover 
 which of these tools provide \emph{faceted browsing}.
 
@@ -57,6 +57,7 @@ What is also important to know is how a tool behaves while converting a rather
 on information available in corresponding papers since the authors usually make 
 this very clear.
 
+\vspace{0.5cm}
 
 \begin{tabularx}{\textwidth}{ |r|C|C|C|X|X|X|X|X|X|X|X| }
   \hline
@@ -91,6 +92,7 @@ this very clear.
 
 \section{OLAP2DataCube}
 \label{olap2dc}
+\label{rw:olap2dc}
 While comparing this tool we also rely on information presented by its authors in 
 ~\cite{ontowiki-paper}. The OLAP2DataCube tool is in fact a plugin for a well--known 
 platform, the OntoWiki, which serves as an ontological knowledge base enabling
@@ -158,6 +160,7 @@ into more than 31M triples, which is quite a large dataset. The faceted browsing
 capability fully depends on the OntoWiki platform features.
 
 \section{Tabels}
+\label{rw:tabels}
 Tabels~\cite{tables-paper} is quite an interesting tool, which enables the user to 
 convert arbitrary data into the Data Cube Vocabulary compliant format. 
 Moreover, it allows the user to interconnect the data with its existing RDF 
@@ -614,6 +617,7 @@ transformation operators and use \texttt{FOR} loops. It also enables the user to
 of a pipe, for instance a classic HTML document.
 
 \section{Payola visualization model vs. LDVM}
+\label{sec:rw:ldvm}
 The primal reason of the Payola tool implementation was to prove some basic concepts:
 
 \begin{itemize}
@@ -683,6 +687,7 @@ visualization model in the fig.~\ref{fig:payola_model}.
 \end{figure}
 
 \subsubsection{LOD visualization}
+\label{rw:lodvis}
 To prove the concept of LDVM, one of the authors decided to come up with a tool 
 based on the concept. The LOD visualization tool~\cite{lodvis} is oriented
 to perform well on rather big datasets and 
@@ -694,7 +699,7 @@ dataset.
 That is also the most significant difference between the Payola tool and LOD 
 visualization. The basic Payola analyzer and visualizer implementation provides 
 deep details. It shows the whole dataset in the most possible detail. In fact, 
-the~performance could become an issue on a rather large dataset.
+the~performance could become an issue on a rather larger dataset.
 
 Those two tools are actually complements. While working with a dataset one could 
 start with the LOD visualization tool to get the overall picture of the dataset --- 
@@ -804,6 +809,7 @@ just with a SPARQL query. While speaking about analyses made by the user or more
 advanced visualizers, ontologies would also come in.
 
 \section{Payola visualisator framework features}
+\label{sec:rw:mantra}
 Since there are generally many publications focused on data visualization (with no
 connection to Linked Data), we would like to compare the recommended approaches to
 the~implementation of visualizers embedded in Payola.

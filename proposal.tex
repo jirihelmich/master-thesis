@@ -8,20 +8,12 @@ find out what is possible and to propose a system that meets some real--world
 functional requirements.
 
 We are about to propose a system that is in a specific way very similar to 
-the implementation of OLAP2DataCube (Section~\ref{rw:olap2dc}) or Tabels (Section~\ref{rw:tables}).
+the implementation of OLAP2DataCube (Section~\ref{rw:olap2dc}) or Tabels (Section~\ref{rw:tabels}).
 On the other hand, both of them are 
 focused on converting arbitrary statistical \emph{non--RDF} data into a form 
 compliant with the Data Cube Vocabulary. In Figure~\ref{fig:olap2dc-mapping} we remind
 the reader how the transformation process is done in the case of OLAP2DataCube.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=140mm]{img/mapping-olap2dc.png}
-	\caption{OLAP2DataCube mapping process}
-	\label{fig:olap2dc-mapping}
-\end{figure}
-
-The important fact is that the data source already contains statistical data in an obvious form. 
+The important fact is that the data source (RDBMS) already contains statistical data in an obvious form. 
 Those are structured in tables connected via foreign keys and organized in a 
 shape of a star or a snowflake. The system is designed to take advantage of those 
 foreign keys. Based on them it categorizes tables (fact table, dimension tables) and hints
@@ -31,9 +23,18 @@ containing measures and dimensions. In the last step, a
 mapping is done based on the information gathered in the previous steps.
 Notice that a Data Cube Vocabulary definition is a part of the result.
 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=140mm]{img/mapping-olap2dc.png}
+	\caption{OLAP2DataCube mapping process}
+	\label{fig:olap2dc-mapping}
+\end{figure}
+
+
 Let us take a brief excursion back to the OLAP2DataCube described in Section 
 ~\ref{rw:olap2dc}). The tool was not designed just to convert a non--RDF dataset 
-into the RDF standard with respect to the DCV standard. Executing the tool on a 
+into the RDF standard with respect to the DCV metaformat. Executing the tool on a 
 dataset has one important side--effect: there is a new QB data structure definition
 generated with bases on 
 the structure of the input dataset. Therefore, the tool does not map the 
@@ -110,10 +111,10 @@ We are lacking some rules telling the system how to do the mapping.
 Without such rules it is not possible to map the input graph properly. Let us 
 imagine an input graph, for instance the whole DBPedia database. That represents a huge graph 
 containing many facts and naturally, some of those are statistical data. But they 
-are not referenced in such a context. Fore example the resource \emph{Prague}, which is the 
+are not referenced in such a context. For example the resource \emph{Prague}, which is the 
 capital city of the Czech Republic has properties \texttt{populationTotal} and
 \texttt{populationAsOf}. Together it creates a slice of a cube. This says that the 
-city Prague (which is a location dimension) had in a certain day (time dimension) 
+city Prague (location dimension) had in a certain day (time dimension) 
 a certain amount of citizens (measure).
 
 Although this cube is originally based on a very simple pattern (a shape of a pair of cherries),
@@ -122,7 +123,7 @@ data structure definition since the relation between the definition and the
 dataset is not defined in the original data. For a well--defined data structure 
 definition and a well--defined dataset, it could be possible to propose another 
 system, which would try to detect the relation and create them 
-automatically. For instance, the location dimension, which is usually named as a
+automatically. For instance, the location dimension, which is usually named
 \emph{reference area} could be connected to a generic type -- a location.
 Also the resource \emph{Prague} could be connected with the location type. But 
 that would mean introducing a system, which would process a lot of data trying to 
@@ -141,34 +142,37 @@ form.
 Unfortunately, the phrase \emph{reasonable part} is not very scientific. 
 It comes from the data semantics and it is quite difficult to formalize. What 
 the user should map to a given data structure definition should have 
-a corresponding semantics. For instance, if we use the population state example, the 
+a corresponding semantics. For instance, if we use the population size example, the 
 user should probably not map the statistics of government debts to that 
 definition. Even though a country is a location, the amount of the debt represents a 
 number and was certainly calculated on a specific day, therefore, the 
 data match the ranges of the data structure definition components, but it does 
 not match the semantics.
 
+\begin{sloppypar}
 On the other hand, we do not want to make the tool too restrictive in order to 
-achieve better user experience. For instance, we have mentioned a data structure 
+achieve better user experience. For instance, we have mentioned
+(Figure~\ref{fig:example-dcv-dataset}) a data structure 
 for the population example that declares a dimension \texttt{czso-ds-def:refArea}. 
 The range of that dimension is specified as \texttt{czso-reg:Municipality}. 
 With a restrictive approach, the tool would not enable the user to map the data from 
 the DBPedia database to match the data structure definition, since the DBPedia 
-dataset does not contain the \emph{czso-reg} namespace. Nonetheless, Prague is 
+dataset does not contain the \texttt{czso-reg} namespace. Nonetheless, Prague is 
 certainly a Czech municipality. Therefore, the tool will not check the range 
 while performing the mapping. If it had, the user would need to involve 
 other datasets so as to provide the range--related information.
+\end{sloppypar}
 
 What is still missing is the way of informing the tool about how to map the data.
 Obtaining such a specification can be implemented in many different ways. 
 All of them are actually described in Chapter~\ref{chap:rw}. Some of the tools used 
-their \emph{native language} -- the SPARQL. That is beneficial for a developer due to 
+their native language -- the SPARQL. That is beneficial for a developer due to 
 its relatively easy implementation. But it is a bit cumbersome for a user 
 who is required to know the SPARQL language. On the other hand, from all the approaches
 it restricts the possibilities of the system the least. It enables a user 
 to specify a wide range of mappings.
 
-OLAP2DataCube~\ref{olap2dc} took an advantage of the database structure --- 
+OLAP2DataCube took an advantage of the database structure (Section ~\ref{olap2dc}) --- 
 especially of relational feature --- foreign keys. Since the RDF format 
 is based on expressing relations it would not present an issue. But what the 
 OLAP2DataCube tool did, was that it transformed already existing statistical data from
@@ -177,7 +181,7 @@ data we would restrict the tool a lot if we relied only on star--shaped
 schemas, hence, we need to work with a generic graph.
 
 Tabels introduced a custom DSL that should have made the situation easier for 
-a user. But from experience while doing research for Chapter~\ref{chap:rw}, 
+a user (Section~\ref{rw:tabels}). But as experienced while doing research for Chapter~\ref{chap:rw}, 
 we did not find it very user--friendly. There certainly was a pre--generated script based
 on the uploaded file but in most cases the user had to modify the script in order to
 achieve desired results. The user is required to learn a 
@@ -186,7 +190,7 @@ elsewhere. Moreover, it is not an easy task to implement the
 custom DSL itself. Therefore, we consider this approach to be the worst.
 
 The last approach we have noted is the \emph{query--by--example} introduced in 
-Tabulator. It was used to let the user specify what type of data patterns they are 
+Tabulator (Section~\ref{sec:rw:tabulator}). It was used to let the user specify what type of data patterns they are 
 interested in. In the exploration mode the user was able to \emph{visually} 
 specify the pattern and switch to the analytical mode. Such an approach enables 
 us to construct a SPARQL query and come closer to the very first (and the least restrictive) 
@@ -225,8 +229,11 @@ We will show the reader our idea of a user interface of the proposed system. We
 will refine some previously outlined features, especially the pattern selection.
 
 In the first step (Figure~\ref{fig:mockup-01}), the user is required to specify the source of the data that 
-will be transformed. The user also has to reference a graph, which contains the 
-desired Data Cube Vocabulary data structure definition. The type of data source 
+will be transformed. They will probably supply a reference to a SPARQL Endpoint,
+e.g. \url{http://dbpedia.org/sparql}. The user also has to reference a graph, which contains the 
+desired Data Cube Vocabulary data structure definition.
+That is a URL as well, e.g. \url{http://datacube.payola.cz/dsd/population.ttl}.
+The type of data source 
 is needed in order to determine how to fetch the data.
 \begin{figure}
 	\centering
@@ -239,7 +246,8 @@ After proceeding to the next step (Figure~\ref{fig:mockup-02}),
 the user will be asked to choose a DCV data 
 structure definition. The definition list is prepared based on the vocabulary provided 
 in the previous step. The system has already parsed the supplied graph and filtered all
-DCV data structure definitions. 
+DCV data structure definitions. As an example, the user will select the
+\url{http://datacube.payola.cz/dsd#PopulationSizeDefinition} data structure definition.
 
 \begin{figure}
 	\centering
@@ -262,7 +270,15 @@ the visualized graph. (some progress is shown in Figure~\ref{fig:mockup-05}).
 \begin{figure}
 	\centering
 	\includegraphics[width=120mm]{img/mockup-05.png}
-	\caption{Step 3 (further): Pattern selection}
+	\caption{Step 3 (example): Pattern selection. The user has to provide an example
+	for mapping the dataset to a population vocabulary. In the last step, the user is asked
+	to select a vertex corresponding to the \texttt{payola-dcv:populationSize} property.
+	They have already selected the vertices representing Prague and observation date
+	in order to satisfy the other components. The \texttt{dbpedia-owl:City} vertex can
+	be selected to refine the example, but it does not correspond to any component.
+	The user is about to select the vertex connected via the \texttt{populationAsOf} 
+	relation. This represents an example of selecting a meaningful pattern, which 
+	is a connected graph.}
 	\label{fig:mockup-05}
 \end{figure}
 
@@ -277,14 +293,15 @@ Since we have participated on the implementation of the Payola RDF tool, we will
 now go through the pros and cons of integrating the proposed system into Payola.
 We will also decide if we proceed with the integration.
 
-In the~chapter~\ref{ch:payola} we familiarized the~reader briefly with the~main
+In Chapter~\ref{ch:payola} we familiarized the~reader briefly with the~main
 concepts of the~Payola framework. The reader also knows how the~analyses
-evaluation is done. Therefore we may demonstrate the benefits arising from the integration of the proposed system with the Payola framework.
+evaluation is done. Therefore we may demonstrate the benefits arising from
+the integration of the proposed system with the Payola framework.
 
 The crucial feature of the Payola framework is the analysis subsystem. It enables a user
 to combine multiple data sources and benefit from their 
 combination. Based on that, a completely new set of facts can be computed.
-(This could be optimized with SPARQL 1.1 and Federated queries.) 
+(This could be optimized with SPARQL 1.1 and Federated queries~\cite{federated-queries}.) 
 Therefore, it could be handy to introduce a Data Cube Vocabulary analytical 
 plugin, which would be able to convert the results of an analysis into the Data 
 Cube Vocabulary format. Such a plugin could be connected directly to an output
@@ -293,9 +310,10 @@ Figure~\ref{fig:generic-mapping-detail}.
 
 But we can go a bit further. Since it would be an analytical plugin, the user 
 would be able to use such a plugin in an arbitrary step of the analysis. Let us look back again
-at the DBPedia and the population statistics example. A plugin representing the proposed system would substitute multiple different plugins 
-in order to obtain the same data. In this case it is the Typed 
-plugin and the Property selection plugin. Those are covered based on the selected pattern.
+at the DBPedia and the population statistics example. A plugin representing the proposed
+system would substitute multiple different plugins 
+in order to obtain the same data. In this case it is the \texttt{Typed}
+plugin and the \texttt{Property selection} plugin. Those are covered based on the selected pattern.
 In addition, the result would be 
 compliant with the Data Cube Vocabulary standard.
 
@@ -309,7 +327,7 @@ advantage is that it reflects the current state of the data sources at
 the time of the execution. That means that if the data source contents get 
 updated, the user just executes the analysis again and the mapping is instantly 
 performed. There is no need to specify anything for the second time.
-Thsi is useful especially in a case where the analysis is more complicated than the 
+This is useful especially in a case where the analysis is more complicated than the 
 mapping process itself.
 
 As stated before, the Payola application also offers the functionality of 
@@ -410,10 +428,10 @@ that:\\
 But having the graphs $G_{input}$ and $D$ 
 is not enough. We require the user to specify also an example pattern (based on the
 query--by--example principle). Since all the inputs and outputs are RDF
-graphs ($G_{input}$, $G_{def}$, $D$, $G_{output}$), we could take 
-an advantage of some existing approaches specialized on RDF transformation. 
+graphs ($G_{input}$, $G_{def}$, $D$, $G_{output}$), we can take 
+advantage of some existing approaches specialized on RDF transformation. 
 A technically simple but powerful way, is to utilize the SPARQL language. Based on what we have introduced before, we are able to transform a user--selected pattern into a form of a SPARQL
-query. We will talk about such a query as of a transformation query and denote it $Q_t$.
+query. We will talk about such a query as of a \emph{transformation query} and denote it $Q_t$.
 
 What we have now is an information about what is needed on the input and 
 what the result would be:
@@ -424,7 +442,7 @@ In fact, the user will make the selection of the definition $D$ before the
 mapping starts. Therefore, we can extract the definition $D$ from the 
 generic graph $G_{def}$ and use it as a part of the input. That is possible because 
 the system does not require an arbitrary RDF graph $G_{def}$. It requires the DCV 
-data structure definition $G_{def}$. The rest is done in order to improve the user 
+data structure definition $D$. The rest is done in order to improve the user 
 experience. Therefore:\\
 
 {\centering $(G_{input}, G_{def}, Q_t) \rightarrow (G_{input}, D, Q_t) \rightarrow G_{output}$  \\[0.5cm]}
@@ -449,9 +467,9 @@ observation, $S$ stands for an identifier of the input dataset,
 $T_{Dim_1}$~...~$T_{Dim_d}$ stands for the type of a corresponding dimensions 
 from the given data structure definition, similarly for
 $T_{Msr_1}$~...~$T_{Msr_m}$ -- measures and
-$T_{Attr_1}$~...~$T_{Dim_a}$ -- attributes. $R_1$~...~$R_n$ stands for
+$T_{Attr_1}$~...~$T_{Attr_a}$ -- attributes. $R_{i,1}$~...~$R_{i,n}$ stands for
 resources matched in the input graph $G_{input}$, moreover, it means that the value 
-of the dimension $T_{Dim_1}$ is $R_1$, etc.
+of the dimension $T_{Dim_1}$ is $R_{i,1}$, etc.
 
 \begin{figure}
   \centering
@@ -501,6 +519,7 @@ triples it will generate; the pattern is shown in Figure~\ref{fig:output-graph}.
 The only thing we need to sort out is retrieving the resources $R_{i,1}, ... R_{i,n}$.
 
 \subsubsection{Pattern}
+\label{sec:pattern-definition}
 The process of resolving those resources depends on the input graph $G_{input}$.
 We will demonstrate it on the most simple case --- a 2--dimensional data structure 
 definition. Such a definition requires us to specify how to select a 3--tuple of resources from 
@@ -508,8 +527,9 @@ the graph (2 dimensions, 1 measure).
 We will present some ideas while using the example of the population size.
 
 The initial idea could be that we need a country, therefore, we map all the 
-countries to the refArea dimension, all instances of time to the refPeriod 
-dimension and all instances of numbers to the measure. But that is not sufficient. At first, we need to make sure that all instances of numbers 
+countries to the \texttt{refArea} dimension, all instances of time to the \texttt{refPeriod} 
+dimension and all instances of \emph{numbers} to the measure. But that is not sufficient. At first,
+we need to make sure that all instances of numbers 
 really express an amount of citizens in a country. Moreover, we need to map the
 matching amount of citizen to a corresponding country. Therefore, all the 
 selected resources need to be connected with the rest. We need to select a 
@@ -645,7 +665,7 @@ In order to make the pattern more accurate or more restrictive to obtain a more
 efficient transformation query, the user may want to reference some other 
 vertices and not only the component equivalents.
 Because of that observation, for each component from $C_i \in \{C_1 ,..., C_n\}$ the pattern is 
-extended by adding a set of vertices $V_i = \{v_{i_1}, ..., v_{i_u}\}$ and set of edges 
+extended by adding a set of vertices $V_i = \{v_{i_1}, ..., v_{i_u}\}$ and set of corresponding edges 
 $E_i$:\\
 
 {\centering \forall $C_i \in \{C_1 ,..., C_n\}$: $P = (V = V \cup V_i, E = E \cup E_i)$ \\[0.5cm]}
@@ -657,7 +677,7 @@ the set $E_i = \{(v_1,v_4 = d)\}$.
 
 Because of the invariant:\\
 
-{\centering $\exists e_k \in E_i: e_k = (v_{in}, v_{out}) \land (v_{in} \in V \lor v_{out} \in V)$\\[0.5cm]}
+{\centering $\exists e \in E_i: e = (v_{in}, v_{out}) \land (v_{in} \in V \lor v_{out} \in V)$\\[0.5cm]}
 
 and of course:\\
 
@@ -669,7 +689,7 @@ in Figure~\ref{fig:pattern-enhancement}).
    
 By applying the described approach, we get a connected graph, where:\\
 
-{\centering $\{M_1, ... M_n\} \subset V$ .\\[0.5cm]}
+{\centering $\{M_1, ..., M_n\} \subset V$ .\\[0.5cm]}
 
 That means, that the pattern covers our needs. Now, we are about to present
 a generic form of the pattern, which will come out from 
@@ -682,27 +702,27 @@ $n$ of the vertices from the $\{v_1, ..., v_v\}$ matches vertices $M_1, ..., M_n
     []   a   <http://purl.org/linked-data/cube#Observation> ;
          <http://purl.org/linked-data/cube#dataSet>   $S$ ;
          $C_1$      $M_1$ ;
-         ...          ...
+         ...   
          $C_i$      $M_i$ ;
-         ...          ...
-         $C_n$     $M_n$ .
+         ...   
+         $C_n$      $M_n$ .
   \} WHERE \{
     \{
       SELECT DISTINCT ?$M_1$ ... ?$M_n$
       \{
-         $v_1$ $E_1$ $v_2$
-         $v_2$ $E_2$ $v_3$
-         ....
-         $v_{i-1}$ $E_{i-1}$ $v_i$
-         $v_i$ $E_i$ $v_{i+1}$
+         $v_1$     $E_1$     $v_2$
+         $v_2$     $E_2$     $v_3$
          ...
-         $v_{v-1}$ $E_{v-1}$ $v_v$
+         $v_{i-1}$   $E_{i-1}$    $v_i$
+         $v_i$     $E_i$      $v_{i+1}$
+         ...
+         $v_{v-1}$   $E_{v-1}$    $v_v$
       \}
     \}
   \}
 \end{Verbatim}
-\label{fig:sparql-pattern}
 \caption{Pattern of the transformation SPARQL query}
+\label{fig:sparql-pattern}
 \end{figure}
 
 \section{Visualizers}
@@ -712,7 +732,7 @@ therefore it is hard to make a decision and choose, which visualization should b
 
 Based on what we have seen while exploring tools described in 
 Chapter~\ref{chap:rw} and keeping in mind the rules of a so--called 
-\emph{visualisation mantra}, we decided to implement two visualizers, 
+\emph{visualisation mantra} (Section~\ref{sec:rw:mantra}}), we decided to implement two visualizers, 
 TimeHeatmap and Universal DCV. 
 
 \subsection{TimeHeatmap}
@@ -722,7 +742,7 @@ definitely a reliable way of presenting this kind of data. But while getting
 familiar with Data Cube Vocabulary, we found out that it is very popular to 
 visualize geospatial data. A visualization on a map is easy to understand and is
 very popular among the non--technical people. It helps to popularize Data Cube 
-Vocabulary. This is the correct type of visualization for data journalists we 
+Vocabulary. This is also the correct type of visualization for data journalists we 
 have mentioned before.
 
 As the name suggests, this visualizer is able to handle datasets with two 
@@ -737,14 +757,16 @@ green to red, where red represents the largest value measured.
 \subsection{Universal DCV}
 Implementing a domain--complete library of visualizers is a long--term project. 
 Despite the fact, we would like to offer a visualizer, which would enable the 
-user to visualize a large amount of datasets in a comfortable way. While experimenting we have experienced on our own some discomfort in reading triple tables.
+user to visualize a large amount of datasets in a comfortable way. While
+experimenting we have experienced on our own some discomfort in reading triple tables.
 
 That is why we have decided to implement a visualizer, which takes advantage of 
 the idea behind faceted browsers. We presented some of those in 
-Chapter~\ref{chap:rw}. Therefore we would like to propose a visualizer that will 
+Chapter~\ref{chap:rw}. Therefore we would like to implement a visualizer that will 
 enable the user to slice visualized datasets and prepare usual visualizations of 
 the slices. A mockup of such a visualizer is shown in 
-Figure~\ref{fig:dcv-universal}
+Figure~\ref{fig:dcv-universal}. It should contain a pie chart and a bar chart 
+visualization.
 
 \begin{figure}
 	\centering

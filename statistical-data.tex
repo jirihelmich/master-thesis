@@ -28,13 +28,13 @@ We will introduce the reader to the problem by examining an example based on the
 citizens living in the country. That is a very simple kind of information, but we will demonstrate
 how this could be put into the context of the models mentioned in the introduction.
 
-Let’s start with a dataset, which has only one entry:
+Let us start with a dataset with only one entry:
 
 \begin{verbatim}
 The Czech Republic has 10 505 445 citizens.
 \end{verbatim}
 
-That’s a sentence a normal person would say but it holds a statistical information.
+That is a sentence a normal person would say but it holds a statistical information.
 If we wanted to keep this information in a simple structured text file, we would e.g. name it
 \texttt{number\_of\_citizens.txt} and it would have the following contents:
 
@@ -51,7 +51,7 @@ Czech Republic	    10505445
 Slovakia	          5404555
 \end{verbatim}
 
-That gives us a dataset with two entries. Each entry is consisted of two parts. Let’s notice, that 
+That gives us a dataset with two entries. Each entry is consisted of two parts. Let us notice, that 
 its semantics are kept in the reader's head. The document itself does not keep the information.
 To process the data, it is necessary to know what the information in the file represents. You could change
 the~contents of the file into the following form:
@@ -134,8 +134,8 @@ it into a web page and publish it on a server.
     </body>
 </html>
 \end{verbatim}\normalsize
-\label{fig:rdf-html-01}
 \caption{An example of an HTML file with tabular data}
+\label{fig:rdf-html-01}
 \end{figure}
 
 Example of such a web page source code can be seen in the 
@@ -184,7 +184,7 @@ information, we should aim our focus on the fact that it is more of a complicate
 
 The RDF notation gives a semantic meaning to the relation. The RDF model is based on making certain
 kinds of triples; such can be seen in the previous example. If we extend the set of triples with another,
-what we get is \emph{a directed, labeled graph}, where an edge represents \emph{relation} between two resources.
+what we get is \emph{a directed labeled graph}, where an edge represents \emph{relation} between two resources.
 Those resources are represented by graph nodes. Based on the actual content of the triples,
 the~graph may consist of two or more standalone connected components as well as of
 just a~single one. Such a graph may potentially contain information about entities from all over
@@ -196,7 +196,7 @@ needing the user to specify it (as somebody has already done that while publishi
 
 \section{Linked Data}
 
-A kind of implementation of the Resource Description Framework is the Linked Data model.
+One implementation of the Resource Description Framework is the Linked Data model.
 It utillizes several technologies and principles to actually interconnect the data on the Internet.
 Both resources and relations are denoted with URIs. The HTTP protocol is used to make
 the~resource public on the Internet. It may be found by dereferencing (accessing) the assigned
@@ -206,7 +206,7 @@ When the URI is dereferenced, more useful information could be provided while ut
 and SPARQL standards. Since the model is called Linked Data, the most significant part
 of the concept is about knowing how the data could be connected when being published on the Web.
 It also brings some serialization formats, such as RDFa, RDF/XML, N3, Turtle and many others.
-One of the most significant project involving Linked Data is the LOD2 project~\cite{lod2}.
+One of the most significant projects involving Linked Data is the LOD2 project~\cite{lod2}.
 
 To make the idea about datasets more clear, let us mention some well--known data sources
 involving Linked Data:
@@ -222,7 +222,7 @@ involving Linked Data:
 
 There is one rather technical note we should mention before taking further steps. The RDF
 also brings a way of expressing URI of a resource in a more compact form while utilizing
-so--called prefixes and namespaces. Let us look at the example:
+so--called prefixes and namespaces. Let us look at an example:
 
 \scriptsize\begin{verbatim}
 http://dbpedia.org/ontology/populationTotal
@@ -230,7 +230,7 @@ http://dbpedia.org/ontology/populationAsOf
 \end{verbatim}\normalsize
 
 Those are URIs which reference specific properties with a semantic meaning as designed
-by the DBPedia~\cite{dbpedia}. At a closer look, one can see that there are some parts of the URI,
+by the DBPedia~\cite{dbpedia}. At a closer look, one can see that there are some parts of the URI
 that are repeated in each of them. E.g. the scheme --- http. Although that is a rather technical
 point of view. The most long common part of both URIs is \url{http://dbpedia.org/ontology/}
 which makes a namespace. It makes a logical sense that all the resources in the virtual
@@ -239,9 +239,9 @@ folder \texttt{ontology} have something in common, therefore, they are grouped i
 Since one could remember easily the name of the specific resource in a namespace,
 e.g. \texttt{populationTotal}, it would be great if they had no need to look up the full
 URI of the namespace and express it with a short and easy--to--remember, but still 
-unique, identifier. That’s what prefixes are designed for. For instance, the
+unique, identifier. That is what prefixes are designed for. For instance, the
 \url{http://dbpedia.org/ontology/} was assigned the prefix \texttt{dbpedia-owl}. Since the scheme
-is then \texttt{prefix:localname}, xone could write:
+is then \texttt{prefix:localname}, one could write:
 
 \scriptsize\begin{verbatim}
 dbpedia-owl:populationTotal
@@ -307,18 +307,18 @@ When formalized as defined in~\cite{ldvm2}:
 predicates and $M$ is a set of RDF statements (mappings of the classes and properties to
 other ontologies). Both classes and predicates are specified using their unique URIs.}
 
-Let’s start with countries. Without a restriction, one may also include, let us say, planets. With
+Let us start with countries. Without a restriction, one may also include, let us say, planets. With
 an~ontology, it can be specified what kind of resources could be included.
 It is needed to specify a URI describing the type \texttt{country}, for instance
 a rule can be set that a resource needs to be of the type \mbox{\url{http://schema.org/Country}}.
 
 After that, another rule is added, which will define that the country may have its capital
-specified. Let’s say one decides to go with the relation described by dereferencing the URI of
+specified. Let us say one decides to go with the relation described by dereferencing the URI of
 \texttt{dbpprop:capital}. 
 
 It is clear, that none of the examples conform, since neither of them utilizes the relation
 \verb dbpprop:capital. This is a very simple example of how ontologies could be used. What we
-did was, that we utilized the possibility to constraint properties of a resource.
+did was that we utilized the possibility to constraint properties of a resource.
 
 A new language, OWL (Web Ontology Language)~\cite{owl}, was developed based on the RDF in order to
 standardise the way of making restrictions. It gives us much stronger possibilities than just
@@ -369,7 +369,7 @@ Since the original data were taken from Wikipedia~\cite{wikipedia}, we decided t
 while using semantic definitions defined by DBPedia, the Linked Data version of Wikipedia. 
 The DBPedia needed to come up with a series of ontologies to present the structure of documents
 extracted from Wikipedia. The ontology can be used not only to declare a publicly available definition of 
-the document format, which is useful for those who query the DBPedia databse; it 
+the document format, which is useful for those who query the DBPedia database; it 
 can also be used by the team of the DBPedia in order to unify internal rules of 
 a document which is created by scraping a Wikipedia page into RDF.
 
@@ -425,7 +425,7 @@ $R = f: K \rightarrow V$
 \end{center}
 
 We have a single value (denoted \texttt{V}) that we get after dereferencing the key (denoted \texttt{K}).
-If we add one dimension, e.g. let’s go back to the population count example, we would write:
+If we add one dimension, e.g. let us go back to the population count example, we would write:
 
 \begin{center}
 $R = f: (Y,C) \rightarrow V$
@@ -434,8 +434,8 @@ $R = f: (Y,C) \rightarrow V$
 where \texttt{Y} stands for a year and \texttt{C} stands for a country. \texttt{V} is the total number of
 citizens in the country \texttt{C} in the year \texttt{Y}.
 But as we presented before, the OLAP cube represents a concept of
-multi--dimensional statistical data. That’s why we should generalize the formula a lot more.
-Let’s think about a cube which has n dimensions. That could be expressed with the following
+multi--dimensional statistical data. That is why we should generalize the formula a lot more.
+Let us think about a cube which has n dimensions. That could be expressed with the following
 formula:
 
 \begin{center}
@@ -467,7 +467,7 @@ by Statistical Data and Metadata eXchange standard~\cite{sdmx}, let us discuss t
 \section{Statistical Data and Metadata eXchange}
 The SDMX Initiative~\cite{sdmx} was introduced by seven organizations in order to make
 an~effective standard to interchange statistical data. All those organizations, e.g. OECD,
-UN or Eurostat, have, without any doubt, access to a large amount of statistical data, even more,
+UN or Eurostat, have, without any doubt, an access to a large amount of statistical data, even more,
 they produce them. Some examples of such data could be found on~\cite{pubdata}.
 In 2005, the Initiative has introduced a
 version 1.0 of a technical specification, which was approved by the International
@@ -552,7 +552,7 @@ metadata.
 \end{itemize}
 
 The goal of SDMX is to reuse existing concepts introduced by any community related to the
-given dataset, not to enforce its own proprietary format. It is enforced by a rule, which states
+given dataset, not to enforce its own proprietary format. It is enforced by a rule which states
 that a new concept can be introduced only if no existing concept suffices. The reason
 is that those concepts are already used and implemented by a certain spectrum of
 applications, therefore it will lead to a greater interoperability. Similar concepts are then
@@ -580,7 +580,7 @@ Let us mention \emph{Nomenclature des Unites Territoriales Statistiques (NUTS)}
 as an example of such a hierarchy.
 
 The data definition reflects exactly what we need. It consists of a collection of 
-components, which define what is being measured, together with additional metadata.
+components, which define what is being measured together with additional metadata.
 
 \section{Data Cube Vocabulary}
 \label{datacube-vocabulary}
@@ -594,12 +594,12 @@ But this is only a definition of a data structure, a set of rules of how a speci
 should be published. Based on that, a dataset is published in a way to respect such a set
 of rules. Therefore, every dataset represents a collection of data structures. Each data
 structure is consisted of a set of components. One of them needs to be a measure,
-a so--called \emph{primary measure}. The primary measure is marked with a special flag to be found
+so--called \emph{primary measure}. The primary measure is marked with a special flag to be found
 easily to enable more efficient processing.
 
 Besides of measures, there are \emph{dimensions}. A data structure needs to have at least one.
 Each dimension references its concept and has a unique identification. The combination of
-all the dimensions (except the measure) defines a key, which makes it able to point
+all the dimensions (except the measure) defines a key, which allows it to point
 to the primary measure.
 
 There are some kinds of specialized dimensions, which can be defined only once
@@ -610,7 +610,7 @@ for a data structure:
 \item Measure (but could be a collection).
 \end{itemize}
 
-There are some preferred formats, which tell us, how to publish the time of capturing
+There are some preferred formats, which tell us how to publish the time of capturing
 the~observation --- a period, a duration or a timestamp. More details about that could be found
 in the SDMX User Guide~\cite{sdmxuserguide}.
 
@@ -631,7 +631,7 @@ the~description of the Data Cube Vocabulary, let us present a short list of sign
 since some of them could appear in the text.
 
 \begin{table}[h]\footnotesize
-  \caption{Prefixes used frequently with Data Cube vocabulary}
+  \caption{Prefixes used frequently with Data Cube Vocabulary}
   \label{tab:sdmxprefixes}
 \scriptsize\begin{tabular}{l l l}
 Prefix & Namespace & Brief description \\
@@ -650,7 +650,7 @@ eg & \url{http://example.org/ns#} & for examples only \\
 pc & \url{http://purl.org/procurement/public-contracts#} & Public contracts \\
 \end{tabular}\end{table}
 
-The Data Cube vocabulary reuses the concept of a data structure as presented in the section
+The Data Cube Vocabulary reuses the concept of a data structure as presented in the section
 dedicated to the SDMX description. Therefore, a data cube is also consisted of a set of
 dimensions, attributes and measures --- components, speaking generally. As in the cases of
 OLAP cube and SDMX, dimensions are used to uniquely identify observed measures
@@ -790,7 +790,7 @@ It is natural that while performing a measurement, you can retrieve multiple
 values within a single observation. A good example of such an observation could be weather
 information sampling. One can measure many physical values (e.g. temperature, air pressure,
 humidity, …) in a specific timeframe on a specific place. One can store those values separately,
-each in a standalone observation. But since the observation has been made in the same moment
+each in a standalone observation. But since the observation has been made at the same moment
 and the dimensions are exactly the same, it is only natural to add those value components into
 the~same observation. One will end up with a 5--dimensional observation where 2 components 
 are dimension properties (place and time) and 3 components are measure properties
@@ -898,7 +898,7 @@ czso-ds-dem-emm: a sdmx:DataSet ;
     czso-ds-def:refPeriod "2011"^^xsd:gYear ;
     czso-ds-def:births "13968"^^xsd:nonNegativeInteger .
 \end{verbatim}\normalsize
-\caption{An example of a DCV dataset}
+\caption{An example of a DCV dataset by OpenData.cz}
 \label{fig:example-dcv-dataset}
 \end{figure}
 

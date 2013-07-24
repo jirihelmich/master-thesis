@@ -4,13 +4,13 @@ In this chapter we would like to walk the reader through the process of implemen
 the proposed system. Naturally, one of the~possibilities was to implement a~completely new system, 
 which would comply with our requirements. But since we participate on a development of a~large RDF
 application -- Payola; and based on the facts from
-Section~\ref{sec:why-payola}, we had decided to implement the proposed system as a~plugin
+Section~\ref{why-payola}, we had decided to implement the proposed system as a~plugin
 for Payola. This will affect the~implementation by fetching into specifications a few non--functional
 requirements.
 
 Before we start, let us mention again some tools whose authors decided to do the~
 same --- to integrate them into a~larger project. We are talking specifically about 
-OLAP2DataCube(~\ref{olap2dc}) and CubeViz(~\ref{cubeviz}),
+OLAP2DataCube(Section~\ref{olap2dc}) and CubeViz (Section~\ref{cubeviz}),
 which are based on the~OntoWiki platform developed by 
 the AKSW~\cite{aksw} group at the~University of Leipzig~\cite{leipzich-uni}.
 
@@ -24,7 +24,7 @@ We will build up on the brief description from Chapter~\ref{ch:payola} and famil
 more with the architecture of Payola. We will especially
 focus on those parts that were important to the integration of the proposed system.
 
-Payola is a web application. It is built on top of a Scala MVC framework (Play! 2.x).
+Payola is a web application. It is built on top of a Scala MVC framework (Play! 2.1~\cite{playfw}).
 Payola takes advantage of
 some modern web technologies like HTML5 (especially the canvas element).
 Therefore, we will implement the system as a component of a web application.
@@ -33,7 +33,7 @@ application (e.g. a console or web a service) with a certain kind of API,
 but that would have meant less than full advantage of some of the Payola framework features.
 It would not allow us to profit from all the benefits described in Section~\ref{why-payola}. 
 
-\emph{We are used to talk about Payola as eaither an application or a tool or a framework. To
+\emph{We are used to talk about Payola as either an application or a tool or a framework. To
 distinguish those terms we consider Payola to be an application (or a tool) from the user’s
 point of view whereas we are looking at it as a framework from the developer’s side.}
 
@@ -55,13 +55,13 @@ source plugins that fetch data from some kind of storage, are generally consider
 graph generators. That is why they have no inputs. The Filter 
 plugin filters the input graph by applying a specified constraint. That is why it 
 has one input (the constraint is applied on a single graph).
-An example of a plugin with more than one input is known as the Union 
+An example of a plugin with more than one input is known as the~\textt{Union} 
 plugin, which takes two graphs and combines them together.
 
 One can see that this is perfectly suitable for completing our task --- we are about to 
 implement a system that will transform an input graph into a different one.
 
-In the case of the Filter plugin, we spoke about \emph{specifying a 
+In the case of the~texttt{Filter} plugin, we spoke about \emph{specifying a 
 constraint}. The plugin has parameters that enable its reuse in multiple--case scenarios. For instance,
 the Data Fetcher plugin has a parameter, which tells 
 the plugin where to fetch the data from. It would be to no avail had we implemented a plugin
@@ -91,14 +91,15 @@ We need from the data structure definition to only inform the user as to what ki
 are working 
 with. We require them to select a valid and meaningful pattern. 
 Therefore, we need for the plugin to have one input (the arbitrary RDF dataset) and 
-one parameter (the transformation pattern).Under normal circumstances that would be sufficient, but we 
+one parameter (the transformation pattern). Under normal circumstances
+that would be sufficient, but we 
 need to find a way of storing the data structure definition metadata in order 
 to present them to the user if necessary.
 
 When we started experimenting with the system, the idea of specifying the 
 transformation pattern was a little bit different. Initially, we thought that it 
 would be possible to specify a pattern for each DCV component separately. After 
-a while, we had learned that it makes the task harder for the user that t is more complicated to select a 
+a while, we had learned that it makes the task harder for the user. It is more complicated to select a 
 valid pattern, especially when the pattern needs to be a connected graph for a conclusive expression
 of the relations between matched entities.
 
@@ -128,7 +129,7 @@ That class is derived from the \texttt{Plugin} abstract class. There is a single
 \texttt{plugins}, which represents the information about the Filter plugin existence.
 Among others, it contains the FQDN of the \texttt{Filter} class. This course will inform the analytical
 pipeline evaluator which class is responsible for handling
-a specific type of plugin.The class also defines that the Filter plugin has 3 parameters. It even 
+a specific type of plugin. The class also defines that the Filter plugin has 3 parameters. It even 
 defines their data types. One single instance of such a class is sufficient. On the other hand, we need
 multiple instances of the \texttt{PluginInstance} class in order to
 handle parameters values. Each occurrence of the Filter plugin will be probably 
@@ -181,14 +182,14 @@ abstract class Plugin(
 >    protected val _parameters: immutable.Seq[Plugin#ParameterType],
     override val id: String = IDGenerator.newId) ...
   \end{verbatim}
-  \label{fig:plugin-trait}
-  \caption{The header of the cz.payola.domain.entities.Plugin class. It does not restrict the count
+  \caption{The header of the \texttt{cz.payola.domain.entities.Plugin} class. It does not restrict the count
   of the passed parameters, it receives a generic sequence.}
+  \label{fig:plugin-trait-code}
 \end{figure}
 
 In the case of the implemented plugin, we take advantage of the fact that the 
 \texttt{Plugin} abstract class allows us to pass a variable count of parameters to the 
-plugin implementation. See Figure~\ref{fig:plugin-trait} to learn how the abstract class header 
+plugin implementation. See Figure~\ref{fig:plugin-trait-code} to learn how the abstract class header 
 looks like. That is beneficial mostly due to every vocabulary being consisted of a 
 different count of components. But we need to create an instance of the \texttt{Plugin} entity
 for each vocabulary in order to store the components metadata.
@@ -206,13 +207,15 @@ based on the formed \texttt{Plugin} template. A representation of that instance 
 rendered into the pipeline editor and the instance itself bound into the 
 analytical pipeline.
 
+\begin{sloppypar}
 Let us present a short example and consider an exemplary data structure definition \texttt{example:population}
 consisted of 3 
 components; let us say dimensions \texttt{example:refArea}, \texttt{example:populationAsOf}
 and measure \texttt{example:populationCount}. Such a data structure leads us to 
-the creatuon of a new plugin of type Data Cube Vocabulary named 
+the creation of a new plugin of type Data Cube Vocabulary named 
 \texttt{example:population}. It would have 3 parameters named in the same way the 
 components are, all of type \texttt{string}.
+\end{sloppypar}
 
 Such an implementation fits into the Payola architecture. Moreover, as a side--effect, it brings
 an added value --- based on the data structure definition, a plugin is created. 
@@ -226,7 +229,7 @@ naturally able to share the created Data Cube Vocabulary plugin, too.
 
 An important fact is that regardless of the amount of the parameters, it is sufficient 
 to have a single codebase. We will implement a single Scala class that represents the behaviour 
-of the plugin. That is because the \texttt{Plugin} abstract class (fig.~\ref{fig:plugin-trait})
+of the plugin. That is because the \texttt{Plugin} abstract class (fig.~\ref{fig:plugin-trait-code})
 from the Payola framework
 API does not constrain the count of parameters supplied to the class.
 
@@ -356,7 +359,7 @@ in the reverse topological order,
 a tree (as known from the graph theory). Every instance has 
 one output. Every output is connected to an input of a successor (if present, if not it is an output
 of the whole pipeline). Therefore, it is easy to traverse the tree and select a 
-subtree, which precedes the Data Cube Vocabulary \texttt{Plugin instance}.
+subtree, which precedes the Data Cube Vocabulary plugin instance.
 
 Such a tree is then used in the background without the knowledge of the user to 
 create a completely new analytical pipeline. When this step is complete, such a pipeline can 
@@ -396,7 +399,9 @@ This still leaves us with the problem of a huge results dataset. Therefore, we
 decided to make use of the~\texttt{LIMIT} SPARQL query statement, which will 
 enforce the results to be reasonably large. This could be done by 
 extending the previously extracted sub--pipeline with appending a plugin that 
-will limit the number of the results of the analytical pipeline evaluation (see Figure~\ref{fig:dcv-extraction-limit}).
+will limit the number of the results of the analytical
+pipeline evaluation (see Figure~\ref{fig:dcv-extraction-limit}). Therefore, we 
+introduced another completely new plugin -- \texttt{Limit}.
 
 \begin{figure}
 	\centering
@@ -411,7 +416,10 @@ the result, it is possible that some important vertices might get excluded from 
 And there is no way of 
 telling, which vertices could be important to the user. Therefore, we made the 
 size of the preview to be a variable that could be changed before making the preview and 
-selecting the transformation pattern.
+selecting the transformation pattern. Of course, the better approach would be to 
+insert the plugin into such an execution point of the pipeline that it would 
+work with data as small as possible. In other words, we should use an analysis 
+to compensate a large size of the original dataset, if possible.
 
 
 
@@ -421,6 +429,7 @@ is made so we can move onto the description of the way of obtaining the pattern
 from the user. Moreover, we will describe, which components and why have been 
 modified or newly implemented.
 
+\begin{sloppypar}
 We take advantage of the previously presented approach (the query--by--example), which we 
 consider to be the best for the user. Firstly, the user is asked to mark a vertex that represents
 the first component of the associated Data Cube Vocabulary data structure 
@@ -428,6 +437,7 @@ definition. Since the only criteria we set is that the pattern needs to be a
 connected graph at any time, it is sufficient to select only a single vertex.
 Of course, the user might consider selecting a more complicated pattern with keeping in mind the 
 \emph{reference vertex} concept mentioned in the proposal (Chapter~\ref{ch:proposal}).
+\end{sloppypar}
 
 If we enable the user to extend the pattern not only by adding a vertex, 
 which has an incoming edge from one of the already added vertices, but also by adding 
@@ -452,7 +462,7 @@ architecture of the Payola application.
 
 As stated before, Payola is a web application. Its implementation is based on the MVC 
 design pattern. Nowadays, that is a usual approach to a web application. However, it is not that usual 
-to acquire a stance to the utilization of a design pattern on the client--side.. The 
+to acquire a stance to the utilization of a design pattern on the client--side. The 
 Payola team has decided to use the MVC pattern there as well and due to 
 the presence of the s2js compiler, the client--side is also being developed in 
 the Scala programming language.
@@ -485,6 +495,13 @@ an additional flag \texttt{isMultiline}, which determines whether the value can 
 A \texttt{int} or \texttt{float} parameter is also rendered as an input field. A \texttt{boolean} parameter 
 is rendered as a checkbox.
 
+\begin{figure}
+  \centering
+    \includegraphics[width=100mm]{img/editable-analysis.png}
+  \caption{An example of an editable analysis (retrieving a list of cities with a certain population size).}
+  \label{fig:example-analysis-editable}
+\end{figure}
+
 Since we would like to provide the ability to select a pattern, we need to 
 introduce a completely new approach. To keep it generic, we start with the 
 modification of the parameters subsystem. We would like to introduce a new type 
@@ -509,12 +526,14 @@ possible to override the visualization of a plugin instance within the editor. T
 user was able to upload a custom analytical plugin, but they were not capable of affecting its
 appearance in the editor.
 
+\begin{sloppypar}
 With our loader, the user is able to define a custom renderer derived from 
-one of the \texttt{ReadOnlyPlugin\allowbreak InstanceView} and \texttt{EditablePlugin\allowbreak InstanceView} 
+one of the \texttt{ReadOnlyPluginInstanceView} and \texttt{EditablePluginInstanceView} 
 classes. The name of the override is precisely given. It is required to match one 
-of the following patterns: \texttt{{classname}\allowbreak PluginInstanceView},
-\texttt{{classname}Editable\allowbreak PluginInstanceView}. The implementation is required to
-be declared within the \texttt{cz.\allowbreak payola.\allowbreak web.\allowbreak client.\allowbreak views.\allowbreak entity.\allowbreak plugins.\allowbreak custom} package.
+of the following patterns: \texttt{{classname}PluginInstanceView},
+\texttt{{classname}EditablePluginInstanceView}. The implementation is required to
+be declared within the \texttt{cz.payola.web.client.views.entity.plugins.custom} package.
+\end{sloppypar}
 
 The editor was altered so that it does not create renderer instances itself. It 
 uses a newly introduced \texttt{PluginInstance\allowbreak ViewFactory}. This 
@@ -550,9 +569,14 @@ automatically. When the pipeline evaluation is done, the application opens a new
 dialog, which gives the user the opportunity to select the transformation 
 pattern. With every step, the user is presented with a label and/or a URI of the 
 matching DCV component based on what is available. An example of a pattern 
-selection is shown in Figure~\ref{fig:pattern-selection}. With a single click 
+selection is shown in Figure~\ref{fig:pattern-selection} (some additional details are provided
+in Section~\ref{sec:pattern-definition}
+and in figures~\ref{fig:pattern-selection} and~\ref{fig:pattern-enhancement}).
+With a single click 
 the user includes a vertex into a constructed pattern. A double--click 
-has it represening a currently processed component.
+has it representing a currently processed component. We also had to modify the 
+visualization algorithm to avoid collapsing literal vertices into a info table. 
+We need the literals to remain visualized in order to be selectable.
 
 \begin{figure}
 	\centering
@@ -572,8 +596,13 @@ by the architecture and features of the Payola framework as well.
 The feature that is lacking the most  is a sophisticated faceted browsing. All the presented plugins 
 implement offered filters only on the client--side, therefore all the data needs 
 to be loaded within the memory of the user’s computer. As described before, Payola 
-needs a serie of modifications in order to work effectively with larger 
+needs a series of modifications in order to work effectively with larger 
 datasets, hence a client--side--only visualization is the only one currently making sense.
+
+To make them able to work with the Data Cube vocabularies, we had to append 
+definitions of those vocabularies into the result of the mapping process. The 
+visualizer is then able to acquire them and take advantage of them. For instance 
+while building a user interface.
 
 \subsection{TimeHeatmap}
 In order to deliver the TimeHeatmap visualizer, we took advantage of an existing 
@@ -622,7 +651,7 @@ advantage of a locally installed application Gisgraphy. The installation is
 maintained by the author of the used library.
 
 We tried to make the visualization as easy as possible, therefore we decided to exert the
-URI resource itself the resource URI itself. It usually contains the name of the place 
+URI resource itself. It usually contains the name of the place 
 in a way, which is convertible into a form recognized by the Gisgraphy 
 application. For instance, \texttt{http://dbpedia.org/page/Brasserie\_Du\_Bocq} 
 can be converted into Brasserie du Bocq very easily.
@@ -634,7 +663,7 @@ Chapter~\ref{ch:experiments}.
 We decided to offer a basic set of usual statistical visualisations. As stated 
 in Chapter~\ref{ch:proposal}, we achieve that by giving the user the ability to 
 slice the dataset. We need them to fix values of $n-1$ dimensions in order to 
-transform the dataset into a two--dimensional one.
+transform the dataset into a two--dimensional one (1 dimension + 1 measure).
 
 We took advantage of the chart library Flot~\cite{flot} and prepared a 
 visualizer, which allows the user to create bar or pie charts. It 
@@ -661,7 +690,7 @@ than scientific, we will make the corresponding analyses a part of the
 implementation reports in order to make the text consistent for the reader.
 
 \subsection{LodVis integration}
-While writing the review of the tool LodVis (see Section ~\ref{sec:rw:lodvis}), 
+While writing the review of the tool LodVis (see Section ~\ref{rw:lodvis}), 
 we have discovered, that the provided features are very conducive though completely 
 missing in Payola. The application does not offer an overview of a dataset in order 
 to help discover the most used concepts.
@@ -674,7 +703,7 @@ implementing a plain kind of interaction between Payola and LodVis.
 \subsubsection{Visualising Payola data sources in LodVis}
 The first part is introducing a way of allowing the user to visualize a 
 dataset in the scope of the LodVis application. That is done by utilizing a 
-simple REST API. We only create make a link, which is inserted wherever we consider it 
+simple REST API. We only create a link, which is inserted wherever we consider it 
 relevant. The user can click on the link in order to switch to LodVis,
 which handles the rest. We utilize a simple URL pattern:
 
@@ -688,9 +717,8 @@ The pattern has only two parameters. The first one, the \texttt{graph-uri}
 designates the URI of the graph we want LodVis to visualise. This parameter is 
 not mandatory. The second parameter, \texttt{endpoint-uri} is required and it 
 tells the LodVis application, where to fetch the data from. It is not possible 
-to visualize results of an analysis in LodVis.
-
-An example of this could be seen in Figure~\ref{fig:lodvis-int}.
+to visualize results of an analysis in LodVis. An example of this could
+be seen in Figure~\ref{fig:lodvis-int}.
 
 \begin{figure}
 	\centering
@@ -742,7 +770,7 @@ used OpenLink Virutoso~\cite{virtuoso}.
 It takes advantage of the Digest HTTP authentication as introduced in the 
 RFC~2617~\cite{rfc-2617}. Therefore, we had to include the Apache HTTP commons 
 library~\cite{apache-http-commons}. It was also necessary to introduce a new 
-subtype of \texttt{string} parameter --- \texttt{password}. That was done, as 
+subtype of \texttt{string} parameter --- \texttt{password}. That was done as 
 before (remember the \texttt{isMultiline} or the \texttt{isPattern} flag) by 
 adding a new flag.
 
@@ -809,7 +837,7 @@ with all the plugins from the referenced analysis. We call such a process an
 To make the feature even more sophisticated we made a special user interface to 
 enable them to parametrize an inner analysis. When inserting an analysis into 
 another, the user is able to click the names of parameters of plugin instances 
-in the inner analysis in order to promote them to \{analysis parameters}.
+in the inner analysis in order to promote them to \emph{analysis parameters}.
 
 That is why we took an advantage of what we have learned while implementing the 
 core of this thesis and created a special plugin for each inner analysis. That 
@@ -839,10 +867,22 @@ advantage of the new feature to ease their work.
 \end{figure}
 
 \subsection{Data Source browser permalinks}
-The last minor change was done within the scope of the data source browser.
+Another minor change was done within the scope of the data source browser.
 We introduced a mechanism, which enables to user to send a link to a current 
 state of the triple table data source browser. It detects the specified URI in 
 the URL and fetches an initial vertex based on that. The original behaviour delegates 
 the decision on an underlying engine of the queried data source. We simply add a 
 location hash to the URL that makes the permalink available in the address bar 
-of the user's browser.
+of the user's browser. The implementation was extended with a onload event 
+handler, which looks for the location hash and reacts to it.
+
+\subsection{Limit plugin}
+In order to bring a better performance and user experience to the DataCube plugin
+preview mechanism, we had to implement a completely new plugin. It is derived 
+from the \texttt{ConstructQuery} class in order to allow some optimalizations. 
+We needed to modify the \texttt{DataFetcher} plugin and introduce new 
+optimalization phases to increase the speed of the most common cases of dataset 
+preview. For instance, we merge a \texttt{DataFetcher} plugin followed by 
+\texttt{Typed} and \texttt{Filter}, terminated with the \texttt{Limit} plugin 
+into a single SPARQL query. We have also implemented a phase which optimizes
+the query in the case we combine a common SPARQL query with the \texttt{Limit} plugin.

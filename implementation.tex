@@ -99,7 +99,7 @@ to present them to the user if necessary.
 When we started experimenting with the system, the idea of specifying the 
 transformation pattern was a little bit different. Initially, we thought that it 
 would be possible to specify a pattern for each DCV component separately. After 
-a while, we had learned that it makes the task harder for the user. It is more complicated to select a 
+a while, we had learnt that it makes the task harder for the user. It is more complicated to select a 
 valid pattern, especially when the pattern needs to be a connected graph for a conclusive expression
 of the relations between matched entities.
 
@@ -229,7 +229,7 @@ naturally able to share the created Data Cube Vocabulary plugin, too.
 
 An important fact is that regardless of the amount of the parameters, it is sufficient 
 to have a single codebase. We will implement a single Scala class that represents the behaviour 
-of the plugin. That is because the \texttt{Plugin} abstract class (fig.~\ref{fig:plugin-trait-code})
+of the plugin. That is because the \texttt{Plugin} abstract class (Figure~\ref{fig:plugin-trait-code})
 from the Payola framework
 API does not constrain the count of parameters supplied to the class.
 
@@ -244,13 +244,13 @@ within the first parameter.
 We realize that this approach is not quite clean nor nice but we need to accept it for several reasons.
 The first being a simultaneous research based on the original Payola done by various people where
 at the time of writing this thesis and experimenting with the proposed system, some of the researchers 
-would not be able to overcome the major architectural change and thus not finishing their project.
+would not be able to overcome the major architectural change and thus not finish their project.
 But such a change would have been required since 
 it would have been necessary to introduce a new parameter into the \texttt{Plugin} trait. 
 It would demand something general enough to carry metadata that are not determined for 
 computational purposes (and distributed together with the plugin throughout the whole system).
 It would have also been extremely difficult to coordinate such 
-a change at that time that is why it will be more suitable to refactor the 
+a change at that time, that is why it will be more suitable to refactor the 
 implementation in the future when the concept of the proposed system is 
 proved.
 
@@ -268,7 +268,7 @@ proved.
 
 The second reason is that the Payola data access layer is consisted of three different sublayers
 (Figure~\ref{fig:3-layers}) and 
-due to the utilization of the Squeryl ORM framework~\cite{squeryl}, it would be a very difficult 
+due to the utilization of the Squeryl ORM framework~\cite{squeryl} it would be a very difficult 
 task to try and modify the existing database structure. In the list of the future changes of 
 the Payola framework there is a thought for a replacement of the underlying ORM framework
 and respectively for a 
@@ -315,7 +315,7 @@ evaluation framework, which will handle the rest.
 \subsection{Obtaining the transformation pattern}
 The more complicated task still awaits us. We need to implement an interface, 
 which will obtain the transformation pattern from the user. The implementation 
-builds up on what we have learned of the pattern in Chapter~\ref{ch:proposal}.
+builds up on what we have learnt of the pattern in Chapter~\ref{ch:proposal}.
 The best way is to simulate the 
 approach we used for getting the formal expression of the transformation pattern
 (see Section~\ref{sec:pattern-definition}).
@@ -337,7 +337,7 @@ analyzer to process the pipeline and at some point, to take an input of the
 inserted Data Cube Vocabulary Plugin instance and send it to us as a result. 
 Moreover, only a part of the pipeline could be used to make a preview. For instance, if had an analysis
 based on extracting the data from several different data sources, 
-let's say 4, those 4 fetching processes would run collaterally regardless of the 
+let us say 4, those 4 fetching processes would run collaterally regardless of the 
 fact that the DCV plugin is a part of one of them. We will throw away the 
 results of the rest. It is shown in Figure~\ref{fig:dcv-preview-useful}.
 
@@ -378,7 +378,7 @@ See an example of such a pipeline in Figure~\ref{fig:dcv-extraction}.
 
 Nonetheless, what remains is a potential performance problem, which is partially given 
 by features provided by the Payola framework. The result of executing an 
-analytical pipeline could become eventuallya very huge dataset. A dataset so 
+analytical pipeline could become eventually a very huge dataset. A dataset so 
 large that it may not fit into the memory of the user's computer. That is a 
 limiting factor, since the visualisation is performed fully on the client--side. 
 It makes no difference whether it is a table or a graph rendered into the canvas HTML element.
@@ -424,7 +424,7 @@ to compensate a large size of the original dataset, if possible.
 
 
 \subsubsection{Obtaining the pattern}
-Hopefully, it is now fully understood what it is required to be done before a preview 
+Hopefully, it is now fully understood what is required to be done before a preview 
 is made so we can move onto the description of the way of obtaining the pattern 
 from the user. Moreover, we will describe, which components and why have been 
 modified or newly implemented.
@@ -447,7 +447,7 @@ They will select the
 important vertex \emph{accidentally} while extending the 
 pattern in order to select another. Therefore, the only restriction 
 applied in the vertex selection mode is that we prevent the user from selecting 
-a non--related vertex (more accurately a vertex, which would breake the connected 
+a non--related vertex (more accurately a vertex, which would break the connected 
 graph invariant).
 
 The selection process is made to be as simple as possible. We will describe the 
@@ -515,7 +515,7 @@ Another problem comes out of the fact that a plugin has as many parameters as
 the data structure definition has components and we utilize just the first one 
 to store the query. That also means that we need to render the representation 
 of the plugin in a slightly different way. At the time of implementing this 
-thesis, the same requirement came up from two other developers, who integrate their 
+thesis, the same requirement came up from two other developers who integrate their 
 tools with Payola. Therefore, we introduced a mechanism, which solves the 
 problem of loading custom plugin renderers.
 
@@ -575,7 +575,7 @@ and in figures~\ref{fig:pattern-selection} and~\ref{fig:pattern-enhancement}).
 With a single click 
 the user includes a vertex into a constructed pattern. A double--click 
 has it representing a currently processed component. We also had to modify the 
-visualization algorithm to avoid collapsing literal vertices into a info table. 
+visualization algorithm to avoid collapsing literal vertices into an info table. 
 We need the literals to remain visualized in order to be selectable.
 
 \begin{figure}
@@ -839,7 +839,7 @@ enable them to parametrize an inner analysis. When inserting an analysis into
 another, the user is able to click the names of parameters of plugin instances 
 in the inner analysis in order to promote them to \emph{analysis parameters}.
 
-That is why we took an advantage of what we have learned while implementing the 
+That is why we took an advantage of what we have learnt while implementing the 
 core of this thesis and created a special plugin for each inner analysis. That 
 makes it possible for the plugin to have a variable parameters count. As a result the 
 user creates a new shareable plugin. Such a plugin is also promoted to be a new 
@@ -868,12 +868,12 @@ advantage of the new feature to ease their work.
 
 \subsection{Data Source browser permalinks}
 Another minor change was done within the scope of the data source browser.
-We introduced a mechanism, which enables to user to send a link to a current 
+We introduced a mechanism, which enables the user to send a link to a current 
 state of the triple table data source browser. It detects the specified URI in 
 the URL and fetches an initial vertex based on that. The original behaviour delegates 
 the decision on an underlying engine of the queried data source. We simply add a 
 location hash to the URL that makes the permalink available in the address bar 
-of the user's browser. The implementation was extended with a onload event 
+of the user's browser. The implementation was extended with an onload event 
 handler, which looks for the location hash and reacts to it.
 
 \subsection{Limit plugin}

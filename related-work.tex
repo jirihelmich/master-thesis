@@ -27,7 +27,7 @@ to analyze the data, interconnect them, filter them and enrich entities with mor
 while utilizing the principles of Linked Data before the mapping is made. Moreover, the statistical
 dataset could be the result of an analysis. A new statistical dataset may originate from performing
 such an analysis. On the other hand, many of the existing 
-tools provide a way of converting a rather static dataset. Let's imagine a situation when a 
+tools provide a way of converting a rather static dataset. Let us imagine a situation when a 
 user has a database of statistical facts. While using a tool, they can 
 convert the database into a set of triples according to the Data Cube 
 Vocabulary format. When it is done they are able to apply Linked Data principles
@@ -767,7 +767,7 @@ into another form more suitable for a certain class of visualizers.
 That could include a process of gathering more useful data (e.g. to visualize 
 some data on a map it is needed to enrich the dataset with a GPS locations).
 
-The result is a dynamic pipeline architecture(\emph{LDVM Pipeline Instance}),
+The result is a dynamic pipeline architecture (\emph{LDVM Pipeline Instance}),
 starting with an arbitrary 
 dataset passed to some analyzer followed by a chosen transformer ending up with
 visualising the result with one of the visualizers. As a result of applying the concept,
@@ -799,7 +799,7 @@ machine--readable description of such components. Moreover, it is missing a
 mechanism that will allow the user to run those components separately out of 
 the~context of the Payola tool.
 
-The authors call the above a \emph{compatibility} in the~\cite{ldvm2} and 
+The authors call the above a \emph{compatibility} in ~\cite{ldvm2} and 
 introduce a formalization that involves defining an \emph{input signature}.
 In case of the basic Payola components, with an exception of one visualizer, the signatures
 would be empty. This would effectively express the fact that they are designed to
@@ -851,7 +851,7 @@ are present. The recommended adjustment would be to somehow simplify the initial
 \end{figure}
 
 
-The visualized graph might be dense one. Some of the used algorithms will create a graph, which
+The visualized graph might be dense. Some of the used algorithms will create a graph, which
 will have virtual clusters of vertices with a very little distance between them. In fact, some of those
 vertices would be so close to one another that they would overlap. Therefore Payola enables the
 user to \emph{zoom} in and regulate the virtual distance between vertices.
@@ -883,9 +883,9 @@ in the analytical Payola module.
 Since Payola visualizes Linked Data, it naturally visualizes the \emph{relations between the entities}.
 The only feature, which is rather missing in comparison to the feature list from~\cite{mantra}, is
 \emph{User actions history}.
-There is only one component of Payola that make a user able to walk through 
+There is only one component of Payola that enables a user to walk through 
 history of actions and that is a SPARQL endpoint browser. It remembers the path 
-that user creates while clicking through the dataset. The other visualizers 
+that the user creates while clicking through the dataset. The other visualizers 
 however are not equipped with such a feature.
 
 Payola does not fulfill the basic thought stated in~\cite{mantra}, since 

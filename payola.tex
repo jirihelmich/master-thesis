@@ -37,9 +37,9 @@ implemented in Payola:
   If we talk about a~data source, we almost always have in mind an~RDF data source.
   
   \item \emph{Analysis} --- one can look at an~analysis as an~algorithm, which 
-  describes how to work with data from a data source in order to provide results. 
-  It is a~way of specifiyng the data sources you want to fetch the~data from, 
-  of filtering them, combining them, constraining them on properties, applying 
+  describes working with data from a data source in order to provide results. 
+  It is a~way of specifying the data sources you want to fetch the~data from, 
+  filtering them, combining them, constraining them on properties, applying 
   ontologies, etc. Also known as an analytical pipeline or an analyser.  
   
   \item \emph{Plugin} --- as Payola is a~platform, it is reasonable to expect that 
@@ -94,13 +94,13 @@ In the~exploration mode, one can choose from a~couple of visualisation plugins.
 By default, the~results are displayed in a form of a~triple table, but the~user can 
 opt to more advanced modes --- a graph visualisation and a chart visualisation
 (which currently requires a~special pattern to be present in the~data). By using those 
-visualizers, a~user is able to traverse from a node to a node, thus exploring the~whole 
+visualizers, the~user is able to traverse from a node to a node, thus exploring the~whole 
 dataset.
 
 \subsection{Analytical mode}
 In the~analytical mode, the~user is able to build a~custom data analysis. As 
 stated before, an~analysis could be presented as an~algorithm, which decides 
-how to process data. Moreso, in the~analysis, one is expected to specify, 
+how to process data. Moreso, in the~analysis, one is expected to specify 
 where the~data have to be fetched from.
 
 The analysis concept arises from ideas seen in projects like DERI 
@@ -135,7 +135,7 @@ in order to simulate basic SPARQL query behaviour.
   
   \item \emph{Join} --- the~behaviour of the~Join plugin could be a~bit tricky so it is advisible
   to take a~closer look at it in the~application's 
-  user's guide~\cite{payola:ug:join-plugin}. The most common case simulates the~
+  user guide~\cite{payola:ug:join-plugin}. The most common case simulates the~
   behaviour of the~join statement as we know it from the~world of relational 
   databases.
   
@@ -160,7 +160,7 @@ in Chapter ~\ref{chap:rw}, the~Payola basic visualization
 plugins support some features suggested in the~Visualisation 
 mantra~\cite{mantra}.
 
-The bundled plugins enable a user to visualize the~results of an~analysis 
+The bundled plugins enable the user to visualize the~results of an~analysis 
 in a~couple of different ways. The basic visualisation generates a~triple 
 table, while more advanced variants offer a~generic graph visualisation with a 
 support of OWL ontologies. The visualizer allows the~user to customize the~
@@ -186,7 +186,7 @@ chapter about implementation, we will look at them more closely.
 At first, there is the~\texttt{common} package consisted of a code, which is 
 shared with all of the~other parts of the~application. Every other packages can 
 access it and use the~declared code. Moreso, the~classes and objects 
-in this package are automatically compiled into the~JavaScript language and available
+in this package are automatically compiled into the~JavaScript language and are available
 also on the~client--side. As an~example of a~class from the~common package, we
 can name the \texttt{Graph} or \texttt{Vertex} classes, which serve as object representations
 of an RDF graph or a~vertex (resource, entity). Moreover, there are traits for 
@@ -196,7 +196,7 @@ The domain package contains a~code related to the~business logic of the~
 application. It solves mostly basic operations for entities, such as
 \emph{add a~user into a~group} or \emph{grant a~certain privilege to a~user}.
 It also contains components related to the~analytical plugins compiler. The 
-compiler is executed when a~user submits his own analytical plugin via the~user 
+compiler is executed when a~user submits their own analytical plugin via the~user 
 interface. It validates and compiles the~code. If successful, the~plugin is 
 loaded into the~application. Last, but not least, the~\emph{analysis evaluator} is 
 present in this package. Since this is crucial, we will talk about the~evaluator
@@ -237,7 +237,7 @@ Payola Developer's Guide~\cite{payola:dg}.
 
 \section{Analysis evaluation}
 When we are now familiar with the~parts of the~application, we may explain a~
-bit more about the processing and visualizing of an analytical pipeline. That is 
+bit more the processing and visualizing of an analytical pipeline. That is 
 crucial to know before an implementation of any extension.
 
 When an~analysis evaluation is requested, the~analysis gets \emph{validated}. We need to make
@@ -270,7 +270,7 @@ That gives us the~idea of how the plugins work and how they can cooperate in the
 context of analysis with optimalization. The evaluation itself is transformed 
 into a~problem, which is solved by the~Scala Actors framework. For each plugin 
 in the~optimized analysis, there is an~instance of an~actor. The actor waits 
-until all the~inputs of the~corresponding plugin have been provided with the~
+until all of~the~inputs of the~corresponding plugin have been provided with the~
 input data from its predecessor. When inputs are bound with input data, the~
 executive part of the~plugin is performed. That could be anything from 
 executing a~SPARQL query to finding the~shortest path between two nodes in a~

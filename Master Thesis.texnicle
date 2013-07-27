@@ -329,12 +329,12 @@
     </object>
     <object type="TEXFILE" id="z123">
         <attribute name="wasopen" type="bool">11</attribute>
-        <attribute name="visiblerect" type="string">{{0, 3148}, {782, 575}}</attribute>
-        <attribute name="lasteditdate" type="date">396613035.13123601675033569336</attribute>
+        <attribute name="visiblerect" type="string">{{0, 3627}, {573, 575}}</attribute>
+        <attribute name="lasteditdate" type="date">396613757.73667097091674804688</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">396613035.39514297246932983398</attribute>
+        <attribute name="fileloaddate" type="date">396613758.09261500835418701172</attribute>
         <attribute name="extension" type="string">tex</attribute>
-        <attribute name="cursor" type="string">{13196, 0}</attribute>
+        <attribute name="cursor" type="string">{14104, 0}</attribute>
         <attribute name="sortindex" type="int32">6</attribute>
         <attribute name="name" type="string">bibliography.tex</attribute>
         <attribute name="isexpanded" type="bool">0</attribute>
@@ -348,9 +348,9 @@
     <object type="UISETTINGS" id="z124">
         <attribute name="showpdfthumbnails" type="bool">0</attribute>
         <attribute name="selectedcontrolstab" type="int16">0</attribute>
-        <attribute name="pdfviewscrollrect" type="string">{{0, 1514}, {383, 733}}</attribute>
+        <attribute name="pdfviewscrollrect" type="string">{{0, 2681}, {592, 733}}</attribute>
         <attribute name="maxoutlinedepth" type="int16">7</attribute>
-        <attribute name="editorwidth" type="float">820</attribute>
+        <attribute name="editorwidth" type="float">611</attribute>
         <attribute name="controlswidth" type="float">220</attribute>
         <relationship name="project" type="1/1" destination="PROJECT" idrefs="z110"></relationship>
     </object>

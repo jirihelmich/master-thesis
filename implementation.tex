@@ -535,8 +535,9 @@ of the following patterns: \texttt{{classname}PluginInstanceView},
 be declared within the \texttt{cz.payola.web.client.views.entity.plugins.custom} package.
 \end{sloppypar}
 
+\begin{sloppypar}
 The editor was altered so that it does not create renderer instances itself. It 
-uses a newly introduced \texttt{PluginInstance\allowbreak ViewFactory}. This 
+uses a newly introduced \texttt{PluginInstanceViewFactory}. This 
 factory is responsible for creating a proper instance. Based on the given plugin 
 classname it calls a dependency package manager. The manager is a part of the 
 s2js compiler and it provides a JavaScript implementation of the required class
@@ -546,6 +547,7 @@ returns its implementation. If it does not, it returns an empty string. After
 that, the factory tries to make an instance of the override. If it succeeds, an 
 instance of the override renderer is created. If it fails, it returns an 
 instance of a generic renderer. 
+\end{sloppypar}
  
 Our custom implementation of the Data Cube Vocabulary plugin renderer results 
 in a form shown in Figure~\ref{fig:DCV-plugin-view}. First of all, it 

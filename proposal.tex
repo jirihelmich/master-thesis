@@ -2,12 +2,12 @@
 \label{ch:proposal}
 Based on~what we~have presented in~Chapter~\ref{chap:rw}, we~would like to
 propose a~system, which will enable the~user to~map arbitrary RDF dataset
-into a~form compliant with the~Data Cube Vocabulary standard. Since this is~quite an~open definition, we~have to~dive into the~problem a~little bit deeper to~find out what is~possible and to~propose a~system that meets some real--world 
+into a~form compliant with the~Data Cube Vocabulary standard. Since this is~quite an~open definition, we~have to~dive into~the~problem a~little bit deeper to~find out what is~possible and to~propose a~system that meets some real--world 
 functional requirements.
 
 We are about to~propose a~system that is~in a~specific way very similar to~the implementation of~OLAP2DataCube (Section~\ref{rw:olap2dc}) or~Tabels (Section~\ref{rw:tabels}).
 On the~other hand, both of~them are 
-focused on~converting arbitrary statistical \emph{non--RDF} data into a~form 
+focused on~converting arbitrary statistical \emph{non--RDF} data into~a~form 
 compliant with the~Data Cube Vocabulary. In~Figure~\ref{fig:olap2dc-mapping} we~remind
 the reader how the~transformation process is~done in~the case of~OLAP2DataCube.
 The important fact is~that the~data source (RDBMS) already contains statistical data in~an obvious form. 
@@ -33,7 +33,7 @@ Let us~take a~brief excursion back to~the OLAP2DataCube described in~Section
 into the~RDF standard with respect to~the DCV metaformat. Executing the~tool on~a 
 dataset has one important side--effect: there is~a new QB~data structure definition
 generated with bases on~the structure of~the input dataset. Therefore, the~tool does not map the~dataset to~match an~existing data structure definition, it~creates a~new one. That is~definitely
-needed when one transforms a~non--RDF dataset into RDF. But once 
+needed when one transforms a~non--RDF dataset into~RDF. But once 
 this is~done, it~is probable that a~company or~an organzation will produce the~same kind of~data periodically, therefore, they will reuse the~same data structure definition.
 
 This is~the reason why we~will propose a~system which fill focus on~the task of~mapping the~input dataset to~match an~existing data structure definition. 
@@ -41,7 +41,7 @@ The authors of~the LDVM~\cite{ldvm} (see Section~\ref{sec:rw:ldvm}) propose to~m
 visualizers. Each of~them will 
 be able to~visualize a~specific kind of~datasets. Its visualization abilities will be~described with
 an \emph{input signature}. A~Data Cube data structure definition could be~easily transformed into
-an example of~such a~signature. That is~another reason why we~want the~tool to~map the~input dataset into an~existing definition.
+an example of~such a~signature. That is~another reason why we~want the~tool to~map the~input dataset into~an~existing definition.
 
 \begin{figure}
 	\centering
@@ -100,7 +100,7 @@ capital city of~the Czech Republic has properties \texttt{populationTotal} and
 a certain amount of~citizens (measure).
 
 Although this cube is~originally based on~a very simple pattern (a shape of~a pair of~cherries),
-it is~not possible to~map such a~slice into a~form compliant with a~data structure definition since the~relation between the~definition and the~dataset is~not defined in~the original data. For a~well--defined data structure 
+it is~not possible to~map such a~slice into~a~form compliant with a~data structure definition since the~relation between the~definition and the~dataset is~not defined in~the original data. For a~well--defined data structure 
 definition and a~well--defined dataset, it~could be~possible to~propose another 
 system, which would try to~detect the~relation and create them 
 automatically. For instance, the~location dimension, which is~usually named
@@ -108,13 +108,13 @@ automatically. For instance, the~location dimension, which is~usually named
 Also the~resource \emph{Prague} could be~connected with the~location type. But 
 that would mean introducing a~system, which would process a~lot of~data trying to~match each supertype of~the dimension with the~properties of~every resource in~the graph. It~would have to~use advanced heuristics and it~would probably have 
 to adopt some techniques from the~machine--learning field. A~fully--automated 
-system would also introduce a~lot of~mistakes into the~results since it~would 
+system would also introduce a~lot of~mistakes into~the~results since it~would 
 be a~highly experimental approach. Therefore, implementing such a~system would 
 not be~the goal of~this thesis. 
 
 On the~other hand, we~would like to~propose a~system, which will be~flexible 
 enough to~allow the~user to~take an~arbitrary Data Cube Vocabulary data 
-structure definition and map a~reasonable part of~this dataset into a~compliant 
+structure definition and map a~reasonable part of~this dataset into~a~compliant 
 form.
 
 Unfortunately, the~phrase \emph{reasonable part} is~not very scientific. 
@@ -147,7 +147,7 @@ to specify a~wide range of~mappings.
 OLAP2DataCube took an~advantage of~the database structure (Section ~\ref{olap2dc}) --- 
 especially of~relational feature --- foreign keys. Since the~RDF format 
 is based on~expressing relations it~would not present an~issue. But what the~OLAP2DataCube tool did, was that it~transformed already existing statistical data from
-the star--shaped database structure into another format. But in~the world of~RDF 
+the star--shaped database structure into~another format. But in~the world of~RDF 
 data we~would restrict the~tool a~lot if~we relied only on~star--shaped 
 schemas, hence, we~need to~work with a~generic graph.
 
@@ -164,7 +164,7 @@ specify the~pattern and switch to~the analytical mode. Such an~approach enables
 us to~construct a~SPARQL query and come closer to~the very first (and the~least restrictive) 
 approach. Nonetheless, it~brings some new implementation issues.
 
-The most obvious one is~the transformation of~the user's selection into a~SPARQL query. 
+The most obvious one is~the transformation of~the user's selection into~a~SPARQL query. 
 We will also require the~system to~be capable of~making a~preview of~the 
 original dataset in~order to~offer the~user a~visualization. The~visualization 
 itself will interact with the~user and provide them a~way to~specify the~pattern.
@@ -246,10 +246,10 @@ After the~pattern is~specified the~system has all the~information it~needs. The~
 the results (RDF graph).
 \FloatBarrier
 
-\section{Benefits of~integration into Payola}
+\section{Benefits of~integration into~Payola}
 \label{why-payola}
 Since we~have participated on~the implementation of~the Payola RDF tool, we~will 
-now go~through the~pros and cons of~integrating the~proposed system into Payola.
+now go~through the~pros and cons of~integrating the~proposed system into~Payola.
 We will also decide if~we proceed with the~integration.
 
 In Chapter~\ref{ch:payola} we~familiarized the~reader briefly with the~main
@@ -262,7 +262,7 @@ to combine multiple data sources and benefit from their
 combination. Based on~that, a~completely new set of~facts can be~computed.
 (This could be~optimized with SPARQL 1.1 and Federated queries~\cite{federated-queries}.) 
 Therefore, it~could be~handy to~introduce a~Data Cube Vocabulary analytical 
-plugin, which would be~able to~convert the~results of~an analysis into the~Data 
+plugin, which would be~able to~convert the~results of~an analysis into~the~Data 
 Cube Vocabulary format. Such a~plugin could be~connected directly to~an output
 of a~data fetcher plugin --- this will cover the~basic implementation shown in~Figure~\ref{fig:generic-mapping-detail}.
 
@@ -307,17 +307,17 @@ implemented elsewhere.
 
 Moreover, we~can take advantage of~the existing visualization plugins. The~basic 
 one, triple table plugin, offers a~quick overview of~the data. The~user 
-will also be~able to~download the~results of~the transformation into a~static 
+will also be~able to~download the~results of~the transformation into~a~static 
 RDF file for further use or~just for simple backup purposes.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=140mm]{img/payola-mapping.png}
-	\caption{Mapping process integrated into the~Payola analyzer.}
+	\caption{Mapping process integrated into~the~Payola analyzer.}
 	\label{fig:payola-mapping}
 \end{figure}
 
-We show a~possible way of~the integration of~the mapping process into the~Payola analytical extraction
+We show a~possible way of~the integration of~the mapping process into~the~Payola analytical extraction
 in Figure~\ref{fig:payola-mapping}. It~shows the~proposed system in~a context of~an
 analytical pipeline. Such a~pipeline is~constructed by~the user. The~process starts with querying data 
 sources in~order to~offer the~user an~overview. The~amount of~the sources depends 
@@ -334,7 +334,7 @@ be the~result of~the analytical pipeline execution. It~may be~used as~an input
 for the~upcoming analytical steps.
 
 Based on~facts presented in~the text above we~find it~reasonable to~integrate 
-the proposed system into Payola.
+the proposed system into~Payola.
 
 \section{Formalization}
 
@@ -345,7 +345,7 @@ provide a~definition of~the mapping process. A~description of~the output will be
 \subsection{Input and output}
 
 The input of~the system will be~an arbitrary RDF graph $G_{input}$ as~shown
-in Figure~\ref{fig:mapping-example}. It~will be~mapped into a~form compliant
+in Figure~\ref{fig:mapping-example}. It~will be~mapped into~a~form compliant
 with the~DCV standard. Since the~DCV also takes advantage of~the RDF standard,
 the result will likewise be~a graph, let us~say $G_{output}$.
 
@@ -375,7 +375,7 @@ is not enough. We~require the~user to~specify also an~example pattern (based on~
 query--by--example principle). Since all the~inputs and outputs are RDF
 graphs ($G_{input}$, $G_{def}$, $D$, $G_{output}$), we~can take 
 advantage of~some existing approaches specialized on~RDF transformation. 
-A technically simple but powerful way, is~to utilize the~SPARQL language. Based on~what we~have introduced before, we~are able to~transform a~user--selected pattern into a~form of~a SPARQL
+A technically simple but powerful way, is~to utilize the~SPARQL language. Based on~what we~have introduced before, we~are able to~transform a~user--selected pattern into~a~form of~a SPARQL
 query. We~will talk about such a~query as~of a~\emph{transformation query} and denote it~$Q_t$.
 
 What we~have now is~an information about what is~needed on~the input and 

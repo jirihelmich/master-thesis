@@ -3,7 +3,7 @@
 
 Quite some time ago, we~decided to~participate on~a~large--scale software 
 project focused on~analyzing and visualising Linked Data. As~a~result of~the~project
-a~completely new tool, Payola, was introduced. Since we~are proposing a~system, which could fit into the~technological stack of~Payola, in~this chapter, 
+a~completely new tool, Payola, was introduced. Since we~are proposing a~system, which could fit into~the~technological stack of~Payola, in~this chapter, 
 we will get the~reader familiar with the~tool. Even if~we  decide 
 not to~integrate the~system we~are about to~propose, the~Payola tool remains
 a related work tool and worth describing.
@@ -15,8 +15,7 @@ to compile some existing approaches and bring a~compact way for processing LD.
 
 Upon a~closer look at~Section ~\ref{chap:rw}, it~will become apparent that many of~those tools are
 immensely capable. However at~a more detailed look one will see that they might have to
-be chained in~order to~convert data into 
-RDF, perform analysis over an~RDF graph and visualize those results.
+be chained in~order to~convert data into~RDF, perform analysis over an~RDF graph and visualize those results.
 
 Payola, on~the~other hand, is~a~framework developed with keeping in~mind that 
 the user should have no~need for another tool to~process their data. However, as~a~large--scale project actively being developed, it~still lacks many 
@@ -44,7 +43,7 @@ implemented in~Payola:
   some of~the~features might get to~be extended by~plugins. In~  Payola, we~distinguish between two different types of~plugins --- \emph{analytical plugins} and 
   \emph{visualisation plugins}. Whilst visualisation plugins are small components, 
   which take an~RDF graph as~an~input, the~analytical plugins are processing 
-  units, which generally transform one~input graph (or more) into another one.
+  units, which generally transform one~input graph (or more) into~another one.
   
   That includes anything from a~simple forwarding of~the~graph from input to~output, 
   making union of~two graphs, executing a~SPARQL query on~the~graph to~constructing 
@@ -79,7 +78,7 @@ and use it~as a~starting point of~a~data source exploration.
 
 The user is~also provided with his own data repository, which is~created by~Payola in~the~underlying installation of~the~Virtuoso~\cite{virtuoso} triplestore. Payola then eases 
 the upload of~an~arbitrary dataset in~the~RDF/XML or~TTL 
-format into the~private repository. The~repository may be~used as~a~data source in~analyses.
+format into~the~private repository. The~repository may be~used as~a~data source in~analyses.
 
 In the~exploration mode, one can choose from a~couple of~visualisation plugins. 
 By default, the~results are displayed in~a form of~a~triple table, but the~user can 
@@ -117,7 +116,7 @@ in order to~simulate basic SPARQL query behaviour.
   graphs, the~SPARQL query should be~of a~CONSTRUCT type.
   
   \item \emph{Union} --- a~plugin with more than one input. As~the name suggests, it~takes 
-  the~input graphs and unifies them into a~single one that is~passed onto the~  output.
+  the~input graphs and unifies them into~a~single one that is~passed onto the~  output.
   
   \item \emph{Join} --- the~behaviour of~the~Join plugin could be~a~bit tricky so~it is~advisible
   to~take a~closer look at~it in~the~application's 
@@ -161,21 +160,21 @@ Since the~description of~the~tool is~not the~main goal of~this thesis, we~will
 keep it~brief and refer the~reader to~the~Payola User's guide~\cite{payola:ug} to~learn more.
 
 \section{Payola architecture}
-The application is~divided into several parts, packages, in~fact. That can be~seen in~Figure~\ref{fig:packages-structure}. Since this will be~useful in~an upcoming
+The application is~divided into~several parts, packages, in~fact. That can be~seen in~Figure~\ref{fig:packages-structure}. Since this will be~useful in~an upcoming
 chapter about implementation, we~will look at~them more closely.
 
 At first, there is~the~\texttt{common} package consisted of~a code, which is~shared with all of~the~other parts of~the~application. Every other packages can 
 access it~and use the~declared code. Moreso, the~classes and objects 
-in this package are automatically compiled into the~JavaScript language and are available
+in this package are automatically compiled into~the~JavaScript language and are available
 also on~the~client--side. As~an~example of~a~class from the~common package, we
 can name the~\texttt{Graph} or~\texttt{Vertex} classes, which serve as~object representations
 of an~RDF graph or~a~vertex (resource, entity). Moreover, there are traits for 
 entities that are consequentially independent on~a~concrete DAL implementation.
 
 The domain package contains a~code related to~the~business logic of~the~application. It~solves mostly basic operations for entities, such as
-\emph{add a~user into a~group} or~\emph{grant a~certain privilege to~a~user}.
+\emph{add a~user into~a~group} or~\emph{grant a~certain privilege to~a~user}.
 It also contains components related to~the~analytical plugins compiler. The~compiler is~executed when a~user submits their own analytical plugin via the~user 
-interface. It~validates and compiles the~code. If~successful, the~plugin is~loaded into the~application. Last, but not least, the~\emph{analysis evaluator} is~present in~this package. Since this is~crucial, we~will talk about the~evaluator
+interface. It~validates and compiles the~code. If~successful, the~plugin is~loaded into~the~application. Last, but not least, the~\emph{analysis evaluator} is~present in~this package. Since this is~crucial, we~will talk about the~evaluator
 in more detail in~this chapter.
 
 The data package then wraps the~entities from the~previous packages with a
@@ -195,7 +194,7 @@ It also contains the~code of~visualizer plugins and an~analysis editor. One of~t
 The RPC mechanism was implemented in~order to~bridge the~gap between the~client 
 side and the~server side application and to~hide the~XHR request from
 the~developer of~the~application and/or any extension. Since the~application heavily
-uses the~\emph{Scala to~JavaScript} component, we~invested some effort into developing the~RPC 
+uses the~\emph{Scala to~JavaScript} component, we~invested some effort into~developing the~RPC 
 protocol. That enables a~developer to~transparently call a~method on~the~server from 
 the client--side. 
 
@@ -241,11 +240,11 @@ until all of~the~inputs of~the~corresponding plugin have been provided with the~
 executing a~SPARQL query to~finding the~shortest path between two nodes in~a~specified graph. The~only constraint is~that the~result of~the~plugin execution 
 needs to~be also a~graph.
 
-As the~last plugin (with no~bound successor on~its output) gets evaluated, the~analysis is~done. The~results are sent via RPC (while being serialized into JSON) 
+As the~last plugin (with no~bound successor on~its output) gets evaluated, the~analysis is~done. The~results are sent via RPC (while being serialized into~JSON) 
 to the~client--side and visualized by~the~basic visualisation -- the~triple 
 table. The~user is~then able to~switch to~another visualisation. The~JSON 
 representation of~the~resulting graph is~stored in~the~memory of~the~user's web 
-browser and every visualizer, which is~activated by~the~user accesses the~in--memory representation and renders whatever it~needs into a~given canvas.
+browser and every visualizer, which is~activated by~the~user accesses the~in--memory representation and renders whatever it~needs into~a~given canvas.
 
 That is~a~brief description of~the~evaluation process. It~offers an~insight
 to what happens of~in the~background. Later, we~will learn how this affects 
@@ -267,7 +266,7 @@ and many parts of~the~code are shared between the~client--side and the~server
 side.
 
 There were many different advantages to~choosing the~Scala programming language, 
-for example the~presence of~the~Scala Actors framework, which fits into the~analysis evaluation problem.
+for example the~presence of~the~Scala Actors framework, which fits into~the~analysis evaluation problem.
 
 The application utilizes the~following libraries and technologies:
 \begin{itemize}

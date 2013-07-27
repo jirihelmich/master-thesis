@@ -83,7 +83,7 @@ as shown in~Figure~\ref{fig:dbpedia-pop-anal}.
 
 With the~preview size set to~20, the~preview is~shown as~pictured in~Figure~\ref{fig:payola-exp-01-preview}. In~this case, the~transformation pattern 
 is very simple, as~shown in~Figure~\ref{fig:payola-exp-01-selection}. As~a 
-result, the~system will apply the~following query to~transform the~data into the
+result, the~system will apply the~following query to~transform the~data into~the
 Data Cube Vocabulary standard:
 
 \begin{figure}
@@ -148,11 +148,11 @@ standard. We~took advantage of~the integration with the~Payola application in~or
 The system performed well on~the dataset provided by~the DBPedia endpoint, but 
 it is~important to~remember that the~endpoint returned a~small amount of~resources. The~quality of~the DBPedia datasets differs a~lot and many 
 statistical data are present in~a non--user--friendly form, e.g. while using the~property~\texttt{2000pop}. It~might be~interesting to~use Payola to~discover 
-all those properties and build an~analytical pipeline, which will unify all the~approaches. When unified, the~implemented system can be~used in~order to~transform the~data into the~form of~DCV and/or visualize those.
+all those properties and build an~analytical pipeline, which will unify all the~approaches. When unified, the~implemented system can be~used in~order to~transform the~data into~the~form of~DCV and/or visualize those.
 
 We have also shown that our visualizers work with real--life data. Based on~what we~have experienced, we~will propose some future user experience 
 improvements in~Chapter~\ref{ch:future}. One of~those is~optimizing a~longer running 
-geocoding process, which transforms the~city names into GPS cooridinates.
+geocoding process, which transforms the~city names into~GPS cooridinates.
 
 \section{COINS -- UK~government spending}
 Many organizations including governments produce a~lot of~statistical datasets 
@@ -314,7 +314,7 @@ with Data Cube Vocabulary.
 
 The recommended way of~solving the~large dataset problem with the~current state of~the system
 is to~place the~DCV 
-plugin into a~more suitable point. The~preceding operations should narrow the~dataset more naturally by~setting semantical constraints.
+plugin into~a~more suitable point. The~preceding operations should narrow the~dataset more naturally by~setting semantical constraints.
 
 In this experiment, we~tried to~use the~implemented system in~a slightly 
 different use case. We~used it~in order to~extract a~dataset which is~already in~a form of~Data Cube Vocabulary. Despite the~fact that the~tool was not 
@@ -454,7 +454,7 @@ payola-dcv:region a~rdf:Property, qb:AttributeProperty ;
 
 After we~had prepared all the~prerequisities, we~proceeded with transforming the~original dataset to~the form compliant with Data Cube Vocabulary. Based on~the 
 data structure definition, we~created a~corresponding plugin, which was then 
-inserted into an~analysis. The~preview contained one of~the selected entries, 
+inserted into~an~analysis. The~preview contained one of~the selected entries, 
 therefore it~was an~easy task to~select a~mapping pattern. One step of~the 
 pattern selection process is~pictured in~Figure~\ref{fig:contracts-pattern}.
 As a~result, the~system gave us~the SPARQL query show in~Figure~\ref{fig:contracts-query-pattern}.
@@ -533,7 +533,7 @@ made by~the Universal Data Cube visualizer is~shown in~Figure~\ref{fig:contracts
   \label{fig:contracts-uni-dcv}
 \end{figure}
 
-In this experiment, we~confirmed that the~implemented system is~capable of~transforming an~arbitrary RDF dataset into a~form compliant with a~selected Data 
+In this experiment, we~confirmed that the~implemented system is~capable of~transforming an~arbitrary RDF dataset into~a~form compliant with a~selected Data 
 Cube vocabulary. We~also examined the~system while working with a~larger 
 dataset. We~confirmed some aforementioned assumptions about the~performance of~the system. Therefore, we~confirmed that we~have correctly identified all the~bottlenecks predicted while preparing the~proposal of~integrating the~system with Payola. 
 We will account them in~the future improvements.

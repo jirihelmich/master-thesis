@@ -25,7 +25,7 @@ input.
 
 We will introduce the~reader to~the problem by~examining an~example based on~the total number of
 citizens living in~the country. That is~a very simple kind of~information, but we~will demonstrate
-how this could be~put into the~context of~the models mentioned in~the introduction.
+how this could be~put into~the~context of~the models mentioned in~the introduction.
 
 Let us~start with a~dataset with only one entry:
 
@@ -53,7 +53,7 @@ Slovakia	          5404555
 That gives us~a dataset with two entries. Each entry is~consisted of~two parts. Let us~notice, that 
 its semantics are kept in~the reader's head. The~document itself does not keep the~information.
 To process the~data, it~is necessary to~know what the~information in~the file represents. You could change
-the~contents of~the file into the~following form:
+the~contents of~the file into~the~following form:
 
 \begin{verbatim}
 Czech Republic      10505445
@@ -83,7 +83,7 @@ Now, let us~get back to~the very first statement:
 The Czech Republic has 10 505 445 citizens.
 \end{verbatim}
 
-When transferring the~statement into a~more technical form, we~forgot to~extract one
+When transferring the~statement into~a~more technical form, we~forgot to~extract one
 dimension. The~sentence also carries information about time. This is~quite an~important
 part of~the information since the~count of~citizens of~the specific country evolves with time.
 People are dying as~well as~getting born. Since the~sentence is~presented while using the
@@ -101,7 +101,7 @@ That gives us~three dimensional dataset. We~know the~place, the~total number of
 citizens and the~time of~the measured value being acquired.
 
 Now, we~may come to~a decision of~publishing such a~document to~the Web. We~can transform
-it into a~web page and publish it~on a~server.
+it into~a~web page and publish it~on a~server.
 \begin{figure}
 \small\begin{verbatim}
 <html>
@@ -143,7 +143,7 @@ provided an~explanation of~its meaning. Therefore, some additional data had to~b
 should speak of~it as~of metadata, since the~meaning is~rather descriptive instead of~semantical.
 
 With a~specifically programmed script or~a tool (so-called \emph{scraper}) it~is possible to
-convert such a~web page into another format or~make an~eye--catching visualization.
+convert such a~web page into~another format or~make an~eye--catching visualization.
 But one gets to~learn the~tool, the~meaning of~the data, its structures and the~handling of~each of~the dimensions. Moreover, one is~not able to~gather more information,
 because there is~not any in~the document itself and there is~no way of
 automatically linking the~values in~the document to~other documents (unless, of~course,
@@ -209,7 +209,7 @@ To make the~idea about datasets more clear, let us~mention some well--known data
 involving Linked Data:
 
 \begin{itemize}
-\item DBPedia --- dataset made by~transforming Wikipedia into the~RDF model.
+\item DBPedia --- dataset made by~transforming Wikipedia into~the~RDF model.
 \item FOAF --- dataset describing persons, their properties and relationships.
 \item GeoNames --- geographical LD~database.
 \item CKAN --- community--run catalogue of~useful sets of~data on~the Internet.
@@ -231,7 +231,7 @@ by the~DBPedia~\cite{dbpedia}. At~a closer look, one can see that there are some
 that are repeated in~each of~them. E.g. the~scheme --- http. Although that is~a rather technical
 point of~view. The~most long common part of~both URIs is~\url{http://dbpedia.org/ontology/}
 which makes a~namespace. It~makes a~logical sense that all the~resources in~the virtual
-folder \texttt{ontology} have something in~common, therefore, they are grouped into the~namespace.
+folder \texttt{ontology} have something in~common, therefore, they are grouped into~the~namespace.
 
 Since one could remember easily the~name of~the specific resource in~a namespace,
 e.g. \texttt{populationTotal}, it~would be~great if~they had no~need to~look up~the full
@@ -252,7 +252,7 @@ registry could be~found on~\cite{prefixcc}.
 In order to~get the~processes in~a country more transparent, governments also publish data
 related to~the country (statistics, public spendings data, …) to~the Internet. Not many of
 them are published in~the form of~the Linked Data, so~there are many initiatives
-interested in~transforming the~data into a~machine-readable form.
+interested in~transforming the~data into~a~machine-readable form.
 
 It is~definitely a~great achievement to~have such a~dataset in~a form of~Linked Data, but
 what we~need for understanding its contents is~a suitable visualization of~the data.
@@ -364,7 +364,7 @@ RDFa model, as~can be~seen in~Figure~\ref{fig:example-rdfa}.
 Since the~original data were taken from Wikipedia~\cite{wikipedia}, we~decided to~decorate the~HTML document
 while using semantic definitions defined by~DBPedia, the~Linked Data version of~Wikipedia. 
 The DBPedia needed to~come up~with a~series of~ontologies to~present the~structure of~documents
-extracted from Wikipedia. The~ontology can be~used not only to~declare a~publicly available definition of~the document format, which is~useful for those who query the~DBPedia database; it~can also be~used by~the team of~the DBPedia in~order to~unify internal rules of~a document which is~created by~scraping a~Wikipedia page into RDF.
+extracted from Wikipedia. The~ontology can be~used not only to~declare a~publicly available definition of~the document format, which is~useful for those who query the~DBPedia database; it~can also be~used by~the team of~the DBPedia in~order to~unify internal rules of~a document which is~created by~scraping a~Wikipedia page into~RDF.
 
 As can be~seen, we~have utilized the~RDF Schema and DBPedia Ontology to~describe the~document
 and give it~some semantic meaning. While this is~a relatively simple process, it~has dramatically
@@ -374,7 +374,7 @@ of the~Internet.
 
 \subsubsection{RDF example}
 
-When such a~page is~analyzed by~a RDF--aware tool, it~may be~extracted into a~more concise form:
+When such a~page is~analyzed by~a RDF--aware tool, it~may be~extracted into~a~more concise form:
 
 \scriptsize\begin{verbatim}
 http://dbpedia.org/page/Czech_Republic	dbpedia-owl:populationTotal		10505445 ;
@@ -467,7 +467,7 @@ version 1.0 of~a technical specification, which was approved by~the Internationa
 Organization for Standardization~\cite{iso} as~\texttt{ISO:TS 17369}.
 Later on, in~May 2011, it~was updated to~version 2.1 (changes in~web services guidelines,
 revised data messages, partial code lists and new metadata management).
-In January 2013 the~specification has evolved into an~International Standard,
+In January 2013 the~specification has evolved into~an~International Standard,
 \texttt{ISO/IS 17369}~\cite{isosdmx}.
 
 The Initiative has also published a~User Guide to~cover major SDMX use cases~\cite{sdmxuserguide}.
@@ -532,7 +532,7 @@ Vocabulary in~the environment of~Linked Data.
 In fact, the~primary use case designed by~the Initiative is~called “web data dissemination”
 and is~tightly related to~the Linked Data world. It~comes with a~standardized process of~retrieving
 data from the~web periodically and keeping them up--to--date. It~resembles a~bit a~process
-of scraping data into a~Linked Data datastore, which was, perhaps, derived just from the~web
+of scraping data into~a~Linked Data datastore, which was, perhaps, derived just from the~web
 data dissemination process.
 
 The next SDMX fundamental connected to~the Linked Data model is~defining concepts. That is
@@ -549,7 +549,7 @@ given dataset, not to~enforce its own proprietary format. It~is enforced by~a ru
 that a~new concept can be~introduced only if~no existing concept suffices. The~reason
 is that those concepts are already used and implemented by~a certain spectrum of
 applications, therefore it~will lead to~a greater interoperability. Similar concepts are then
-grouped into schemes which are versioned. When a~concept changes, a~new version of~the
+grouped into~schemes which are versioned. When a~concept changes, a~new version of~the
 whole scheme needs to~be introduced.
 
 Also the~list of~three main components of~SDMX concept goes well with the~Linked Data model
@@ -560,7 +560,7 @@ Also the~list of~three main components of~SDMX concept goes well with the~Linked
 \item Its description.
 \end{itemize}
 
-One is~also able to~include all those properties into a~RDF--compliant resource definition,
+One is~also able to~include all those properties into~a~RDF--compliant resource definition,
 furthermore, the~first one is~also mandatory and represented by~a URI.
 
 \label{SDMX-code-lists}
@@ -716,7 +716,7 @@ Vocabulary with the~SDMX model.
 \end{sloppypar}
 
 Let us~get back to~the demography example. We~will continue with the~prepared RDF
-document and transform it~into a~Data Cube Vocabulary model. Since we~know that each
+document and transform it~into~a~Data Cube Vocabulary model. Since we~know that each
 observation should conform to~a specified data structure, we~should at~first define
 such a~structure. To~define a~structure, we~need to~define all components first.
 We will use slightly modified examples presented in~the Data Cube vocabulary
@@ -781,7 +781,7 @@ figure~\ref{fig:sparql-obsValue}.
 It is~natural that while performing a~measurement, you can retrieve multiple
 values within a~single observation. A~good example of~such an~observation could be~weather
 information sampling. One can measure many physical values (e.g. temperature, air pressure,
-humidity, …) in~a specific timeframe on~a specific place. One can store those values separately,
+humidity, …) in~a~specific timeframe on~a specific place. One can store those values separately,
 each in~a standalone observation. But since the~observation has been made at~the same moment
 and the~dimensions are exactly the~same, it~is only natural to~add those value components into
 the~same observation. One will end up~with a~5--dimensional observation where 2 components 
@@ -789,7 +789,7 @@ are dimension properties (place and time) and 3 components are measure propertie
 (temperature, pressure, humidity). Without grouping, one would make 3 related observations,
 each with a~single measure property (3 dimensions overall).
 
-Regardless of~whether you group those observations into a~single one or~not, one is~able
+Regardless of~whether you group those observations into~a~single one or~not, one is~able
 to select the~related observations from the~data cube dataset relatively easily since they
 are all determined by~exactly the~same dimension properties. That is~called \emph{slicing}.
 If you take a~cube and select all the~related observations you make a~slice. The~slice is~exactly
@@ -904,5 +904,5 @@ needed to~get such a~task done.
 
 Since Payola was designed to~provide a~platform for analyzing and visualizing 
 Linked Data and its main goal is~to lower the~knowledge barrier, which one needs to~overcome in~order to~analyze Linked Data, we~also want all newly--introduced 
-components to~fit into the~concept of~the whole platform --- to~be reusable. We~will also demonstrate the~benefits of~such transformations while implementing 
+components to~fit into~the~concept of~the whole platform --- to~be reusable. We~will also demonstrate the~benefits of~such transformations while implementing 
 a~visualization, which will take advantage of~the Data Cube Vocabulary.

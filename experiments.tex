@@ -2,12 +2,12 @@
 \label{ch:experiments}
 
 In this chapter, we~would like to~demonstrate the~abilities of~the~implemented system. We
-experimented with a~variety of~datasets and will use some of~them to~show how 
+experimented with a~variety of~datasets and~will use some of~them to~show how 
 the system works. We~will also present how the~implemented visualizers work on~an~example of~real--world data.
 
 \section{DBPedia demography}
 We used the~example of~the~DBPedia demography throughout the~whole thesis. Now 
-it is~time to~show how the~implemented system deals with such a~dataset. In~order to~start the~conversion, we~need to~have a~dataset (DBPedia) and a~vocabulary containing a~data structure definition. We~made a~custom vocabulary 
+it is~time to~show how the~implemented system deals with such a~dataset. In~order to~start the~conversion, we~need to~have a~dataset (DBPedia) and~a~vocabulary containing a~data structure definition. We~made a~custom vocabulary 
 with a~definition as~shown in~Figure~\ref{fig:dcv-dbpedia-dsd}.
 
 \begin{figure}
@@ -68,9 +68,8 @@ payola-dcv:populationSize a~rdf:Property, qb:MeasureProperty ;
 DBPedia is~based on~a~very large dataset (about 400 million facts). Therefore we~need to~narrow down the~dataset a~lot in~order to~make a~meaningful data preview for 
 the
 pattern selection. We~briefly examined the~resource~\texttt{http://dbpedia.org/Prague} 
-and learnt that it~is~of~a~type~\texttt{dbpedia-owl:City} and has two 
-important properties -- \texttt{dbpedia-owl:populationTotal} and 
-\texttt{dbpedia-owl:populationAsOf}. Hence, we~prepared an~analytical pipeline 
+and learnt that it~is~of~a~type~\texttt{dbpedia-owl:City} and~has two 
+important properties -- \texttt{dbpedia-owl:populationTotal} and~\texttt{dbpedia-owl:populationAsOf}. Hence, we~prepared an~analytical pipeline 
 as shown in~Figure~\ref{fig:dbpedia-pop-anal}.
 \end{sloppypar}
 
@@ -119,13 +118,15 @@ Data Cube Vocabulary standard:
 \end{verbatim}
 \normalsize
 
+\begin{sloppypar}
 The transformation is~made in~another step of~the~analytical pipeline. The~whole evaluation is~done in~seconds. An~exact measurement would not be~conclusive since it~depends on~the~actual load of~the~DBPedia. The~endpoint 
 returns in~about 150 entities no~matter what we~do~because that is~the~final
 count of~entities with the~required properties.
+\end{sloppypar}
 
 As a~result, we~get a~dataset compliant with the~Data Cube Vocabulary standard. 
 We made a~visualization of~the~dataset in~both new visualizers. The~results are 
-shown in~Figure~\ref{fig:payola-exp-01-vis} and Figure~\ref{fig:payola-exp-01-vis2}.
+shown in~Figure~\ref{fig:payola-exp-01-vis} and~Figure~\ref{fig:payola-exp-01-vis2}.
 
 \begin{figure}
   \centering
@@ -145,9 +146,9 @@ In this experiment, we~proved that the~system is~capable of~converting an~arbitr
 standard. We~took advantage of~the~integration with the~Payola application in~order to~obtain a~meaningful preview.
 
 The system performed well on~the~dataset provided by~the~DBPedia endpoint, but 
-it is~important to~remember that the~endpoint returned a~small amount of~resources. The~quality of~the~DBPedia datasets differs a~lot and many 
+it is~important to~remember that the~endpoint returned a~small amount of~resources. The~quality of~the~DBPedia datasets differs a~lot and~many 
 statistical data are present in~a~non--user--friendly form, e.g. while using the~property~\texttt{2000pop}. It~might be~interesting to~use Payola to~discover 
-all those properties and build an~analytical pipeline, which will unify all the~approaches. When unified, the~implemented system can be~used in~order to~transform the~data into~the~form of~DCV and/or visualize those.
+all those properties and~build an~analytical pipeline, which will unify all the~approaches. When unified, the~implemented system can be~used in~order to~transform the~data into~the~form of~DCV and/or visualize those.
 
 We have also shown that our visualizers work with real--life data. Based on~what we~have experienced, we~will propose some future user experience 
 improvements in~Chapter~\ref{ch:future}. One of~those is~optimizing a~longer running 
@@ -165,9 +166,9 @@ dataset.
 
 It is~possible to~use only the~universal visualizer to~visualize the~data 
 contained in~the~dataset, but we~would need to~extract them manually. In~fact, 
-we tried to~do~that and we~had to~construct a~SPARQL query, which is~shown in
-Figure~\ref{fig:custom-coins-query}. It~allows us~to~extract the~data for a~specific data structure 
-definition and visualize them. The~result of~such a~visualization is~shown in~Figure~\ref{fig:payola-exp-02}. 
+we tried to~do~that and~we~had to~construct a~SPARQL query, which is~shown
+in~Figure~\ref{fig:custom-coins-query}. It~allows us~to~extract the~data for a~specific data structure 
+definition and~visualize them. The~result of~such a~visualization is~shown in~Figure~\ref{fig:payola-exp-02}. 
 
 \begin{figure}
   \centering
@@ -286,7 +287,7 @@ query. Moreover, they are able to~explore a~much wider range of~data.
 \begin{sloppypar}
 Unfortunately, as~the~original dataset is~way too large it~was not possible to~fetch all the~related data. The~SPARQL endpoint \mbox{\url{http://openuplabs.tso.co.uk/}}
 is placed behind an~Apache proxy, which monitors the~load of~the~underlying 
-triplestore caused by~executing a~query. After a~while we~hit the~limit and had a~restricted access to~the~endpoint for a~few minutes. Therefore, we~had to~limit 
+triplestore caused by~executing a~query. After a~while we~hit the~limit and~had a~restricted access to~the~endpoint for a~few minutes. Therefore, we~had to~limit 
 the size of~the~extracted dataset. We~managed to~get $10000$ in~the~Payola's 
 default limit (30 seconds). Most of~the~time was spent on~obtaining all the~data from the~endpoint, the~extraction to~DCV was completed in~a~matter of~seconds. Also, the~universal visualizer performed well on~a~dataset that large.
 We made a~screenshot of~a~visualization that was prepared during this experiment.
@@ -297,7 +298,7 @@ We learnt that the~system is~capable of~mapping larger datasets in~a~reasonable
 time. But we~also found out that the~preview mechanism will need further 
 modifications in~order to~handle larger previews in~a~more user--friendly way. 
 Performance of~the~universal visualizer was acceptable for the~user interface 
-responded continuously without any lags. However, we~hit the~limit of~the~endpoint and were not able to~obtain the~complete dataset. 
+responded continuously without any~lags. However, we~hit the~limit of~the~endpoint and~were not able to~obtain the~complete dataset. 
 
 The proper way of~working with this dataset would require a~fully faceted 
 browser connected directly to~the~original SPARQL endpoint. Since it~contains 
@@ -305,7 +306,7 @@ DCV data, the~system would be~able to~automatically discover used vocabularies
 and offer them to~the~user. On~the~other hand, the~vocabularies are not published
 separately, which made our task a~bit harder. Implementing an~advanced browser
 with an~exploration mode will definitely become the~next step in~the~future work. It~would be~very useful to~give the~user a~tool, which will help them 
-discover vocabularies and related data in~datasets, which are already compliant 
+discover vocabularies and~related data in~datasets, which are already compliant 
 with Data Cube Vocabulary.
 
 The recommended way of~solving the~large dataset problem with the~current state of~the~system
@@ -321,17 +322,17 @@ development of~the~whole Payola framework.
 \section{Czech public contracts}
 As we~are able to~access the~data related to~public contracts realized in~the~Czech Republic, we~want to~demonstrate on~them the~possibilities of~the~implemented system.
 The dataset was created by~scraping website produced by~an~online system focused 
-on publishing details about public contracts. Therefore, the~form of~the~data is~natural and does not come out from a~statistical form.
+on publishing details about public contracts. Therefore, the~form of~the~data is~natural and~does not come out from a~statistical form.
 
 At first, we~wanted to~extract the~data by~using a~very simple analysis
 containing a~sole plugin, an~\emph{ontological filter}. Unfortunately, the~length
 of the~generated SPARQL query exceeds the~limit of~the~queried SPARQL endpoint.
-We extracted the~generated query and tried to~shorten it~by~applying prefixes 
+We extracted the~generated query and~tried to~shorten it~by~applying prefixes 
 and removing whitespace characters. However, after overcoming this challenge, we~hit another limit --- the~underlying Virtuoso endpoint refused to~run the~query 
 due to~a~large estimated time of~transaction execution.
 
 That is~why we~had to~construct a~custom query in~order to~obtain the~required 
-data for making a~preview and a~transformation. We~designed the~query to~gather as~much data as~possible while keeping the~important statistical facts in~all of~the~returned entries. The~query is~shown in~Figure~\ref{fig:contracts-query}. It~returns the~details of~about $40000$ public 
+data for making a~preview and~a~transformation. We~designed the~query to~gather as~much data as~possible while keeping the~important statistical facts in~all of~the~returned entries. The~query is~shown in~Figure~\ref{fig:contracts-query}. It~returns the~details of~about $40000$ public 
 contracts.
 
 \begin{figure}
@@ -492,12 +493,13 @@ was spent on~fetching the~data.
 
 We tried to~visualize the~dataset in~both implemented Data Cube visualizers. At~first, we~experimented 
 with the~TimeHeatmap visualizer. While working with the~large dataset, we~experienced some user discomfort. The~UI~was unresponsive for a~short period of~time
-(that is~caused by~the~single--threaded JavaScript processing concept and would require
+(that is~caused by~the~single--threaded JavaScript processing concept and~would require
 involving Web Workers to~avoid). 
-In order to~geocode the~locations from the~result, we~had to~increase the~maximum size of~a~POST request allowed in~the~application. We~present samples of~created visualizations in~Figure~\ref{fig:contracts-map-world} and 
-Figure~\ref{fig:contracts-map-zoomed}.
+In order to~geocode the~locations from the~result, we~had to~increase the~maximum size of~a~POST request allowed in~the~application. We~present samples of~created visualizations in~Figure~\ref{fig:contracts-map-world} and~Figure~\ref{fig:contracts-map-zoomed}.
 
+\begin{sloppypar}
 The geocoding process was done in~an~acceptable time, but the~size of~the~dataset caused that the~Google Maps visualization had troubles with zooming. It~had to~recompute all the~40000 of~locations with every zoom.
+\end{sloppypar}
 
 \begin{figure}
   \centering
@@ -513,9 +515,7 @@ The geocoding process was done in~an~acceptable time, but the~size of~the~datase
   \label{fig:contracts-map-zoomed}
 \end{figure}
 
-The size of~the~dataset caused a~performance drop also in~the~case of~the
-Universal Data Cube visualizer. Despite the~fact, we~are able to~slice it~and 
-take advantage of~the~Data Cube Vocabulary format. An~example of~a~visualization 
+The size of~the~dataset caused a~performance drop also in~the~case of~the~Universal Data Cube visualizer. Despite the~fact, we~are able to~slice it~and~take advantage of~the~Data Cube Vocabulary format. An~example of~a~visualization 
 made by~the~Universal Data Cube visualizer is~shown in~Figure~\ref{fig:contracts-uni-dcv}.
 
 \begin{figure}

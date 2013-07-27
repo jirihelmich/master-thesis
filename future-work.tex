@@ -1,10 +1,12 @@
 \chapter{Future work}
 \label{ch:future}
 
+\begin{sloppypar}
 Based on~the~restrictions of~the~Payola framwork mentioned in~Chapter~\ref{ch:implementation}
-and based on~experiments with the~implemented system (some of~them are described in
+and~based on~experiments with the~implemented system (some of~them are described in
 Chapter~\ref{ch:experiments}), we~learnt what needs to~be~done in~the~future in~order to~improve
 the qualities of~the~implemented system.
+\end{sloppypar}
 
 The most crucial lacking feature is~a~fully faceted browser. We~had to~adopt the~design flaw of~Payola, which is~not capable of~caching the~results of~an~analysis. 
 Therefore, the~user is~forced to~work with all the~results at~once, which may 
@@ -16,31 +18,29 @@ That will dramatically increase the~capabilities of~the~implemented system,
 because it~will be~possible to~work with a~proper portion of~the~data. The~user will 
 be potentially able to~preview the~whole dataset while selecting a~pattern. A~really important fact is~that the~visualizers will be~able to~query the~data 
 based on~the~current state of~the~visualization, which will significantly help 
-to increase the~performance of~the~whole system. One of~the~features that could 
+to~increase the~performance of~the~whole system. One of~the~features that could 
 be done immediately is~an~improvement to~the~listings of~the~detected values of~the~Universal DCV visualizer --- also more sophisticated component than a~list of~checkboxes should be~used.
 
 In order to~improve the~experience of~the~preview, we~can use some advanced 
 techniques described in~\cite{faceted-ldow2009}, for instance an~ordering by~\texttt{IRI:RANK}.
 
 Another task will be~to~undergo a~user evaluation in~order to~reveal other 
-missing features and imperfections. Not only based on~that, we~should continue 
-improving the~existing visualizers and introduce others for
+missing features and~imperfections. Not only based on~that, we~should continue 
+improving the~existing visualizers and~introduce others for
 domain--specific visualisations. The~list of~requested visualizers will form 
 on--the--fly, while exploring other datasets. Such a~process will also suggest 
-other modifications to~the~existing visualizers. One comes to~mind instantly --- we~should be~able to~take advantage of~more metadata, for instance measure and 
-dimension datatypes, ranges, etc. It~is~also possible to~integrate other types 
+other modifications to~the~existing visualizers. One comes to~mind instantly --- we~should be~able to~take advantage of~more metadata, for instance measure and~dimension datatypes, ranges, etc. It~is~also possible to~integrate other types 
 of charts.
 
 It would be~also possible to~propose some procedures, which will examine a~given 
-dataset and try to~convert it~to~Data Cube Vocabulary automatically. It~will 
+dataset and~try to~convert it~to~Data Cube Vocabulary automatically. It~will 
 almost certainly require a~more sophisticated integration with the~LodVis 
 project.
 
 We will also continue to~improve Payola features, which are not related with 
-Data Cube Vocabulary. Based on~the~feedback from the~ESWC 2013 conference, where the~Inner analysis feature was presented, people found these modifications and 
-features interesting and would like to~use them.
+Data Cube Vocabulary. Based on~the~feedback from the~ESWC 2013 conference, where the~Inner analysis feature was presented, people found these modifications and~features interesting and~would like to~use them.
 
 Some of~those improvements will require Payola to~undergo a~heavy refactoring, 
-when the~most adjusted subsystems would be~the~data access layer and the~analytical 
+when the~most adjusted subsystems would be~the~data access layer and~the~analytical 
 pipeline evaluator.
 

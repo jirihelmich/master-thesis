@@ -113,7 +113,7 @@
         <attribute name="name" type="string">Master Thesis</attribute>
         <attribute name="folder" type="string">/Users/jirihelmich/Dropbox/Master Thesis</attribute>
         <relationship name="mainfile" type="1/1" destination="FILE" idrefs="z117"></relationship>
-        <relationship name="selected" type="1/1" destination="FILE" idrefs="z117"></relationship>
+        <relationship name="selected" type="1/1" destination="FILE" idrefs="z126"></relationship>
         <relationship name="settings" type="1/1" destination="SETTINGS" idrefs="z111"></relationship>
         <relationship name="uisettings" type="1/1" destination="UISETTINGS" idrefs="z124"></relationship>
         <relationship name="items" type="0/0" destination="PROJECTITEM" idrefs="z114 z120 z112 z119 z117 z115 z122 z116 z118 z126 z113 z123 z125 z121"></relationship>
@@ -348,7 +348,7 @@
     <object type="UISETTINGS" id="z124">
         <attribute name="showpdfthumbnails" type="bool">0</attribute>
         <attribute name="selectedcontrolstab" type="int16">0</attribute>
-        <attribute name="pdfviewscrollrect" type="string">{{0, 1202}, {592, 733}}</attribute>
+        <attribute name="pdfviewscrollrect" type="string">{{0, 902}, {592, 733}}</attribute>
         <attribute name="maxoutlinedepth" type="int16">7</attribute>
         <attribute name="editorwidth" type="float">611</attribute>
         <attribute name="controlswidth" type="float">220</attribute>
@@ -374,12 +374,12 @@
     </object>
     <object type="TEXFILE" id="z126">
         <attribute name="wasopen" type="bool">0</attribute>
-        <attribute name="visiblerect" type="string">{{0, 0}, {579, 575}}</attribute>
-        <attribute name="lasteditdate" type="date">396639875.87094700336456298828</attribute>
+        <attribute name="visiblerect" type="string">{{0, 29}, {585, 575}}</attribute>
+        <attribute name="lasteditdate" type="date">396708655.97303897142410278320</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">396639876.00944101810455322266</attribute>
+        <attribute name="fileloaddate" type="date">396708656.20600301027297973633</attribute>
         <attribute name="extension" type="string">tex</attribute>
-        <attribute name="cursor" type="string">{111, 0}</attribute>
+        <attribute name="cursor" type="string">{170, 0}</attribute>
         <attribute name="sortindex" type="int32">0</attribute>
         <attribute name="name" type="string">appendix.tex</attribute>
         <attribute name="isexpanded" type="bool">0</attribute>

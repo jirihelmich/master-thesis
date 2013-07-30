@@ -31,9 +31,11 @@ application (e.g. a~console or~web a~service) with a~certain kind of~API,
 but that would have meant less than full advantage of~some of~the~Payola framework features.
 It would not allow us~to~profit from all the~benefits described in~Section~\ref{why-payola}. 
 
+\begin{sloppypar}
 \emph{We are used to~talk about Payola as~either an~application or~a~tool or~a~framework. To
-distinguish those terms we~consider Payola to~be~an~application (or a~tool) from the~user’s
+distinguish those terms we~consider Payola to~be~an~application (or~a~tool) from the~user’s
 point of~view whereas we~are looking at~it~as~a~framework from the~developer’s side.}
+\end{sloppypar}
 
 As described in~Section~\ref{why-payola}, the~most beneficial way of~implementing the~proposed system into~Payola is~as~an~analytical plugin. In~Chapter~\ref{ch:payola}
 we have got the~reader acquinted with the~general principles of~how the~analyses and~plugins work. We~have also provided some examples 
@@ -41,10 +43,13 @@ of already existing plugins. We~are about to~widen the~variety of~plugins and~in
 
 \section{Analytical plugins}
 Before moving forward, one needs to~understand the~technical 
-details behind the~analytical plugins. We~have already stated that such a~plugin is~a~computation unit. Its task is~to~transform the~input graph(s) into~one output 
-graph. The~transformation fully depends on~the~implementation of~such a~plugin. Each plugin has always exactly one output but may have infinite number of~inputs. It~might also have no~input at~all. For instance, all the~data 
+details behind the~analytical plugins. We~have already stated that such a~plugin is~a~computation unit.
+Its task is~to~transform the~input graph(s) into~one output 
+graph. The~transformation fully depends on~the~implementation of~such a~plugin.
+Each plugin has always exactly one output but may have more than one input.
+It~might also have no~input at~all. For instance, all the~data 
 source plugins that~fetch data from some kind of~storage, are generally considered to~be
-graph generators. That is~why they have no~inputs. The~Filter 
+graph generators. That~is~why they have no~inputs. The~Filter 
 plugin filters the~input graph by~applying a~specified constraint. That is~why it~has one input (the constraint is~applied on~a~single graph).
 An example of~a~plugin with more than one input is~known as~the~\textt{Union} 
 plugin, which takes two graphs and~combines them together.
@@ -146,15 +151,15 @@ a chosen vocabulary.}
 \begin{figure}
   \begin{verbatim}
 /**
-  * @param _name Name of~the~plugin.
-  * @param _inputCount Count of~the~plugin inputs.
-  * @param _parameters The~plugin parameters.
-  * @param id~ID~of~the~plugin.
+  * @param _name Name of the plugin.
+  * @param _inputCount Count of the plugin inputs.
+  * @param _parameters The plugin parameters.
+  * @param id ID of the plugin.
   */
 abstract class Plugin(
     protected var _name: String,
     protected val _inputCount: Int,
->    protected val _parameters: immutable.Seq[Plugin#ParameterType],
+    protected val _parameters: immutable.Seq[Plugin#ParameterType],
     override val id: String = IDGenerator.newId) ...
   \end{verbatim}
   \caption{The header of~the~\texttt{cz.payola.domain.entities.Plugin} class. It~does not restrict the~count
@@ -201,7 +206,7 @@ of the~plugin. That is~because the~\texttt{Plugin} abstract class (Figure~\ref{f
 from the~Payola framework
 API does not constrain the~count of~parameters supplied to~the~class.
 
-This however causes a~different kind of~a~problem. As~we~have stated before, the~approach to~selecting a~pattern per each component does not align well
+This however causes a~different kind of~a~problem. As~we~have stated before, the~approach of~selecting a~pattern per each component does not align well
 with~what we~need. Only a~few lines above we~also discovered that all that is~needed is~a~single parameter --- a~transformation pattern. Therefore, we~need to~modify a~bit the~behaviour of~the~analytical pipeline editor in~order to~render the~\texttt{Plugin instance}
 in~a~non--generic way. We~will also coerce the~plugin to~always store the~transformation query 
 within the~first parameter.
@@ -240,15 +245,16 @@ kept in~the~socpe of~the~newly added features and~does not blemish the~rest of~t
 
 The implementation of~the~plugin is~pretty straightforward since we~are 
 taking advantage of~the~Payola framework. The~Payola framework recognizes a
-special subtype of~a~\texttt{Plugin}, a~\texttt{SparqlQuery}. There is~a~special 
+special subtype of~a~\texttt{Plugin}, a~\texttt{SparqlQuery}. See 
+Figure~\ref{fig:plugin-hierarchy} to~see the~whole plugins’ hierarchy. There is~a~special 
 reason for this as~a~SPARQL query could be~executed on~a~remote data source, 
 e.g. a~SPARQL endpoint. A~series of~SPARQL queries could be~optimized into~a~single,
 more efficient query. Without such a~mechanism, the~framework would
 have to~fetch all the~data from~the~data source, transfer them to~the~server 
 where Payola is~running on, store them in~the~memory (wrapped with
 the Payola internal object representation) and~pass it~to~a~plugin. After that, the~graph would be~processed inefficiently within the~memory of~the~Payola server with 
-the JENA RDF toolkit consuming uselessly a~lot of~probably unnecessary computation time. See 
-Figure~\ref{fig:plugin-hierarchy} to~see the~whole plugins’ hierarchy.
+the JENA RDF toolkit consuming uselessly a~lot of~probably unnecessary computation time. 
+
 
 
 \begin{figure}
@@ -287,7 +293,7 @@ We have decided to~make the~proposed system a~part of~the~analytical
 pipeline, which brings on~some interesting and~unexpected complications.
 
 Mainly, the~dataset may come from any~point of~the~analytical pipeline execution. In~fact, we~need the~evaluation framework to~give us~a~partial result. We~need the~analyzer to~process the~pipeline and~at~some point, to~take an~input of~the~inserted Data Cube Vocabulary Plugin instance and~send it~to~us~as~a~result. 
-Moreover, only a~part of~the~pipeline could be~used to~make a~preview. For~instance, if~had an~analysis
+Moreover, only a~part of~the~pipeline could be~used to~make a~preview. For~instance, if~we had an~analysis
 based on~extracting the~data from several different data sources, 
 let us~say 4, those 4 fetching processes would run collaterally regardless of~the~fact that the~DCV plugin is~a~part of~one of~them. We~will throw away the~results of~the~rest. It~is~shown in~Figure~\ref{fig:dcv-preview-useful}.
 
@@ -307,7 +313,7 @@ extracts a~proper sub--pipeline. If~the~reader looks closer on~Figure~\ref{fig:e
 in the~reverse topological order, 
 a~tree (as known from~the~graph theory). Every instance has 
 one output. Every output is~connected to~an~input of~a~successor (if present, if~not it~is~an~output
-of~the~whole pipeline). Therefore, it~is~easy to~traverse the~tree and~select a~subtree, which precedes the~Data Cube Vocabulary plugin instance.
+of~the~whole pipeline). Therefore, it~is~easy to~traverse the~tree and~select a~subtree, which~precedes the~Data Cube Vocabulary plugin instance.
 
 Such a~tree is~then used in~the~background without the~knowledge of~the~user to~create a~completely new analytical pipeline. When this step is~complete, such a~pipeline can 
 be executed by~a~standard pipeline evaluator. That is~because the~result of~the~whole 
@@ -318,7 +324,7 @@ See an~example of~such a~pipeline in~Figure~\ref{fig:dcv-extraction}.
 	\centering
 	\includegraphics[width=100mm]{img/dcv-extraction.png}
 	\caption{Making a~preview for the~Data Cube Vocabulary plugin. The~highlighted
-	plugins are required to~be~evaluated and~becomes a~part of~a~sub--pipeline created
+	plugins are required to~be~evaluated and~become a~part of~a~sub--pipeline created
 	in the~background.}
 	\label{fig:dcv-extraction}
 \end{figure}
@@ -359,9 +365,9 @@ to compensate a~large size of~the~original dataset, if~possible.
 
 \subsubsection{Obtaining the~pattern}
 Hopefully, it~is~now fully understood what is~required to~be~done before a~preview 
-is made so~we~can move onto the~description of~the~way of~obtaining the~pattern 
-from the~user. Moreover, we~will describe, which components and~why have been 
-modified or~newly implemented.
+is made so~we~can move onto the~description of~the~process of~obtaining the~pattern 
+from the~user. Moreover, we~will describe, which components have been 
+modified or~newly implemented and~why.
 
 \begin{sloppypar}
 We take advantage of~the~previously presented approach (the query--by--example), which we~consider to~be~the~best for the~user. Firstly, the~user is~asked to~mark a~vertex that represents
@@ -388,7 +394,10 @@ framework. We~need to~make the~plugin as~simple as~possible for the~user. But we
 
 As stated before, Payola is~a~web application. Its implementation is~based on~the~MVC 
 design pattern. Nowadays, that is~a~usual approach to~a~web application. However, it~is~not that usual 
-to acquire a~stance to~the~utilization of~a~design pattern on~the~client--side. The~Payola team has decided to~use the~MVC pattern there as~well and~due to~the~presence of~the~s2js compiler, the~client--side is~also being developed in~the~Scala programming language.
+to acquire a~stance to~the~utilization of~a~design pattern on~the~client--side.
+The~Payola team has decided to~use the~MVP pattern there
+and~due to~the~presence of~the~Scala to~JavaScript compiler,
+the~client--side is~also being developed in~the~Scala programming language.
 
 Therefore a~majority of~pages produced by~the~Payola application is~delivered 
 in two different parts. The~layout of~a~page and~a~placeholder for the~client 
@@ -399,7 +408,7 @@ back to~the~client), prevents code duplication and~makes the~development process
 
 Therefore, every client--side application can avoid becoming a~confusing piece of~a
 spaghetti code and~utilize the~MVC pattern. A~crucial feature is~the~RPC 
-mechanism that, hand in~hand with the~s2js compiler brings a~way of~transparent 
+mechanism that, hand in~hand with the~Scala to JavaScript compiler brings a~way of~transparent 
 client--server communication.
 
 The analytical pipeline editor is~one of~those client--side MVC applications. We~are interested specifically in~this one since we~require for it~to~be~able to~work 
@@ -409,7 +418,7 @@ Until now, the~pipeline editor applied a~unified approach for rendering the~layo
 renderer, which determined the~appearance of~the~plugin based on~its metadata. An~example of~such a~rendered pipeline could be~seen in
 Figure~\ref{fig:example-analysis-editable}. The~reader can see a~rendered title, based on~the~name of~the~plugin and~a~parameter form. The~form is~based on~the~type of~the~corresponding parameters. A~\texttt{string} parameter gets rendered as~an~input or~a~textarea based on
 an additional flag \texttt{isMultiline}, which determines whether the~value can be~spread into~multiple lines.
-A \texttt{int} or~\texttt{float} parameter is~also rendered as~an~input field. A~\texttt{boolean} parameter 
+An \texttt{int} or~\texttt{float} parameter is~also rendered as~an~input field. A~\texttt{boolean} parameter 
 is~rendered as~a~checkbox.
 
 \begin{figure}
@@ -430,7 +439,7 @@ of the~plugin in~a~slightly different way. At~the~time of~implementing this
 thesis, the~same requirement came up~from two other developers who integrate their 
 tools with Payola. Therefore, we~introduced a~mechanism, which solves the~problem of~loading custom plugin renderers.
 
-We introduce a~dynamic plugin instance renderer loader for an~analysis editor. 
+We introduce a~dynamic loader of plugin instance renderers for an~analysis editor. 
 Based on~the~plugin classname, it~tries to~load a~custom override of~the~default 
 renderer. It~enhances the~extensibility of~Payola. Until now, it~was not 
 possible to~override the~visualization of~a~plugin instance within the~editor. The~user was able to~upload a~custom analytical plugin, but they were not capable of~affecting its
@@ -447,7 +456,7 @@ to~be declared within the~\texttt{cz.payola.web.client.views.entity.plugins.cust
 \begin{sloppypar}
 The editor was altered so~that it~does not create renderer instances itself. It~uses a~newly introduced \texttt{PluginInstanceViewFactory}. This 
 factory is~responsible for creating a~proper instance. Based on~the~given plugin 
-classname it~calls a~dependency package manager. The~manager is~a~part of~the~s2js compiler and~it~provides a~JavaScript implementation of~the~required class
+classname it~calls a~dependency manager. The~manager is~a~part of~the~s2js compiler and~it~provides a~JavaScript implementation of~the~required class
 with all the~necessary dependencies. Therefore the~factory calls the~manager and~requests an~implementation of~a~specified override. If~it~exists, the~manager 
 returns its~implementation. If~it~does not, it~returns an~empty string. After 
 that, the~factory tries to~make an~instance of~the~override. If~it~succeeds, an~instance of~the~override renderer is~created. If~it~fails, it~returns an~instance of~a~generic renderer. 
@@ -477,7 +486,7 @@ selection is~shown in~Figure~\ref{fig:pattern-selection} (some additional detail
 in Section~\ref{sec:pattern-definition}
 and in~figures~\ref{fig:pattern-selection} and~\ref{fig:pattern-enhancement}).
 With a~single click 
-the user includes a~vertex into~a~constructed pattern. A~double--click 
+the user includes a~vertex into~the~constructed pattern. A~double--click 
 has it~representing a~currently processed component. We~also had to~modify the~visualization algorithm to~avoid collapsing literal vertices into~an~info table. 
 We need the~literals to~remain visualized in~order to~be~selectable.
 
@@ -602,7 +611,7 @@ be seen in~Figure~\ref{fig:lodvis-int}.
 
 
 \subsubsection{Visualising Payola data sources in~LodVis}
-With cooperation of~the~LodVis team, we~have also implemented a~reverse 
+In cooperation with~the~LodVis team, we~have also implemented a~reverse 
 mechanism --- an~API, which allows the~user of~the~LodVis application to~browse a~dataset in~the~scope of~the~Payola application. To~make it~easy for the~LodVis 
 team to~integrate a~link to~the~Payola application, we~prepared an~API very 
 similar to~theirs. The~URL pattern is~very similar:
@@ -648,16 +657,17 @@ One can see a~visualization of~the~described plugin in~Figure~\ref{fig:secured-d
 
 \subsection{Analytical pipeline reuse}
 During the~period of~writing this thesis Payola has undertaken a~user test. One 
-of the~significant results of~the~test was that the~users wished to~modify the
+of~the~significant results of~the~test was that the~users wished to~modify the
 analyses of~others. At~least, they would like to~reference an~analysis of~another user within their own. That also fits into~analyzing statistical data --- 
 a company provides an~analysis and~presents its statistics while somebody else 
-whishes to~process them and~apply DCV. That is~why two different features 
+wishes to~process them and~apply DCV. That is~why two different features 
 were added.
 
 \subsubsection{Clone and~edit}
 The first one is~less powerful. It~enables the~user to~clone an~analysis of~another user. After doing that, they get a~newly created analysis owned by~them. Therefore, they are in~a~full control of~the~analysis and~may modify it~in~any~way they want.
 
-We were required to~enhance the~capabilities of~the~application in~order to~support cloning a~plugin instance. We~also had to~clone bindings from an~existing analytical pipeline and~translate the~identifiers of~the~cloned plugin 
+We were required to~enhance the~capabilities of~the~application in~order to~support a~plugin instance cloning.
+We~also had to~clone bindings from an~existing analytical pipeline and~translate the~identifiers of~the~cloned plugin 
 instances in~order to~keep the~bindings working.
 
 The most difficult part was, unfortunately, to~find a~way of~storing the~cloned 

@@ -26,8 +26,8 @@ with a~definition as~shown in~Figure~\ref{fig:dcv-dbpedia-dsd}.
 
 @prefix payola-dcv:   <http://datacube.payola.cz/dataset-definitions#> .
 
-payola-dcv:PopulationSizeDefinition a~qb:DataStructureDefinition ;
-  rdfs:label "The definition of~the~DS~of~a~dataset containing information about population size."@en ;
+payola-dcv:PopulationSizeDefinition a qb:DataStructureDefinition ;
+  rdfs:label "The definition of the DS of a dataset containing information about population size."@en ;
   # Dimensions
   qb:component [
     qb:dimension payola-dcv:location;
@@ -37,25 +37,25 @@ payola-dcv:PopulationSizeDefinition a~qb:DataStructureDefinition ;
   qb:component [	
     qb:dimension payola-dcv:period;
     qb:order 2 ;
-    rdfs:label "The dimension representing the~time of~the~measurement."
+    rdfs:label "The dimension representing the time of the measurement."
   ] ;
   # Measure
   qb:component [
     qb:measure payola-dcv:populationSize;
-    rdfs:label "The measure representing the~total count of~citizens."@en
+    rdfs:label "The measure representing the total count of citizens."@en
   ] .
   # Attributes
 
-payola-dcv:location a~rdf:Property, qb:DimensionProperty ;
+payola-dcv:location a rdf:Property, qb:DimensionProperty ;
   rdfs:label "reference location"@en ;
   qb:concept sdmx-concept:refArea .
 
-payola-dcv:period a~rdf:Property, qb:DimensionProperty ;
+payola-dcv:period a rdf:Property, qb:DimensionProperty ;
   rdfs:label "reference period"@en ;
   qb:concept sdmx-concept:refPeriod .
 
-payola-dcv:populationSize a~rdf:Property, qb:MeasureProperty ;
-  rdfs:label "population at~the~end of~the~measured period"@en ;
+payola-dcv:populationSize a rdf:Property, qb:MeasureProperty ;
+  rdfs:label "population at the end of the measured period"@en ;
   rdfs:subPropertyOf sdmx-measure:obsValue ;
   rdfs:range xsd:nonNegativeInteger ;
   qb:concept sdmx-concept:statPop .
@@ -101,7 +101,7 @@ Data Cube Vocabulary standard:
 \scriptsize
 \begin{verbatim}
   CONSTRUCT {
-     []  a~ <http://purl.org/linked-data/cube#Observation> ;
+     []  a  <http://purl.org/linked-data/cube#Observation> ;
          <http://purl.org/linked-data/cube#dataSet> <http://live.payola.cz/analysis/...> ;
          <http://datacube.payola.cz/dataset-definitions#location> ?v1 ;
          <http://datacube.payola.cz/dataset-definitions#period> ?v3 ;
@@ -152,7 +152,7 @@ all those properties and~build an~analytical pipeline, which will unify all the~
 
 We have also shown that our visualizers work with real--life data. Based on~what we~have experienced, we~will propose some future user experience 
 improvements in~Chapter~\ref{ch:future}. One of~those is~optimizing a~longer running 
-geocoding process, which transforms the~city names into~GPS cooridinates.
+geocoding process, which transforms the~city names into~GPS coordinates.
 
 \section{COINS -- UK~government spending}
 Many organizations including governments produce a~lot of~statistical datasets 
@@ -202,7 +202,7 @@ PREFIX  qb:   <http://purl.org/linked-data/cube#>
 
 CONSTRUCT 
   { ?obs qb:dataSet ?ds .
-    ?obs a~qb:Observation .
+    ?obs a qb:Observation .
     ?obs coins-dimension:dataType <http://finance.data.gov.uk/def/coins/data-type/outturn> .
     ?obs coins-measure:amount ?amount .
     ?obs coins-dimension:departmentLabel ?deptLongName .
@@ -259,7 +259,7 @@ constructed.
   \scriptsize
 \begin{verbatim}
   CONSTRUCT {
-    [] a~<http://purl.org/linked-data/cube#Observation> ;
+    [] a <http://purl.org/linked-data/cube#Observation> ;
     <http://purl.org/linked-data/cube#dataSet> <http://live.payola.cz/analysis/...> ;
     <http://finance.data.gov.uk/dsd/coins/dimension/departmentCode> ?v2 ;
     <http://finance.data.gov.uk/dsd/coins/dimension/dataType> ?v3 ;
@@ -290,7 +290,7 @@ is placed behind an~Apache proxy, which monitors the~load of~the~underlying
 triplestore caused by~executing a~query. After a~while we~hit the~limit and~had a~restricted access to~the~endpoint for a~few minutes. Therefore, we~had to~limit 
 the size of~the~extracted dataset. We~managed to~get $10000$ in~the~Payola's 
 default limit (30 seconds). Most of~the~time was spent on~obtaining all the~data from the~endpoint, the~extraction to~DCV was completed in~a~matter of~seconds. Also, the~universal visualizer performed well on~a~dataset that large.
-We made a~screenshot of~a~visualization that was prepared during this experiment.
+We made a~screenshot of~the~visualization that was prepared during this experiment.
 It can be~seen in~Figure~\ref{fig:payola-exp-02-result}.
 \end{sloppypar}
 
@@ -298,7 +298,8 @@ We learnt that the~system is~capable of~mapping larger datasets in~a~reasonable
 time. But we~also found out that the~preview mechanism will need further 
 modifications in~order to~handle larger previews in~a~more user--friendly way. 
 Performance of~the~universal visualizer was acceptable for the~user interface 
-responded continuously without any~lags. However, we~hit the~limit of~the~endpoint and~were not able to~obtain the~complete dataset. 
+responded continuously without any~lags.
+However, we~hit the~limit of~the~endpoint and~were not able to~obtain the~complete dataset. 
 
 The proper way of~working with this dataset would require a~fully faceted 
 browser connected directly to~the~original SPARQL endpoint. Since it~contains 
@@ -322,7 +323,8 @@ development of~the~whole Payola framework.
 \section{Czech public contracts}
 As we~are able to~access the~data related to~public contracts realized in~the~Czech Republic, we~want to~demonstrate on~them the~possibilities of~the~implemented system.
 The dataset was created by~scraping website produced by~an~online system focused 
-on publishing details about public contracts. Therefore, the~form of~the~data is~natural and~does not come out from a~statistical form.
+on publishing details about public contracts. Therefore, the~form of~the~data is~natural
+and~does not come out from a~statistical source.
 
 At first, we~wanted to~extract the~data by~using a~very simple analysis
 containing a~sole plugin, an~\emph{ontological filter}. Unfortunately, the~length
@@ -347,7 +349,7 @@ prefix ns4:	<http://purl.org/procurement/public-contracts-eu#>
 
 CONSTRUCT 
 {
-   ?v1 a~contract:Contract .
+   ?v1 a contract:Contract .
    ?v1 contract:location ?vloc .
    ?vloc rdfs:label ?locLabel .
    ?vloc ns4:hasParentRegion ?reg .
@@ -357,7 +359,7 @@ CONSTRUCT
 }
 WHERE
 {
-   ?v1 a~contract:Contract .
+   ?v1 a contract:Contract .
    ?v1 contract:location ?vloc .
    ?vloc rdfs:label ?locLabel .
    ?vloc ns4:hasParentRegion ?reg .
@@ -389,57 +391,57 @@ definition. We~present the~vocabulary in~Figure~\ref{fig:contracts-dcv}.
 @prefix ns4: <http://purl.org/procurement/public-contracts-eu#> .
 @prefix nuts:     <http://ec.europa.eu/eurostat/ramon/ontologies/geographic.rdf#> .
 
-payola-dcv:ContractsDatastructureDefinition a~qb:DataStructureDefinition ;
-  rdfs:label "The definition of~the~DS~of~a~dataset containing information about public contracts."@en ;
+payola-dcv:ContractsDatastructureDefinition a qb:DataStructureDefinition ;
+  rdfs:label "The definition of the DS of a dataset containing information about public contracts."@en ;
   # Dimensions
   qb:component [
     qb:dimension payola-dcv:location;
     qb:order 1 ;
-    rdfs:label "The dimension representing location, where the~money was spent."
+    rdfs:label "The dimension representing location, where the money was spent."
   ] ;
   qb:component [  
     qb:dimension payola-dcv:period;
     qb:order 2 ;
-    rdfs:label "The dimension representing the~time of~realizing the~contract."
+    rdfs:label "The dimension representing the time of realizing the contract."
   ] ;
   # Measure
   qb:component [
     qb:measure payola-dcv:price;
-    rdfs:label "The measure representing the~price spent on~realizing the~contract."@en
+    rdfs:label "The measure representing the price spent on realizing the contract."@en
   ] ;
   qb:component [
     qb:attribute payola-dcv:contract;
-    rdfs:label "The attribute linking the~observation with a~corresponing contract."@en
+    rdfs:label "The attribute linking the observation with a corresponing contract."@en
   ] ;
   qb:component [
     qb:attribute payola-dcv:region;
-    rdfs:label "The attribute specifying the~region, where the~contract was realized."@en
+    rdfs:label "The attribute specifying the region, where the contract was realized."@en
   ] ;
   qb:component [
     qb:attribute payola-dcv:currency;
-    rdfs:label "Currency of~the~price."@en
+    rdfs:label "Currency of the price."@en
   ] .
 
-payola-dcv:location a~rdf:Property, qb:DimensionProperty ;
+payola-dcv:location a rdf:Property, qb:DimensionProperty ;
   rdfs:label "reference location"@en ;
   qb:concept sdmx-concept:refArea .
 
-payola-dcv:period a~rdf:Property, qb:DimensionProperty ;
+payola-dcv:period a rdf:Property, qb:DimensionProperty ;
   rdfs:label "reference period"@en ;
   qb:concept sdmx-concept:refPeriod .
 
-payola-dcv:price a~rdf:Property, qb:MeasureProperty ;
+payola-dcv:price a rdf:Property, qb:MeasureProperty ;
   rdfs:label "price"@en ;
   rdfs:subPropertyOf sdmx-measure:obsValue ;
   rdfs:range xsd:nonNegativeInteger ;
   qb:concept sdmx-concept:valuation .
 
-payola-dcv:contract a~rdf:Property, qb:AttributeProperty ;
+payola-dcv:contract a rdf:Property, qb:AttributeProperty ;
   rdfs:label "corresponding public contract"@en ;
   rdfs:range pc:Contract ;
   qb:concept sdmx-concept:comment .
   
-payola-dcv:region a~rdf:Property, qb:AttributeProperty ;
+payola-dcv:region a rdf:Property, qb:AttributeProperty ;
   rdfs:label "Parent NUTS region."@en ;
   rdfs:range nuts:NUTSRegion;
   qb:concept sdmx-concept:refArea .
@@ -464,7 +466,7 @@ As a~result, the~system gave us~the~SPARQL query show in~Figure~\ref{fig:contrac
   \scriptsize
   \begin{verbatim}
 CONSTRUCT {
-    [] a~<http://purl.org/linked-data/cube#Observation> ;
+    [] a <http://purl.org/linked-data/cube#Observation> ;
        qb:dataSet <http://live.payola.cz/analysis/...> ;
        <http://datacube.payola.cz/dataset-definitions#location> ?v2 ;
        <http://datacube.payola.cz/dataset-definitions#period> ?v4 ;
@@ -494,7 +496,7 @@ was spent on~fetching the~data.
 We tried to~visualize the~dataset in~both implemented Data Cube visualizers. At~first, we~experimented 
 with the~TimeHeatmap visualizer. While working with the~large dataset, we~experienced some user discomfort. The~UI~was unresponsive for a~short period of~time
 (that is~caused by~the~single--threaded JavaScript processing concept and~would require
-involving Web Workers to~avoid). 
+involving Web Workers to~avoid such behaviour). 
 In order to~geocode the~locations from the~result, we~had to~increase the~maximum size of~a~POST request allowed in~the~application. We~present samples of~created visualizations in~Figure~\ref{fig:contracts-map-world} and~Figure~\ref{fig:contracts-map-zoomed}.
 
 \begin{sloppypar}

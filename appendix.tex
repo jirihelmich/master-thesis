@@ -3,17 +3,31 @@
 
 \section{Files and directories}
 
+\begin{itemize}
+  \item directory: git-repo: the latest snapshot of the git repository.
+  \item directory: text: LaTex sources of this text. 
+  \item file: user-guide.html: User Guide
+  \item file: developer-guide.html: Developer Guide
+  \item file: thesis.pdf: This text
+\end{itemize}
 
-
-
-
-
-
+To generate API documentation, use the `doc` SBT task on the root project. Each project has its own API documentation which can be found in the `target/scala-2.9.1/api`
+subdirectory of the project.
 
 \page
-\chapter{Online demo description}
+\chapter{Online sources}
 
-
+\begin{itemize}
+  \item \url{http://datacube.payola.cz} --- a list of DCV analysis examples and DCV 
+  DSDs.
+  \item \url{http://live.payola.cz} --- a live instance of the current Payola 
+  version.
+  \item \url{https://github.com/payola/Payola.git} --- the latest version of the code. 
+  \item \url{http://payola.cz} --- the latest documentation.
+  \item \url{https://github.com/teuzz/master-thesis} --- sources of the text of this thesis are available on GitHub.
+  \item \url{http://helmich.cz/master-thesis} --- PDF version of this text and 
+  CD contents.
+\end{itemize}
 
 \page
 \chapter{List of commits related to this thesis}
@@ -23,6 +37,42 @@
 Repository: http://github.com/payola/Payola
 > git log --after={2012-09-10} --shortstat --oneline --pretty=format:"%cd  %an  %h  %s" --date=short
     --author='Jiri Helmich'
+
+2013-07-30  Jiri Helmich  9e117f1  inner analyses bugfix, a parameter was missing in the definition
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+2013-07-29  Jiri Helmich  69434e9  beautify blocking dialog
+ 2 files changed, 11 insertions(+), 13 deletions(-)
+
+2013-07-29  Jiri Helmich  981462d  Limit constructor
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+2013-07-29  Jiri Helmich  540b85d  initializer repair
+ 1 file changed, 5 deletions(-)
+
+2013-07-29  Jiri Helmich  ba6f3af  dev guide update
+ 3 files changed, 113 insertions(+), 16 deletions(-)
+
+2013-07-28  Jiri Helmich  4248ee4  images were in a wrong order
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+2013-07-28  Jiri Helmich  72e3888  move images to a proper folder and add them
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+2013-07-28  Jiri Helmich  75a902a  move images to a proper folder
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+2013-07-28  Jiri Helmich  bce587f  datacube user guide, part 3
+ 4 files changed, 7 insertions(+), 5 deletions(-)
+
+2013-07-28  Jiri Helmich  c4d3f43  datacube user guide, part 2
+ 5 files changed, 97 insertions(+), 69 deletions(-)
+
+2013-07-28  Jiri Helmich  79f4719  datacube user guide, images
+ 11 files changed, 0 insertions(+), 0 deletions(-)
+
+2013-07-28  Jiri Helmich  9ceb087  datacube user guide, part 1
+ 1 file changed, 71 insertions(+), 1 deletion(-)
 
 2013-07-28  Jiri Helmich  58ad7ec  Merge branch 'master' of github.com:payola/Payola
 2013-07-28  Jiri Helmich  3c53e9f  datacube docs
@@ -43,8 +93,8 @@ Repository: http://github.com/payola/Payola
 2013-07-22  Jiri Helmich  8ef4c8c  TimeHeatmap settings and beautify
  8 files changed, 209 insertions(+), 64 deletions(-)
 
-2013-07-21  Jiri Helmich  0971213  DataCube progress, plugin changes, new Limit plugin, Uni DC parametrized,
- DCV forwarding
+2013-07-21  Jiri Helmich  0971213  DataCube progress, plugin changes, new Limit plugin,
+ Uni DC parametrized, DCV forwarding
  26 files changed, 565 insertions(+), 46 deletions(-)
 
 2013-07-03  Jiri Helmich  f38d79e  touch
@@ -145,8 +195,8 @@ Repository: http://github.com/payola/Payola
 2012-11-11  Jiri Helmich  c115a1c  scala library 2.9.2
  1 file changed, 0 insertions(+), 0 deletions(-)
 
-2012-11-11  Jiri Helmich  c3063c9  upgrade play to 2.1-SNAPSHOT, scala 2.9.2, SBT 0.12.1,
- graphUri in LOD API is now an array
+2012-11-11  Jiri Helmich  c3063c9  upgrade play to 2.1-SNAPSHOT, scala 2.9.2, SBT 0.12.1, graphUri
+ in LOD API is now an array
  11 files changed, 12 insertions(+), 11 deletions(-)
 
 2012-11-04  Jiri Helmich  7ee760b  lodvisualisation integration (setup analysis via URL)
@@ -154,5 +204,5 @@ Repository: http://github.com/payola/Payola
 
 2012-10-20  Jiri Helmich  4eb3bde  LODVisualisation link added to dashboard
  1 file changed, 2 insertions(+)
-\end{verbatim}
+ \end{verbatim}
 }

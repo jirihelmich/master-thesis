@@ -5,7 +5,7 @@ We will take the~description step by~step, starting with a~dataset stored in~a~p
 After a~while, we~will get familiar with RDF, Linked Data and~last, but not least, with the
 Data Cube Vocabulary.
 
-Since we~are discussing statistical data, we~will take a~simple real--life example.
+Since we~are discussing statistical data, we~will use a~simple real--life example.
 National statistical offices all over the~world are well--known for periodic gathering of~the
 statistics about the~population of~the~country they are operating in. Moreover, 
 those statistics are being regularly published and~gathered by~international 
@@ -68,7 +68,7 @@ Let us~return to~the~meaningful example.
 
 If we~keep the~meaning of~the~values, we~know that in~the~first column we~have the~name
 of the~country and~in~the~second one, we~have the~total number of~citizens. Those statements
-could be~called \emph{observations}, as~it~can be~said that someone made an~observation 
+could be~called \emph{observations}, as~it~can be~said that~someone made an~observation 
 about there being over 10 million people living in~the~Czech Republic. We~can also say that the
 dataset has got two \emph{dimensions}. The~first one is~the~place where the~observation has taken
 place, the~second one is~the~value being measured.
@@ -82,11 +82,13 @@ Now, let us~get back to~the~very first statement:
 The Czech Republic has 10 505 445 citizens.
 \end{verbatim}
 
+\begin{sloppypar}
 When transferring the~statement into~a~more technical form, we~forgot to~extract one
 dimension. The~sentence also carries information about time. This is~quite an~important
 part of~the~information since the~count of~citizens of~the~specific country evolves with time.
 People are dying as~well as~getting born. Since the~sentence is~presented while using the
-present tense, we~can conclude that the~observation is~valid for the~current year (2013).
+present tense, we~can conclude that~the~observation is~valid for the~current year (2013).
+\end{sloppypar}
 
 That means the~dataset stored in~a~plaintext file should look similar to~this:
 
@@ -104,14 +106,14 @@ it into~a~web page and~publish it~on~a~server.
 \small\begin{verbatim}
 <html>
     <head>
-        <title>Number of~citizens in~a~country</title>
+        <title>Number of citizens in a country</title>
     </head>
     <body>
         <table>
             <thead>
                 <tr>
                     <th>Country name</th>
-                    <th>Number of~citizens</th>
+                    <th>Number of citizens</th>
                     <th>Year</th>
                 </tr>
             </thead>
@@ -135,7 +137,7 @@ it into~a~web page and~publish it~on~a~server.
 \label{fig:rdf-html-01}
 \end{figure}
 
-Example of~such a~web page source code can be~seen in~the~figure~\ref{fig:rdf-html-01}. We~published the~data not only in~a~more structured form but also
+Example of~such a~web page source code can be~seen in~Figure~\ref{fig:rdf-html-01}. We~published the~data not only in~a~more structured form but also
 provided an~explanation of~its meaning. Therefore, some additional data had to~be~added. In~fact, we
 should speak of~it~as~of~metadata, since the~meaning is~rather descriptive instead of~semantical.
 
@@ -148,7 +150,7 @@ one is~developed).
 
 This is~where the~Resource Description Framework~\cite{rdf} and~the~Linked Data~\cite{ld}
 model come in. Those
-can help us~to~introduce some semantical meaning to~link entities in~the~document to
+can help us~introduce some semantical meaning to~link entities in~the~document to
 other entities on~the~Internet. Let us~provide more details about the~RDF before getting
 back to~this example.
 
@@ -181,10 +183,10 @@ kinds of~triples; such can be~seen in~the~previous example. If~we~extend the~set
 what we~get is~\emph{a directed labeled graph}, where an~edge represents \emph{relation} between two resources.
 Those resources are represented by~graph nodes. Based on~the~actual content of~the~triples,
 the~graph may consist of~two or~more standalone connected components as~well as~of
-just a~single one. Such a~graph may potentially contain information about entities from all over
+just a~single one. Such a~graph may potentially contain information about~entities from all over
 the~Internet, which would be~very useful.
 
-The main point is, that all the~information published in~respect to~the~RDF model may be
+The main point is, that all the~information published with~respect to~the~RDF model may be
 automatically processed by~a~computer able to~work with the~semantics without
 needing the~user to~specify it~(as somebody has already done that while publishing the~dataset).
 
@@ -200,7 +202,8 @@ When the~URI is~dereferenced, more useful information could be~provided while ut
 and SPARQL standards. Since the~model is~called Linked Data, the~most significant part
 of the~concept is~about knowing how the~data could be~connected when being published on~the~Web.
 It also brings some serialization formats, such as~RDFa, RDF/XML, N3, Turtle and~many others.
-One of~the~most significant projects involving Linked Data is~the~LOD2 project~\cite{lod2}.
+One of~the~most significant projects involving Linked Data is~the~LOD2 project~\cite{lod2}
+(its visualization can bee seen) in Figure~\ref{fig:lod-cloud}.
 
 To make the~idea about datasets more clear, let us~mention some well--known data sources
 involving Linked Data:
@@ -288,7 +291,7 @@ http://pedia.rdf/Czech_republic	http://pedia.rdf/language	http://pedia.rf/Czech
 
 By comparing the~first lines from each of~the~documents, it~might be~apparent they hold the~same
 information; that the~capital city of~the~Czech Republic is~Prague. At~a~closer look, a~more observant
-reader can notice, that each of~them use different URIs to~dereference the~resources related to~the
+reader can notice, that each of~them uses different URIs to~dereference the~resources related to~the
 Czech Republic and~Prague (in fact, they use different namespaces to~make the~reference).
 They also use different URIs (and namespaces) to~express the~relation
 between a~country and~its capital.
@@ -298,7 +301,7 @@ Czech Republic speak Czech. Both documents are perfectly valid and~could be~publ
 With an~ontology, one may specify the~requested outline of~the~document.
 
 When formalized as~defined in~\cite{ldvm2}:
-\emph{An ontology $O$ is~a~triple $(C,P,M)$ where $C$ is~a~set of~classes, $P$ is~a~set of
+\emph{An ontology $O$ is~a~triple $(C,P,M)$ where~$C$ is~a~set of~classes, $P$ is~a~set of
 predicates and~$M$ is~a~set of~RDF statements (mappings of~the~classes and~properties to
 other ontologies). Both classes and~predicates are specified using their unique URIs.}
 
@@ -331,20 +334,20 @@ RDFa model, as~can be~seen in~Figure~\ref{fig:example-rdfa}.
 \scriptsize\begin{verbatim}
 <html prefix="dbpedia-owl: http://dbpedia.org/ontology/">
     <head>
-        <title>Number of~citizens in~a~country</title>
+        <title>Number of citizens in a country</title>
     </head>
     <body>
         <table>
             <thead>
                 <tr>
                     <th>Country name</th>
-                    <th>Number of~ citizens</th>
+                    <th>Number of citizens</th>
                     <th>Year</th>
                 </tr>
             </thead>
             <tbody>
                 <tr about=”http://dbpedia.org/page/Czech_Republic”>
-                    <td property=”rdfs:label”>Czech republic</td>
+                    <td property=”rdfs:label”>Czech Republic</td>
                     <td property=”dbpedia-owl:populationTotal”>10505445</td>
                     <td property=”dbpedia-owl:populationAsOf”>2013</td>
                 </tr>
@@ -369,7 +372,7 @@ extracted from Wikipedia. The~ontology can be~used not only to~declare a~publicl
 
 As can be~seen, we~have utilized the~RDF Schema and~DBPedia Ontology to~describe the~document
 and give it~some semantic meaning. While this is~a~relatively simple process, it~has dramatically
-increased the~possibilities of~the~document processing by~expressing the~resource dereference URI.
+increased the~possibilities of~the~document processing by~expressing the~resource URI.
 By dereferencing the~URI, one can get more related information and~link his data with the~rest
 of~the~Internet.
 
@@ -397,7 +400,7 @@ slightly another, but~still RDF--complaint, format.
 \section{Data Cube}
 \label{sec:datacube}
 Before proceeding with the~example, let us~stop for a~while and~talk about Data Cube outside
-the~RDF and~Linked Data scope. Generally speaking, a~data cube is~a~\emph{multi-dimensional}
+of~RDF and~Linked Data scope. Generally speaking, a~data cube is~a~\emph{multi-dimensional}
  array of~values describing some kind of~data. In~the
 data--mining context, it~is~often referenced as~an~\emph{OLAP cube}, where OLAP stands for OnLine
 Analytical Processing.
@@ -407,11 +410,13 @@ A spreadsheet (known e.g. from the~\emph{Excel}) is~a~two dimensional table, whi
 made dynamic while using formulas and~other techniques available in~the~software. What
 OLAP cube brings up~is~a~higher count of~dimensions. It~holds a~set of~measures or, if~you
 want, observations. Those are organised in~a~special data structure (star schema, snowflake
-schema, …) and~points to~so--called facts table consisted of~the~actual measured values.
+schema, …) and~point to~so--called facts table consisted of~the~actual measured values.
 
-While involving some facts from the~database theory, we~could say, that an~OLAP cube is~a~form
+\begin{sloppypar}
+While involving some facts from the~database theory, we~could say that~an~OLAP cube is~a~form
 of a~projection of~an~\emph{RDBMS relation}. If~we~think about a~standard two--dimensional table, we~can
 formalize the~relation between key and~value in~the~following way:
+\end{sloppypar}
 
 \begin{center}
 $R = f: K~\rightarrow V$
@@ -470,12 +475,14 @@ revised data messages, partial code lists and~new metadata management).
 In January 2013 the~specification has evolved into~an~International Standard,
 \texttt{ISO/IS 17369}~\cite{isosdmx}.
 
+\begin{sloppypar}
 The Initiative has also published a~User Guide to~cover major SDMX use cases~\cite{sdmxuserguide}.
 It is~focused on~maintaining and~handling statistical data and~its~metadata. It~shows
 how to~manage reporting, storage, retrieval and~extending. As~a~natural side--effect,
 every organization, which follows the~guide not only solves its~problems with
 handling the~data, but is~also able to~interchange those with any~other company
 following the~guide.
+\end{sloppypar}
 
 That corresponds with the~idea of~the~RDF and~Linked Data models. We~have a~large amount
 of datasets we~want to~interchange or~even interlink. Actually, it~comes out of~needs
@@ -519,7 +526,7 @@ Scheme).
 
 These are products that the~Data Cube Vocabulary works with and~builds upon. More important
 features were added in~the~revision 2.0. The~SDMX model was extended with reference metadata
-concept which tells us~how to~format and~structure metadata in~respect to~data quality
+concept which tells us~how to~format and~structure metadata with~respect to~data quality
 frameworks. Corresponding XML formats were introduced. Furthermore, a~set of~standard XML
 interfaces was added to~enable SDMX Registry manipulation. The~registry was introduced to
 enable data location catalogization and~metadata cross--referencing over the~Internet. Also,
@@ -541,7 +548,7 @@ very similar to~the~LD~ontologies. A~concept is~a~source of~data semantics. It:
 \begin{itemize}
 \item Provides a~detailed definition of~the~component, which describes the~structure of~the~data or
 metadata.
-\item Can allow data and~metadata for different structures to~be~comparable when concepts are reused.
+\item Can allow data and~metadata for different structures to~be~comparable when~concepts are reused.
 \end{itemize}
 
 The goal of~SDMX is~to~reuse existing concepts introduced by~any~community related to~the
@@ -552,7 +559,9 @@ applications, therefore it~will lead to~a~greater interoperability. Similar conc
 grouped into~schemes which are versioned. When a~concept changes, a~new version of~the
 whole scheme needs to~be~introduced.
 
-Also the~list of~three main components of~SDMX concept goes well with the~Linked Data model
+\begin{sloppypar}
+Also the~list of~three main components of~SDMX concept goes well with~the~Linked Data model
+\end{sloppypar}
 
 \begin{itemize}
 \item Its identification, which must be~unique within the~scheme.
@@ -577,10 +586,12 @@ The data definition reflects exactly what we~need. It~consists of~a~collection o
 \section{Data Cube Vocabulary}
 \label{datacube-vocabulary}
 
-This model could be~relatively easily decorated with syntactic sugar taken from the
-RDF/LD world. This is~exactly how the~Data Cube Vocabulary was introduced based
+\begin{sloppypar}
+This model could be~relatively easily decorated with syntactic sugar taken from~the~RDF/LD
+world. This is~exactly how the~Data Cube Vocabulary was introduced based
 on the~model shown earlier. The~most significant rule of~the~model is~that each
 dimension is~needed to~reference a~concept to~determine its semantic meaning.
+\end{sloppypar}
 
 But this is~only a~definition of~a~data structure, a~set of~rules of~how a~specific kind of~information
 should be~published. Based on~that, a~dataset is~published in~a~way to~respect such a~set
@@ -589,7 +600,7 @@ structure is~consisted of~a~set of~components. One of~them needs to~be~a~measure
 so--called \emph{primary measure}. The~primary measure is~marked with a~special flag to~be~found
 easily to~enable more efficient processing.
 
-Besides of~measures, there are \emph{dimensions}. A~data structure needs to~have at~least one.
+Besides measures, there are \emph{dimensions}. A~data structure needs to~have at~least one.
 Each dimension references its concept and~has a~unique identification. The~combination of
 all the~dimensions (except the~measure) defines a~key, which allows it~to~point
 to the~primary measure.
@@ -609,11 +620,13 @@ in the~SDMX User Guide~\cite{sdmxuserguide}.
 Moreover, a~data structure can hold some metadata, e.g. the~unit of~the~measurement
 or a~starting day of~the~week (in case of~periodic time format).
 
-As stated before, the~SDMX 2.0 Information Model was used to~build up~the
-RDF Data Cube Vocabulary, especially the~Content--Oriented Guidelines (COGs). The~Data Cube
+\begin{sloppypar}
+As stated before, the~SDMX 2.0 Information Model was used to~build up~the~RDF
+Data Cube Vocabulary, especially the~Content--Oriented Guidelines (COGs). The~Data Cube
 vocabulary specification itself does not cover mechanics of~transforming other formats
 into the~Data Cube Vocabulary, including the~SDMX mostly used SDMX-ML. It~presents the~final
 product, a~model which builds upon the~RDF and~SDMX models.
+\end{sloppypar}
 
 In the~section dedicated to~the~brief description of~the~RDF, we~have discussed that resources
 are identified by~a~unique identifier --- a~URI. We~have also mentioned that it~is~used to~express
@@ -647,7 +660,7 @@ dedicated to~the~SDMX description. Therefore, a~data cube is~also consisted of~a
 dimensions, attributes and~measures --- components, speaking generally. As~in~the~cases of
 OLAP cube and~SDMX, dimensions are used to~uniquely identify observed measures
 (remember the~formal mapping marking mentioned in~the~section about RDBMS representation
-of OLAP cube). The~outline of~Data Cube Vocabulary can bee seen in~the~figure~\ref{fig:lod-cloud}.
+of OLAP cube). The~outline of~Data Cube Vocabulary can bee seen in~Figure~\ref{fig:lod-cloud}.
  
 \begin{figure}
 	\centering
@@ -658,7 +671,7 @@ of OLAP cube). The~outline of~Data Cube Vocabulary can bee seen in~the~figure~\r
 
 As a~result, we~are perfectly able to~describe the~measurement process - e.g., place, time and
 other significant conditions, combined with the~measured value itself. The~whole information
-is supplemented with additional attributes, which may make the~measurement more accurate
+is supplemented with additional attributes, which~may make the~measurement more accurate
 - units, multipliers but also other, not so~important, notes.
 
 As we~have discussed in~the~section dedicated to~the~SDMX model, each data set should be
@@ -670,7 +683,7 @@ A data structure definition is~represented by~\texttt{qb:DataStructureDefinition
 how the~data set should be~formed in~order to~comply with Data Cube Vocabulary. It~defines
 dimensions, attributes and~measures, which may appear in~the~data set. Alongside with the
 definition, optional and~required attributes are defined, as~well as~their ordering. This kind
-of information can be~extracted easily from a~well--formed document and~need to~not be~explicitly
+of information can be~extracted easily from a~well--formed document and~needs to~not be~explicitly
 declared. But the~explicit declaration enables you to:
 
 \begin{itemize}
@@ -683,7 +696,7 @@ declared. But the~explicit declaration enables you to:
 Since the~data structure defines attributes, measures and~dimensions, other resources need
 to be~involved. That is~why \texttt{qb:ComponentProperty} class was introduced. It~has a~few derived
 classes, \texttt{qb:DimensionProperty}, \texttt{qb:AttributeProperty}
-and \texttt{qb:MeasureProperty}. Those carries
+and \texttt{qb:MeasureProperty}. Those carry
 multiple pieces of~information. Firstly, the~concept, which is~represented (e.g. time, place,
 nation, currency, chemical substance, etc.) is~followed by~the~type of~the~component
 (dimension, attribute, measure). Last but not least, it~carries the~information about which
@@ -727,7 +740,7 @@ definition since it~fits our use case:
 \item Time definition [dimension]:
 
 \begin{verbatim}
-eg:refPeriod a~rdf:Property, qb:DimensionProperty ;
+eg:refPeriod a rdf:Property, qb:DimensionProperty ;
     rdfs:label "reference period"@en ;
     rdfs:subPropertyOf sdmx-dimension:refPeriod ;
     rdfs:range interval:Interval ;
@@ -742,7 +755,7 @@ cheking, \texttt{rdfs:range} is~defined.
 \item Place definiton [dimension]:
 
 \begin{verbatim}
-eg:refArea a~rdf:Property, qb:DimensionProperty ;
+eg:refArea a rdf:Property, qb:DimensionProperty ;
     rdfs:label "reference area"@en ;
     rdfs:subPropertyOf sdmx-dimension:refArea ;
     rdfs:range admingeo:UnitaryAuthority ;
@@ -751,25 +764,27 @@ eg:refArea a~rdf:Property, qb:DimensionProperty ;
 
 \item Population count definiton [measure]:
 \begin{verbatim}
-eg:finalPopulation a~rdf:Property, qb:MeasureProperty ;
-      rdfs:label "the total number of~citizens"@en ;
+eg:finalPopulation a rdf:Property, qb:MeasureProperty ;
+      rdfs:label "the total number of citizens"@en ;
       rdfs:subPropertyOf sdmx-measure:obsValue ;
       rdfs:range xsd:decimal .
 \end{verbatim}
 \end{enumerate}
 
-It is~important to~notice the~link to~the~\texttt{sdmx-measure:obsValue}, which is~the~special flag
+\begin{sloppypar}
+It is~important to~notice the~link to~the~\texttt{sdmx-measure:obsValue}, which~is~the~special flag
 mentioned in~the~section dedicated to~description of~SDMX values. With the~power of~SPARQL
-it is~very easy to~query a~triple store to~all the~values, which are the~observation values to~get
+it is~very easy to~query a~triple store for~all the~values, which are the~observation values to~get
 all values in~a~given graph. In~fact, it~should be~sufficient to~query all instances of
 \texttt{qb:MeasureProperty}, the~relation to~\texttt{sdmx-measure:obsValue} just makes the~definition
-more precise. An~example of~such a~SPARQL query can be~seen in~the~figure~\ref{fig:sparql-obsValue}.
+more precise. An~example of~such a~SPARQL query can be~seen in~Figure~\ref{fig:sparql-obsValue}.
+\end{sloppypar}
 
 \begin{figure}
 \begin{verbatim}
   
   SELECT ?v WHERE {
-    ?v a~?x .
+    ?v a ?x .
     ?x rdfs:subPropertyOf sdmx-measure:obsValue .
   }
 
@@ -783,8 +798,8 @@ values within a~single observation. A~good example of~such an~observation could 
 information sampling. One can measure many physical values (e.g. temperature, air pressure,
 humidity, …) in~a~specific timeframe on~a~specific place. One can store those values separately,
 each in~a~standalone observation. But since the~observation has been made at~the~same moment
-and the~dimensions are exactly the~same, it~is~only natural to~add those value components into
-the~same observation. One will end up~with a~5--dimensional observation where 2 components 
+and the~dimensions are exactly the~same, it~is~only natural to~add those value components
+into~the~same observation. One will end up~with a~5--dimensional observation where 2 components 
 are dimension properties (place and~time) and~3 components are measure properties
 (temperature, pressure, humidity). Without grouping, one would make 3 related observations,
 each with a~single measure property (3 dimensions overall).
@@ -808,7 +823,7 @@ principle).
 \end{itemize}
 \end{sloppypar}
 
-An example of~such a~dataset can be~seen in~the~figure~\ref{fig:example-dcv-dataset}.
+An example of~such a~dataset can be~seen in~Figure~\ref{fig:example-dcv-dataset}.
 
 \begin{figure}
 \tiny\begin{verbatim}
@@ -843,48 +858,48 @@ An example of~such a~dataset can be~seen in~the~figure~\ref{fig:example-dcv-data
 @prefix czso-ds-dem-emm:   <http://linked.opendata.cz/resource/czso.cz/dataset/demography/emmigrants#> .
 @prefix czso-ds-def:       <http://linked.opendata.cz/resource/czso.cz/dataset-definitions#> .
 
-czso-ds-dem-pop: a~sdmx:DataSet ;
+czso-ds-dem-pop: a sdmx:DataSet ;
   dcterms:subject <http://eulersharp.sourceforge.net/2003/03swap/countries#cz>, <http://dbpedia.org/resource/Czech_Republic> ;
   dcterms:publisher <http://opendata.cz/me#> ;
   sdmx:maintainer <http://linked.opendata.cz/resource/business-entity/00025593> ;
   dcterms:date "2012-09-05"^^xsd:date ;
   qb:structure czso-ds-def:DemographyFinalPopulationDefinition .
   
-czso-ds-dem-bir: a~sdmx:DataSet ;
+czso-ds-dem-bir: a sdmx:DataSet ;
   dcterms:subject <http://eulersharp.sourceforge.net/2003/03swap/countries#cz>, <http://dbpedia.org/resource/Czech_Republic> ;
   dcterms:publisher <http://opendata.cz/me#> ;
   sdmx:maintainer <http://linked.opendata.cz/resource/business-entity/00025593> ;
   dcterms:date "2012-09-05"^^xsd:date ;
   qb:structure czso-ds-def:DemographyBirthsDefinition .
   
-czso-ds-dem-dea: a~sdmx:DataSet ;
+czso-ds-dem-dea: a sdmx:DataSet ;
   dcterms:subject <http://eulersharp.sourceforge.net/2003/03swap/countries#cz>, <http://dbpedia.org/resource/Czech_Republic> ;
   dcterms:publisher <http://opendata.cz/me#> ;
   sdmx:maintainer <http://linked.opendata.cz/resource/business-entity/00025593> ;
   dcterms:date "2012-09-05"^^xsd:date ;
   qb:structure czso-ds-def:DemographyDeathsDefinition .
   
-czso-ds-dem-imm: a~sdmx:DataSet ;
+czso-ds-dem-imm: a sdmx:DataSet ;
   dcterms:subject <http://eulersharp.sourceforge.net/2003/03swap/countries#cz>, <http://dbpedia.org/resource/Czech_Republic> ;
   dcterms:publisher <http://opendata.cz/me#> ;
   sdmx:maintainer <http://linked.opendata.cz/resource/business-entity/00025593> ;
   dcterms:date "2012-09-05"^^xsd:date ;
   qb:structure czso-ds-def:DemographyImmigrantsDefinition .
   
-czso-ds-dem-emm: a~sdmx:DataSet ;
+czso-ds-dem-emm: a sdmx:DataSet ;
   dcterms:subject <http://eulersharp.sourceforge.net/2003/03swap/countries#cz>, <http://dbpedia.org/resource/Czech_Republic> ;
   dcterms:publisher <http://opendata.cz/me#> ;
   sdmx:maintainer <http://linked.opendata.cz/resource/business-entity/00025593> ;
   dcterms:date "2012-09-05"^^xsd:date ;
   qb:structure czso-ds-def:DemographyEmmigrantsDefinition .
   
-<http://linked.opendata.cz/resource/czso.cz/dataset/demography/final-population/554782-2011> a~qb:Observation ;
+<http://linked.opendata.cz/resource/czso.cz/dataset/demography/final-population/554782-2011> a qb:Observation ;
     qb:dataSet <http://linked.opendata.cz/resource/czso.cz/dataset/demography/final-population#> ;
     czso-ds-def:refArea <http://linked.opendata.cz/resource/region/554782> ;
     czso-ds-def:refPeriod "2011"^^xsd:gYear ;
     czso-ds-def:finalPopulation "1241664"^^xsd:nonNegativeInteger .
 
-<http://linked.opendata.cz/resource/czso.cz/dataset/demography/births/554782-2011> a~qb:Observation ;
+<http://linked.opendata.cz/resource/czso.cz/dataset/demography/births/554782-2011> a qb:Observation ;
     qb:dataSet <http://linked.opendata.cz/resource/czso.cz/dataset/demography/births#> ;
     czso-ds-def:refArea <http://linked.opendata.cz/resource/region/554782> ;
     czso-ds-def:refPeriod "2011"^^xsd:gYear ;
@@ -902,7 +917,11 @@ in order to~come up~with a~prototype of~a~system, which is~able to~transform an~
 into a~Data Cube Vocabulary form, if~possible. Also, a~user input (a set of~transformation rules) is
 needed to~get such a~task done. 
 
+\begin{sloppypar}
 Since Payola was designed to~provide a~platform for analyzing and~visualizing 
-Linked Data and~its main goal is~to~lower the~knowledge barrier, which one needs to~overcome in~order to~analyze Linked Data, we~also want all newly--introduced 
-components to~fit into~the~concept of~the~whole platform --- to~be~reusable. We~will also demonstrate the~benefits of~such transformations while implementing 
+Linked Data and~its main goal is~to~lower the~knowledge barrier, which~one
+needs to~overcome in~order to~analyze Linked Data, we~also want all the~newly--introduced 
+components to~fit into~the~concept of~the~whole platform --- to~be~reusable.
+We~will also demonstrate the~benefits of~such transformations while implementing 
 a~visualization, which will take advantage of~the~Data Cube Vocabulary.
+\end{sloppypar}

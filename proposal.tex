@@ -13,7 +13,7 @@ the reader how the~transformation process is~done in~the~case of~OLAP2DataCube.
 The important fact is~that the~data source (RDBMS) already contains statistical data in~an~obvious form. 
 Those are structured in~tables connected via foreign keys and~organized in~a~shape of~a~star or~a~snowflake. The~system is~designed to~take advantage of~those 
 foreign keys. Based on~them it~categorizes tables (fact table, dimension tables) and~hints
-the user within the~cube definition step.
+the user within~the~cube definition step.
 The user is~required to~define relations semantics and~select columns 
 containing measures and~dimensions. In~the~last step, a~mapping is~done based on~the~information gathered in~the~previous steps.
 Notice that a~Data Cube Vocabulary definition is~a~part of~the~result.
@@ -75,7 +75,8 @@ Based on~that fact, we~concur that the~system needs to~contain a~mechanism, whic
 parses an~arbitrary RDF graph and~searches for DCV data structure definitions. 
 We need to~extract those definitions and~have the~user select one. The~selected 
 definition will be~used in~the~upcoming steps to~obtain mapping specification from 
-the user. What we~need to~obtain is~presented in~Figure~\ref{fig:mapping-example}. On~the~right side the~reader can see the~generic visualization of~a~DCV data structure definition. A~random graph is~placed on~the~left side of~the~illustration. The~dashed lines connect the~resources 
+the user. What we~need to~obtain is~presented in~Figure~\ref{fig:mapping-example}.
+On~the~right side the~reader can see a~generic visualization of~a~DCV data structure definition. A~random graph is~placed on~the~left side of~the~illustration. The~dashed lines connect the~resources 
 from the~original dataset with corresponding DCV components. Naturally, the~figure represents an~example of~a~mapping.
 
 \begin{figure}
@@ -249,7 +250,7 @@ We will also decide if~we~proceed with the~integration.
 
 \begin{sloppypar}
 In Chapter~\ref{ch:payola} we~familiarized the~reader briefly with the~main
-concepts of~the~Payola framework. The~reader also knows how the~analyses
+concepts of~the~Payola framework. The~reader also knows how the~analysis
 evaluation is~done. Therefore we~may demonstrate the~benefits arising from
 the integration of~the~proposed system with the~Payola framework.
 \end{sloppypar}
@@ -322,10 +323,11 @@ and spread throughout the~whole Internet. The~obtained data are visualized to~th
 to select a~proper one, we~also need them to~specify a~Data Cube Vocabulary. 
 We will need to~parse the~Vocabulary, extract the~DCV datastructure definitions 
 and offer the~user a~list of~the~available definitions. After they choose one, we~will be~able to~determine how many mapping references we~need the~pattern to~contain. The~number is, of~course, based on~the~amount of~components 
-within the~datastructure definition. We~will construct a~SPARQL query based on~the~selected pattern.
+within~the~datastructure definition. We~will construct a~SPARQL query based on~the~selected pattern.
 
 The rest of~the~process is~a~common analytical pipeline execution. The~Data Cube 
-Vocabulary plugin can be~interpreted as~a~standard plugin. Since the~transformation is~done by~executing a~SPARQL query, it~corresponds with an~execution of~a~SPARQL query plugin. During the~evaluation of~the~analytical pipeline we~reach a~certain point of~an~undergoing mapping (thanks to~a~DCV plugin). On~the~output of~this plugin, we~will for certain find a~dataset compliant with the~DCV standard. But the~dataset need not 
+Vocabulary plugin can be~interpreted as~a~standard plugin. Since the~transformation is~done by~executing a~SPARQL query, it~corresponds with an~execution of~a~SPARQL query plugin. During the~evaluation of~the~analytical pipeline we~reach a~certain point of~an~undergoing mapping (thanks to~a~DCV plugin). On~the~output of~this plugin, we~will for certain find a~dataset compliant
+with~the~DCV standard. But the~dataset need not 
 be the~result of~the~analytical pipeline execution. It~may be~used as~an~input 
 for the~upcoming analytical steps.
 
@@ -385,7 +387,8 @@ experience. Therefore:\\
 {\centering $(G_{input}, G_{def}, Q_t) \rightarrow (G_{input}, D, Q_t) \rightarrow G_{output}$  \\[0.5cm]}
 
 What we~still do~not have is~a~description of~the~SPARQL query used to~transform the~data in~order to~obtain the~output graph $G_{output}$. The~form of~the~query is~dependent on~the~definition $D$. To~be~more accurate, the~definition $D$ contains
-a set of~components ($C_1, ... , C_n$), which represents dimensions, measures and~attributes. Let us~say, that the~structure has defined $n$ components, $m$ measures, $d$ dimensions and~$a$ 
+a set of~components ($C_1, ... , C_n$), which represent dimensions, measures and~attributes.
+Let us~say, that the~structure defines $n$ components, $m$ measures, $d$~dimensions and~$a$ 
 attributes. It~is~true that\\
 
 {\centering $n = m+d+a$ \\[0.5cm]}
@@ -461,7 +464,7 @@ The initial idea could be~that we~need a~country, therefore, we~map all the~coun
 dimension and~all instances of~\emph{numbers} to~the~measure. But that is~not sufficient. At~first,
 we need to~make sure that all instances of~numbers 
 really express an~amount of~citizens in~a~country. Moreover, we~need to~map the
-matching amount of~citizen to~a~corresponding country. Therefore, all the~selected resources need to~be~connected with the~rest. We~need to~select a~specific pattern, which will contain the~relation between the~resources.
+matching amount of~citizens to~a~corresponding country. Therefore, all the~selected resources need to~be~connected with the~rest. We~need to~select a~specific pattern, which will contain the~relation between the~resources.
 
 \begin{figure}
 	\centering
@@ -478,20 +481,21 @@ matching amount of~citizen to~a~corresponding country. Therefore, all the~select
 \end{figure}
 
 We will use an~example from DBPedia, 
-the Czech Republic resource. The~resource itself reference to~a~location, 
+the Czech Republic resource. The~resource itself references a~location, 
 therefore, it~should be~mapped to~the~\verb|refArea| dimension. It~has got a~\verb|populationTotal| property, which should be~mapped to~the~measure. Last, but not 
 least, it~has the~\verb|populationAsOf| property, which should be~mapped to~the~\verb|refPeriod| dimension.
 
 That gives us~a~simple shape of~a~cherry--pair as~shown in
 Figure~\ref{fig:cherry}. But what 
-if the~resource us~connected to~a~blank node with an~edge of~type 
-population and~the~blank node has two properties --- size and~time
+if the~resource is~connected to~a~blank node with an~edge of~type 
+population and~the~blank node had two properties --- size and~time
 (see Figure~\ref{fig:cherry-blank})?
 It is~clear now that there could be~in~the~least a~long oriented path between the~participating 
 vertices.
 
-While keeping this fact in~mind, we~can accede to~assembling a~formula of~a~generic pattern used for an~extraction of~the~resources from the~original graph $G_{input}$. But 
-there is~one piece of~a~puzzle still missing. While analyzing all the
+While keeping this fact in~mind, we~can accede to~assembling a~formula of~a~generic pattern
+used for an~extraction of~the~resources from the~original graph $G_{input}$. But 
+there is~one piece of~the~puzzle still missing. While analyzing all the
 possibilities, until now we~assumed that the~pattern \emph{starts} (in the~topological order)
 with a~resource, which represents one of~the~data structure components. But that is~not  
 the case.
@@ -527,7 +531,7 @@ for component $C_1$, etc. To~understand this better, see Figure~\ref{fig:mapping
 	\caption{An example of~mapping. $G_{input}$ is~an~input graph, $D$ a~data 
 	structure definition, $G_{output}$ an~output graph. Lines between those graphs represent mapping.
 	For each component $C_1, ..., C_n$ we~need the~user to~give an~example of~a~matching entity.
-	That means one concrete instance $R_{i,1}$ for component $C_1$. Such match is~generally denoted
+	That means one concrete instance $R_{i,1}$ for component $C_1$. Such a match is~generally denoted
 	as $M_1$.}
 	\label{fig:mapping-pattern}
 \end{figure}
@@ -554,13 +558,12 @@ In order to~maintain the~invariant, we~will enable the~user to~add only such
 vertices that are somehow related with an~arbitrary vertex already contained in~the~pattern $P$ (an element of~set of~vertices $V$ --- vertices $a,b,c,d$
 in Figure~\ref{fig:pattern-enhancement}, step 1).
 To make it~more formal, let us~remind the~reader that an~edge is~a~tuple 
-of vertices (e.g. $(v_1,v_2)$). In~case of~an~oriented graph, it~depends on~the~order within 
-the tuple.
+of vertices (e.g. $(v_1,v_2)$).
 
 Therefore when adding an~arbitrary vertex $v_i$, we~demand that there exists an~edge $e$ for which it~is~true that:
 
 \begin{center}
-{$e = (v_i,v_x)$ or~$e = (v_x, v_i)$ \land $v_x \in V$ \\[0.5cm]}
+{$e = ((v_i,v_x)$ or~$e = (v_x, v_i))$ \land $v_x \in V$ \\[0.5cm]}
 \end{center}
 
 \begin{figure}
@@ -608,7 +611,7 @@ $n$ of~the~vertices from the~$\{v_1, ..., v_v\}$ matches vertices $M_1, ..., M_n
 \begin{figure}
 \begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`_=8}]
   CONSTRUCT \{
-    []   a~  <http://purl.org/linked-data/cube#Observation> ;
+    []   a   <http://purl.org/linked-data/cube#Observation> ;
          <http://purl.org/linked-data/cube#dataSet>   $S$ ;
          $C_1$      $M_1$ ;
          ...   
@@ -654,7 +657,7 @@ As the~name suggests, this visualizer is~able to~handle datasets with two
 kinds of~dimensions. The~first one will express the~time of~the~measurement, the~second one will cover its location. It~will support one measure that has to~be~a number.
 
 We will place a~heatmap layer over a~standard map layer. The~layer will express 
-the intensity of~the~measured value in~respect to~the~others. The~scale will go~from 
+the intensity of~the~measured value with~respect to~the~others. The~scale will go~from 
 green to~red where the~latter represents the~largest value measured.
 
 \subsection{Universal DCV}

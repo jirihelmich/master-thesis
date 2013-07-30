@@ -34,7 +34,7 @@ implemented in~Payola:
   If~we~talk about a~data source, we~almost always have in~mind an~RDF data source.
   
   \item \emph{Analysis} --- one can look at~an~analysis as~an~algorithm, which 
-  describes working with data from a~data source in~order to~provide results. 
+  describes transformation of~data from a~data source in~order to~provide results. 
   It~is~a~way of~specifying the~data sources you want to~fetch the~data from, 
   filtering them, combining them, constraining them on~properties, applying 
   ontologies, etc. Also known as~an~analytical pipeline or~an~analyser.  
@@ -92,7 +92,7 @@ where the~data have to~be~fetched from.
 
 The analysis concept arises from ideas seen in~projects like DERI 
 Pipes~\cite{deri-pipes}, meaning, that the~user is~needed to~assemble a~pipeline,
-which processes the~input data in~a~specified way. Therefore, to~enable them a~building of~an~analysis, Payola is~bundled with several basic 
+which processes the~input data in~a~specified way. Therefore, to~enable them to~build an~analysis, Payola is~bundled with several basic 
 plugins. Generally, the~list of~plugins contains as~many plugins as~needed
 in order to~simulate basic SPARQL query behaviour.
 
@@ -123,7 +123,7 @@ in order to~simulate basic SPARQL query behaviour.
   
 \end{itemize}
 
-An example of~an~analysis can be~seen in~the~figure~\ref{fig:example-analysis}.
+An example of~an~analysis can be~seen in~Figure~\ref{fig:example-analysis}.
 The goal of~the~analysis is~to~query against DBPedia SPARQL Endpoint and~retrieve cities with a~number of~population higher than the~specified parameter. 
 Those cities are then connected to~the~country they belong to.
 
@@ -142,14 +142,16 @@ plugins support some features suggested in~the~Visualisation
 mantra~\cite{mantra}.
 
 The bundled plugins enable the~user to~visualize the~results of~an~analysis 
-in a~couple of~different ways. The~basic visualisation generates a~triple 
-table, while more advanced variants offer a~generic graph visualisation with a~support of~OWL ontologies. The~visualizer allows the~user to~customize the~view based on~an~ontology. The~user can customize colours and~other graphical 
-features of~a~rendered graph representation in~respect to~a~URI type defined in~an~ontology.
+in~a~couple of~different ways. The~basic visualisation generates a~triple 
+table, while more advanced variants offer a~generic graph visualisation with a~support of~OWL ontologies.
+The~visualizer allows the~user to~customize the~view based on~an~ontology.
+The~user can customize colours and~other graphical 
+features of~a~rendered graph representation with~respect to~a~URI type defined in~an~ontology.
 
 \subsection{Sharing}
 Since Payola was designed as~a~collaborative tool, it~contains group 
-managements and~a~generic mechanism for sharing. Many types of~content such as~a~data source, an~analysis, a~custom analytical plugin, an~ontology customization for 
-visualization, all can be~shared with other users of~the~Payola application 
+management and~a~generic mechanism for sharing. Many types of~content such as~a~data source, an~analysis, a~custom analytical plugin, an~ontology customization
+for~visualization, all can be~shared with other users of~the~Payola application 
 installation.
 
 Since the~description of~the~tool is~not the~main goal of~this thesis, we~will 
@@ -174,8 +176,7 @@ Since this is~crucial, we~will talk about the~evaluator
 in more detail in~this chapter.
 
 \begin{sloppypar}
-The data package then wraps the~entities from the~previous packages with
-a~concrete implementation of~DAL (Data Access Layer), which in~our case is~the~Squeryl
+The data package then wraps the~entities from the~previous packages with~a~concrete implementation of~DAL (Data Access Layer), which in~our case is~the~Squeryl
 ORM framework~\cite{squeryl}.
 \end{sloppypar}
 
@@ -186,12 +187,13 @@ all of~the~existing presentation layers (web application controllers and
 RPC remote objects) are built on~top of~this package. 
 
 The web package contains all the~code needed to~build the~web application --- 
-a server side, a~client--side and~everything in~between. It~contains the~code of~the~MVC application as~well as~the~code of~the~client--side subapplications.
-It~also contains the~code of~visualizer plugins and~an~analysis editor. One of~the~most difficult and~interesting features from this package is~the~RPC mechanism.
+a server side, a~client--side and~everything in~between. It~contains the~code
+of~the~MVC application as~well as~the~code of~the~client--side subapplications.
+It~also contains the~code of~visualizer plugins and~an~analysis editor.
+One of~the~most complex and~interesting features from this package is~the~RPC mechanism.
 
 The RPC mechanism was implemented in~order to~bridge the~gap between the~client 
-side and~the~server side application and~to~hide the~XHR request from
-the~developer of~the~application and/or any~extension. Since the~application heavily
+side and~the~server side application and~to~hide the~XHR request from~the~developer of~the~application and/or any~extension. Since the~application heavily
 uses the~\emph{Scala to~JavaScript} component, we~invested some effort into~developing the~RPC 
 protocol. That enables a~developer to~transparently call a~method on~the~server from 
 the client--side. 
@@ -229,9 +231,10 @@ query which would fetch all the~data from DBPedia would be~altered to~include
 the constraints set by~the~presence of~typed and~filter plugins, so~that the~data fetcher would have to~fetch as~less data as~possible. The~optimizer can 
 also handle unions or~joins over the~same data sources.
 
-That gives us~the~idea of~how the~plugins work and~how they can cooperate in~the~context of~analysis with optimalization. The~evaluation itself is~transformed 
-into a~problem, which is~solved by~the~Scala Actors framework. For each plugin 
-in the~optimized analysis, there is~an~instance of~an~actor. The~actor waits 
+That gives us~the~idea of~how the~plugins work and~how they can cooperate in~the~context
+of~an~optimized analysis. The~evaluation itself is~transformed 
+into~a~problem, which is~solved by~the~Scala Actors framework. For each plugin 
+in~the~optimized analysis, there is~an~instance of~an~actor. The~actor waits 
 until all of~the~inputs of~the~corresponding plugin have been provided with the~input data from its predecessor. When inputs are bound with input data, the~executive part of~the~plugin is~performed. That could be~anything from 
 executing a~SPARQL query to~finding the~shortest path between two nodes in~a~specified graph. The~only constraint is~that the~result of~the~plugin execution 
 needs to~be~also~a~graph.
@@ -255,13 +258,15 @@ takes advantage of~a~variety of~modern technologies, like HTML5 (specifically
 canvas element) and~CSS3.
 
 In order to~bring a~basic level of~compatibility with existing applications from 
-the~LOD2 stack, it~was decided that it~has to~run on~the~JVM platform. The~Scala programming language was chosen as~a~main implementation language of~the~whole application. Since the~team of~the~project wanted to~avoid a~code repeating 
+the~LOD2 stack, it~was decided that it~has to~run on~the~JVM platform.
+The~Scala programming language was chosen as~a~main implementation language of~the~whole application.
+Since the~team of~the~project wanted to~avoid a~code repetition 
 while keeping in~mind the~DRY programming paradigm, one of~the~members 
 introduced his own version of~Scala to~JavaScript compiler~\cite{s2js}. Therefore, even the~client--side code of~the~application is~written in~the~Scala programming language 
 and~many parts of~the~code are shared between the~client--side and~the~server 
 side.
 
-There were many different advantages to~choosing the~Scala programming language, 
+There were many different advantages of~choosing the~Scala programming language, 
 for example the~presence of~the~Scala Actors framework, which fits into~the~analysis evaluation problem.
 
 The application utilizes the~following libraries and~technologies:

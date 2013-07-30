@@ -12,37 +12,38 @@ tools capable of. Before we~come up~with the~table let us~mention, which~feature
 
 The main goal of~this thesis is~to~deliver a~prototype of~a~system, which will map 
 arbitrary RDF data to~a~form compliant with the~Data cube Vocabulary. Based on~this fact, one of~the~criteria is~an~ability to~\emph{convert arbitrary data 
-into a~form of~cubes}. Another difference lies in~a~format of~\emph{input data} of~the
+into~a~form of~cubes}. A difference lies in~a~format of~\emph{input data} of~the
 mapping process. There are tools working with relational (R), Linked Data (LD) or
 arbitrary format (A).
 
-The main benefit of~implementing such a~feature into~Payola is~that it~becomes a~part of~an~ecosystem. First of~all, we~have the~user make an~analysis over an~arbitrary
+The main benefit of~implementing such a~feature into~Payola is~that it~becomes a~part of~the~ecosystem. First of~all, we~have the~user make an~analysis over an~arbitrary
 dataset (or, while using more than one data source even more than one dataset)
 and then map it~into~the~Data Cube Vocabulary standard. That also means that one is~able
 to analyze the~data, interconnect them, filter them and~enrich entities with more properties
 while utilizing the~principles of~Linked Data before the~mapping is~made. Moreover, the~statistical
-dataset could be~the~result of~an~analysis. A~new statistical dataset may originate from performing
+dataset could be~the~result of~an~analysis. A~new statistical dataset may originate from~performing
 such an~analysis. On~the~other hand, many of~the~existing 
 tools provide a~way of~converting a~rather static dataset. Let us~imagine a~situation when a~user has a~database of~statistical facts. While using a~tool, they can 
 convert the~database into~a~set of~triples according to~the~Data Cube 
 Vocabulary format. When it~is~done they are able to~apply Linked Data principles
-on such a~dataset. It~might be~a~bit cumbersome to~make the~same analysis similar to
-the previous case after the~mapping is~done. As~the~two use cases are dissimilar in~process 
+on~such a~dataset. It~might be~a~bit cumbersome to~make the~same analysis similar to~the~previous
+case after the~mapping is~done. As~the~two use cases are dissimilar in~process 
 we will learn whether the~existing tools make the~user able to~analyze datasets or~\emph{create new ones}.
 
 A part of~the~Payola ecosystem is~also based on~a~fact that Payola is~a~web 
 application with a~\emph{sharing option}. A~user is~able to~make an~analysis (an
-analytical algorithm or~an~analytical pipeline) and~share it~with other users. This applies also to~analytical plugins, ontologies, etc. That is~why we~will differentiate between the~following
+analytical algorithm or~an~analytical pipeline) and~share it~with other users. This applies also to~analytical plugins, ontologies, etc. 
+That is~why we~will differentiate between the~following
 application types --- desktop (D) and~web (W). We~will also want to~know if~it~is~possible to~share \emph{within the~application}.
 
 There are also tools, which make the~user capable of~\emph{developing a~custom vocabulary 
 definition} (DCV data structure definition) based on~the~metadata of~the~input data.
 This feature will be~also covered in~the~overview.
 
-While Payola is~a~platform for analysing and~visualising data, we~will also 
-focus on~the~latter. First of~all, it~interests us~whether 
-an~examined tool allows the~user to~\emph{prepare a~visualization} . While keeping 
-in mind the~main principles presented in~~\cite{mantra} we~will also discover 
+While Payola is~a~platform for analysing and~visualising data, we~will also~focus
+on~the~latter. First of~all, it~interests us~whether 
+an~examined tool allows the~user to~\emph{prepare a~visualization}. While keeping 
+in mind the~main principles of \emph{Visual lnformation--Seeking Mantra}~\cite{mantra} we~will also discover 
 which of~these tools provide \emph{faceted browsing}.
 
 What is~also important to~know is~how a~tool behaves while converting a~rather 
@@ -94,7 +95,7 @@ platform, the~OntoWiki, which serves as~an~ontological knowledge base enabling
 the~user to~visualize and~edit facts in~the~knowledge base in~a~specific way
 while utilizing the~principles of~Linked Data.
 
-The idea behind this tool is~the~closest to~what we~aim to~achieve in~this thesis.
+The idea behind this tool is~the~closest to~what we~aim to~achieve in~this~thesis.
 In spite of~this, it~does something a~bit different. It~is~designed to~convert a~whole relational database containing statistical data into~a~form of~Data Cube 
 Vocabulary. This also presents one of~the~biggest dissimilarities between the~OLAP2DataCube and~what we~are about to~propose --- the~source is~not in~the~RDF format.
 
@@ -109,9 +110,9 @@ fit perfectly into~the~world of~Linked Data. Tables in~the~relational database
 are organized into~a~shape of~a~star or~a~snowflake as~described in~Section~\ref{sec:datacube}.
 Moreover, they are interconnected through defined foreign keys,
 which can have the~same semantics as~edges in~the~directed RDF graph.
-On the~other hand, what is~completely missing is~any~kind of~structured
-metadata. That is~what the~plugin needs to~obtain from the~user while the~user
-is required to~give the~data a~precise meaning.
+On~the~other hand, what is~completely missing is~any~kind of~structured
+metadata. That~is~what the~plugin needs to~obtain from the~user while the~user
+is~required to~give the~data a~precise meaning.
 
 \begin{figure}
 	\centering
@@ -161,9 +162,9 @@ Let us~imagine a~case of~converting a~webpage. The~tool parses the~source code o
 RDF dataset. The~same is~done not only in~the~case of~a~webpage, but also in~a~case
 of other specific supported file formats. To~achieve that a~specific algorithm is~used to~extract
 the data from the~file into~a~RDF graph. After this step is~complete, the~tool generates a~DCV
-datastructure definition in~respect to~the~kind of~data found in~the~input dataset.
+datastructure definition with~respect to~the~kind of~data found in~the~input dataset.
 Also, an~automatic conversion script, which the~user can later execute in~order to~triplificate
-the input data, is~generated.
+the~input data, is~generated.
 
 The script is~written in~a~custom DSL (an example in~Figure~\ref{fig:tabels}) which,
 with its structure, resembles the~well--known
@@ -220,7 +221,7 @@ order to~provide data visualization (an example can be~seen in~Figure~\ref{fig:c
 
 While utilizing the~principles of~Linked Data and~Data Cube Vocabulary 
 standard, the~authors were able to~come up~with a~really sophisticated faceted 
-browser, which makes the~user capable to~filter data in~detail based on~the~statistical 
+browser, which makes the~user capable of~filtering data in~detail based on~the~statistical 
 semantics (DCV). The~user is~able to~filter data based on~each dimension, or~to~use the~proper term, to~slice the~cube as~needed. That gives us~a~generic tool, which 
 compares any~statistical data with the~ability to~learn more 
 information while taking advantage of~the~entities Linked Data interconnection.
@@ -234,7 +235,7 @@ The tool also makes it~able to~publish dataset metadata.
 
 An interesting feature of~the~faceted browser is~that the~user can 
 generate a~permalink in~order to~obtain a~reference to~the~current visualization 
-state. That makes it~very easy for the~user to~share their visualization with the~community.
+state. That~makes it~very easy for the~user to~share their visualization with the~community.
 
 \section{Visualbox}
 Based on~LODSPeaKr~\cite{lodspeakr}, a~tool, which makes it~easier to~create Linked Data Websites 
@@ -259,14 +260,14 @@ in Figure~\ref{visualbox-example}.
 \scriptsize\begin{verbatim}
 
 PREFIX conversion: <http://purl.org/twc/vocab/conversion/>
-SELECT ?g sum( ?triples ) as~?estimated_triples
+SELECT ?g sum( ?triples ) as ?estimated_triples
 WHERE {
   GRAPH ?g  {
    ?g void:subset ?subdataset .
    ?subdataset conversion:num_triples ?triples .
   }
 } 
-GROUP BY~?g
+GROUP BY ?g
 
 {{models.logd.triples|GoogleVizColumnChart:"g,estimated_triples,width=1200"}}
 \end{verbatim}\normalsize
@@ -288,7 +289,7 @@ query, visualization rules and~more are hardcoded in~this single--file
 demonstration, it~serves us~only as~a~great example of~what could be~the~result of~a
 Data Cube Vocabulary dataset visualization.
 
-The tool fires a~XHR request to~the~server, which contains a~SPARQL query. The~query is~executed in~order to~obtain data from a~remote SPARQL endpoint. In~fact, it~uses some Data Cube Vocabulary constructs to~filter the~data. The~data 
+The tool fires a~XHR to~the~server, which contains a~SPARQL query. The~query is~executed in~order to~obtain data from a~remote SPARQL endpoint. In~fact, it~uses some Data Cube Vocabulary constructs to~filter the~data. The~data 
 are sent back to~the~client in~a~form of~a~JSON string. The~mashup then uses the~D3~\cite{d3} visualization library in~order to~present the~user with a~D3 Geo 
 visualization of~the~obtained data.
 
@@ -313,10 +314,10 @@ data. The~visualization type is~selected automatically based on~the~semantics of
 and extracts the~types of~the~different properties. Those are consequently mapped to~some basic supertypes such as~Time, Location, etc. Based on~the~mapping,
 the~tool offers a~visualization template to~the~user.
 
-As a~result, the~authors presented a~tool capable of~visualizing 
+As a~result, the~authors implemented a~tool capable of~visualizing 
 statistical data with appropriate visualization type without the~need of~using 
 the~Data Cube Vocabulary standard. On~the~other hand, if~the~tool 
-implemented the~standard, the~results could be~even more reliable.
+followed the~standard, the~results could be~even more reliable.
 
 \section{Tabulator}
 \label{sec:rw:tabulator}
@@ -326,7 +327,7 @@ want to~provide a~form of~finding more relevant datasets while exploring or~publ
 
 The experimental version of~the~tool was, according to~~\cite{tabulator-paper}, 
 developed completely as~a~client--side application for a~web browser. Therefore, 
-technologies like JavaScript, XHR, XML, RDF and~SPARQL were utilized.
+technologies like JavaScript, AJAX, XML, RDF and~SPARQL were utilized.
 
 The tool offers two basic modes, exploration and~analysis. In~the~exploration mode,
 the~user starts to~explore the~Semantic Web by~entering a~URI of~a~resource. They 
@@ -430,8 +431,8 @@ Web.
 
 Since one can overview rather small datasets without any~significant problem, 
 the~biggest advantage of~the~LODStats tool lies in~the~ability to~work fast with 
-datasets containing millions of~triples of~RDF data. The~authors took advantage 
-of the~presence of~a~SPARQL endpoint, which allows them to~work with the~datasets 
+datasets containing millions of~RDF triples. The~authors took advantage 
+of~the~presence of~a~SPARQL endpoint, which allows them to~work with the~datasets 
 dynamically, without the~need to~load all those millions of~triples into~the~memory.
 
 
@@ -455,8 +456,7 @@ approaches:
   give us~a~general purpose measure (similar to~Google's Page Rank) to~determine the~  quality very briefly, e.g. based on~the~number of~outgoing and~incoming 
   edges.
   
-  \item \emph{Coverage analysis} --- The~authors present two subtypes of~  coverage - \emph{vertical} and~\emph{horizontal}.  While the~horizontal is~  introduced to~determine the~size of~the~domain (how many resources are described),
-  the~vertical deals with the~scale of~details (how deeply the~description goes).
+  \item \emph{Coverage analysis} --- The~authors present two subtypes of~  coverage - \emph{vertical} and~\emph{horizontal}.  While the~horizontal is~  introduced to~determine the~size of~the~domain (how many resources are described), the~vertical deals with~the~scale of~details (how deeply the~description goes).
   
   \item \emph{Privacy analysis} --- While analyzing what classes and~properties 
   are used, the~authors of~the~project try to~determine if~a~dataset 
@@ -469,7 +469,7 @@ approaches:
 
 Since the~authors have focused on~performance and~declared to~develop a~tool with a~smaller memory footprint and~better scalability, it~would be~really useful to~integrate such a~tool with the~Payola tool.
 The integration would give the~Payola user the~opportunity to~get familiar with the~chosen dataset before analyzing it. In~fact, as~a~circumstantial goal of~this 
-thesis, we~will integrate the~tool (on HTTP communication basis) with the~previously mentioned 
+thesis, we~will integrate the~tool (on~HTTP communication basis) with the~previously mentioned 
 LODvisualization application, the~illustration of~the~concept introduced 
 in~\cite{ldvm}. Integrating Payola with the~LODStats analyzer should be~also 
 possible since the~source code of~both tools is~available on~GitHub~\cite{github-payola} 
@@ -479,7 +479,7 @@ The authors made the~tool to~examine a~given dataset in~two ways, to~examine
 the~\emph{schema-level characteristics} and~\emph{data--level characteristics}. 
 The former describes the~characteristics of~an~entity in~the~context of~the~used 
 schema fragments (e.g. depth in~a~tree where hierarchical ontologies are used). 
-The latter then describes the~characteristics related directly to~the~values 
+The~latter then describes the~characteristics related directly to~the~values 
 appearing in~the~dataset (such as~minimum, maximum values, average values, entities equality, 
 etc.). An~example of~computed statistics can be~seen in~Figure~\ref{fig:lodstats}.
 
@@ -502,7 +502,7 @@ providing plain XML data (they are not in~the~RDF format).
 The tool does not offer the~same level of~analyzing data.
 It~would be~very hard to~simulate SPARQL with tools like XPath.
 
-That is~how we~came up~with the~idea of~\emph{analyses} concept for Payola. 
+That is~how we~came up~with the~idea of~\emph{analysis} concept for Payola. 
 We offered a~basic editor, which enables the~user to~build his own analysis
 (also called an~\emph{analytical pipeline}).
  
@@ -517,9 +517,9 @@ Pipes project and~is~focused on~processing RDF data. The~editor is~distributed
 in a~form of~a~Java JAR package, therefore, one should be~able to~integrate it~in~another
 Java--based software rather easily.
 
-Unlike Payola, it~contains some basic text operators, which even enables the~user  
+Unlike Payola, it~contains some basic text operators, which even enable the~user  
 to construct the~URL that is~used as~a~parameter of~the~RDF data fetcher. This 
-is also the~biggest difference between DERI Pipes and~Payola: Payola lets 
+is also~the~biggest difference between DERI Pipes and~Payola: Payola lets 
 you work only with RDF data which is~the~reason why plugin parameters (with basic data types string,
 boolean, integer and~float) could not be~computed in~the~process and~are 
 statically given by~the~user when defining an~analytical pipeline.
@@ -542,14 +542,14 @@ The primal reason of~the~Payola tool implementation was to~prove some basic conc
 
 \begin{itemize}
 \item Generic Linked Data analysis with a~web application.
-\item Generic visualization of~analyses results.
+\item Generic visualization of~analysis results.
 \item All--in--one (read, share, analyze, visualize) Linked Data tool.
 \end{itemize}
 
 As the~original intent of~the~tool was not to~implement any~specific existing visualization model,
 the~system has been created with its own internal visualization pipeline architecture. Let us~compare such
 an~architecture with the~model proposed in~\cite{ldvm}. For an~easier orientation, let us~name the~Payola visualization 
-model as~a~\emph{Payola model}. The~model proposed in~\cite{ldvm} is~named \emph{LDVM}. We~will describe the~Payola
+model as~\emph{Payola model}. The~model proposed in~\cite{ldvm} is~named \emph{LDVM}. We~will describe the~Payola
 model while utilizing the~terms used in~\cite{ldvm}. Moreover, we~will also explain
 the~differences between the~LDVM and~the~Payola model.
 
@@ -619,7 +619,7 @@ visualization. The~basic Payola analyzer and~visualizer implementation provides
 deep details. It~shows the~whole dataset in~the~most possible detail. In~fact, 
 the~performance could become an~issue on~a~rather larger dataset.
 
-Those two tools are actually complements. While working with a~dataset one could 
+Those two tools are actually complementing each other. While working with a~dataset one could 
 start with the~LOD visualization tool to~get the~overall picture of~the~dataset --- 
 the~\emph{data coherence}. It~will also help to~get the~idea of~what is~included in~the~dataset without making a~specific query.
 
@@ -668,7 +668,7 @@ One will probably repeatedly use a~limited count of~visualizers.
 
 While Payola makes it~possible to~reuse a~visualizer, it~does not satisfy the~requirements set down in~the~proposal~\cite{ldvm2}. The~idea goes a~little bit 
 further, beyond the~borders of~a~single application. Being integrated with the~LOD cloud, it~should be~possible to~query it~with the~characteristics of~the~data we~would like to~visualize and~get a~list of~visualizers 
-available in~the~cloud and~suitable for the~task.
+available in~the~cloud and~suitable for~the~task.
 
 By reusing this concept, the~same could be~applied to~analyzers and~so--called 
 \emph{transformers} designed to~transform the~results of~an~analysis 
@@ -712,9 +712,9 @@ Since there are generally many publications focused on~data visualization (with 
 connection to~Linked Data), we~would like to~compare the~recommended approaches to
 the~implementation of~visualizers embedded in~Payola.
 
-Ben Shneiderman in~\cite{mantra} introduces a~term \emph{Visual lnformation--Seeking Mantra}.
+Ben Shneiderman introduces  in~\cite{mantra} a~term \emph{Visual lnformation--Seeking Mantra}.
 He tries to~define
-what a~good visualizer should provide to~satisfy its user. He~also puts those definitions into
+what a~good visualizer should provide to~satisfy its user. He also~puts those definitions into
 a~context with some specific data formats, more particularly with multi--dimensional data,
 which are related to~the~topic of~Linked Data, moreover the~Data Cubes metaformat. We~try to
 compare the~specified list of~features with those provided by~Payola. We~also want to~explain,
@@ -738,7 +738,7 @@ that it~contains some limitations. Since Payola is~a~generic Linked Data visuali
 the~output of~practically all of~the~plugins is~a~graph (network). It~contains all of~the~vertices
 included in~the~visualized dataset. Those are placed by~a~given algorithm on~the~screen,
 but are not clustered. The~result is~that the~user is~(in most cases) able to~see the~whole
-dataset on~his screen. But the~visualization could be~a~bit confusing since all the~vertices
+dataset on~his screen (Figure~\ref{fig:palyola-vis}). But the~visualization could be~a~bit confusing since all the~vertices
 are present. The~recommended adjustment would be~to~somehow simplify the~initial view.
 
 \begin{figure}
@@ -764,12 +764,12 @@ scenarios:
 \end{itemize}
 
 To make the~view more synoptic many of~the~embedded plugins extract the~related literal
-vertices and~collapse them into~a~vertex meta information. E.g. the~entity
+vertices and~collapse them into~a~vertex meta information. E.g.~the~entity
 \url{http://dbpedia.org/resource/Dhaka} has some properties - \texttt{label},
 \texttt{populationDensity}, \texttt{populationTotal}.
 Those are actually relations. Despite that fact, visualizers do~not treat them
 that way. They store this information in~the~memory and~display it~if~and~only if~the~user
-interacts with the~related vertex.
+interacts with~the~related vertex.
 
 The most missing Payola feature is~loading relationships on--demand. With the~connection to~the
 problem
@@ -784,7 +784,7 @@ The only feature, which is~rather missing in~comparison to~the~feature list from
 There is~only one component of~Payola that enables a~user to~walk through 
 history of~actions and~that is~a~SPARQL endpoint browser. It~remembers the~path 
 that the~user creates while clicking through the~dataset. The~other visualizers 
-however are not equipped with such a~feature.
+however are not equipped with~such a~feature.
 
 Payola does not fulfill the~basic thought stated in~\cite{mantra}, since 
 there is~no~visualization plugin that would enable the~user to~overview the~examined data set via a~specialized visualization such as~a~treemap 
